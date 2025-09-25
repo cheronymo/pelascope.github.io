@@ -209,9 +209,9 @@
 <span><span class="co">#&gt; 6 47.83268 -4.624492     2 2023-04-30 09:59:15 TR_Pelgas_30042023</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="fill-hole-in-effort">Fill hole in effort<a class="anchor" aria-label="anchor" href="#fill-hole-in-effort"></a>
+<h3 id="prepare-the-effort-table-for-linearization">Prepare the effort table for linearization<a class="anchor" aria-label="anchor" href="#prepare-the-effort-table-for-linearization"></a>
 </h3>
-<p>Because of the method, some hole can appear during lineariastion. To solve this problem, it is needed to use the function ‘fill_hole_effort’. The function create “fake” status (new) and new ran to link row between themself.</p>
+<p>Because of the Megascope surveys, LegID do not regroup a constant environment regarding Beaufort, Elevation or number of observer. To solve this problem, the function ‘prep_lin’ recreate effort point when it’s needed (with ‘NEW’ as status) and adapt the ‘LegID’ column in order to get constant environment during the Leg.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">data_effort_clean</span> <span class="op">&lt;-</span> <span class="fu">pelascope</span><span class="fu">::</span><span class="fu"><a href="reference/prep_lin.html">prep_lin</a></span><span class="op">(</span></span>

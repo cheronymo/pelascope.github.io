@@ -1,0 +1,10 @@
+pandoc: '3.2'
+pkgdown: 2.1.1
+pkgdown_sha: ~
+articles:
+  calculation: calculation.html
+  effort-preparation: effort-preparation.html
+  esw-calculation: esw-calculation.html
+  Processing_climatologies: Processing_climatologies.html
+  sightings-preparation: sightings-preparation.html
+last_built: 2025-09-24T13:52Z

@@ -140,7 +140,7 @@ has 3 arguments :
 ``` r
 
 data_effort_clean <- 
-  check_brut_effort(data_effort = data_effort_brut, 
+  check_raw_effort(data_effort = data_effort_brut, 
                     only_prospection = TRUE, 
                     filter_speed = 8)
 #> 
@@ -184,6 +184,7 @@ data_effort_clean <- pelascope::prep_lin(
   effort_table  = data_effort_clean, 
   variable = quos(Beaufort, plateform, n_obs), 
   unique_column = "LegID")
+#> Redefinig 'LegID' columnn according to ~Beaufort, ~plateform and ~n_obs
   
 head(data_effort_clean)
 #>   Survey            plateform   routeType status           LegID speed Beaufort
@@ -277,7 +278,8 @@ head(data_effort_clean_lin)
 
 #### Segmentation of the effort
 
-Segmentation of the effort and distinct every row / SegID.
+Segmentation of the effort and distinct every row / SegID. Here to solve
+a temporary problem, ‘SegID’ are rendered unique.
 
 ``` r
 # Segmentation
@@ -430,7 +432,7 @@ of interest. Perpendical distance (PerpDist) is calculated using
 
 ``` r
 
-data_sightings_clean <- check_brut_sightings(data_sight_brut)
+data_sightings_clean <- check_raw_sightings(data_sight_brut)
 #> ✖ 'direction' column contains 2009 NULL values
 #> ✖ 'behaviour' column contains 501 NULL values
 #> ✖ 'speciesLatin' column contains 1 NULL values
@@ -449,13 +451,13 @@ head(data_sightings_clean)
 #> 4         1     moving  left -4.576527 48.33225 2023-04-30 06:45:54       50
 #> 5         2     moving right -4.584218 48.32742 2023-04-30 06:47:10      300
 #> 6         2 stationary  left -4.580327 48.32995 2023-04-30 06:47:00      300
-#>   angle  PerpDist         TransectID
-#> 1   290 140.95389 TR_Pelgas_30042023
-#> 2   280  98.48078 TR_Pelgas_30042023
-#> 3    45 353.55339 TR_Pelgas_30042023
-#> 4   300  43.30127 TR_Pelgas_30042023
-#> 5    55 245.74561 TR_Pelgas_30042023
-#> 6   270 300.00000 TR_Pelgas_30042023
+#>   angle  PerpDist direction         TransectID
+#> 1   290 140.95389       180 TR_Pelgas_30042023
+#> 2   280  98.48078       280 TR_Pelgas_30042023
+#> 3    45 353.55339        NA TR_Pelgas_30042023
+#> 4   300  43.30127       100 TR_Pelgas_30042023
+#> 5    55 245.74561       140 TR_Pelgas_30042023
+#> 6   270 300.00000        NA TR_Pelgas_30042023
 ```
 
 ### Check sightings with AmbiDSM
@@ -537,7 +539,7 @@ Sigthings_with_SegID <- data_sightings_clean %>% # data sightings clean
 
 
 head(Sigthings_with_SegID)
-#> # A tibble: 6 × 24
+#> # A tibble: 6 × 25
 #>   survey session routeType  LegID Species speciesLatin GroupSize behaviour Side 
 #>   <chr>  <chr>   <chr>      <chr> <chr>   <chr>            <int> <chr>     <chr>
 #> 1 PELGAS LEG1    prospecti… 3004… PHACAR  Phalacrocor…         1 moving    left 
@@ -546,10 +548,10 @@ head(Sigthings_with_SegID)
 #> 4 PELGAS LEG1    prospecti… 3004… PHACAR  Phalacrocor…         1 moving    left 
 #> 5 PELGAS LEG1    prospecti… 3004… MOTOBO  Small motor…         2 stationa… left 
 #> 6 PELGAS LEG1    prospecti… 3004… LARFUS  Larus fuscus         2 moving    right
-#> # ℹ 15 more variables: Longitude <dbl>, Latitude <dbl>, DateTime <dttm>,
-#> #   distance <int>, angle <int>, PerpDist <dbl>, TransectID <chr>, DupID <int>,
-#> #   Date <date>, Effort <dbl>, Beaufort <dbl>, Start_time <dttm>,
-#> #   End_time <dttm>, SegID <chr>, geomeff <POINT [°]>
+#> # ℹ 16 more variables: Longitude <dbl>, Latitude <dbl>, DateTime <dttm>,
+#> #   distance <int>, angle <int>, PerpDist <dbl>, direction <dbl>,
+#> #   TransectID <chr>, DupID <int>, Date <date>, Effort <dbl>, Beaufort <dbl>,
+#> #   Start_time <dttm>, End_time <dttm>, SegID <chr>, geomeff <POINT [°]>
 ```
 
 Sightings removed because observation time not within start/end of
@@ -584,8 +586,24 @@ Sigthings_without_attractor$table_behavior
 #>  9 GREGUL  attraction     9
 #> 10 HIRRUS  attraction     9
 #> # ℹ 25 more rows
+Sigthings_without_attractor$table_direction
+#> # A tibble: 22 × 3
+#> # Groups:   Species, direction [22]
+#>    Species direction     n
+#>    <chr>       <dbl> <int>
+#>  1 PUFPUF        360    11
+#>  2 SULBAS        360     8
+#>  3 FULGLA        360     5
+#>  4 LARARG        360     5
+#>  5 LARGUL        360     3
+#>  6 SAILBO        360     3
+#>  7 DELDEL        360     2
+#>  8 MOLMOL        360     2
+#>  9 RISTRI        360     2
+#> 10 STEHIR        360     2
+#> # ℹ 12 more rows
 Sigthings_without_attractor$sightings_table
-#> # A tibble: 2,265 × 24
+#> # A tibble: 2,265 × 25
 #>    survey session routeType LegID Species speciesLatin GroupSize behaviour Side 
 #>    <chr>  <chr>   <chr>     <chr> <chr>   <chr>            <int> <chr>     <chr>
 #>  1 PELGAS LEG1    prospect… 3004… PHACAR  Phalacrocor…         1 moving    left 
@@ -599,10 +617,10 @@ Sigthings_without_attractor$sightings_table
 #>  9 PELGAS LEG1    prospect… 3004… BUOY    Fishing buo…         2 NULL      left 
 #> 10 PELGAS LEG1    prospect… 3004… SAILBO  Sailing boat         1 moving    right
 #> # ℹ 2,255 more rows
-#> # ℹ 15 more variables: Longitude <dbl>, Latitude <dbl>, DateTime <dttm>,
-#> #   distance <int>, angle <int>, PerpDist <dbl>, TransectID <chr>, DupID <int>,
-#> #   Date <date>, Effort <dbl>, Beaufort <dbl>, Start_time <dttm>,
-#> #   End_time <dttm>, SegID <chr>, geomeff <POINT [°]>
+#> # ℹ 16 more variables: Longitude <dbl>, Latitude <dbl>, DateTime <dttm>,
+#> #   distance <int>, angle <int>, PerpDist <dbl>, direction <dbl>,
+#> #   TransectID <chr>, DupID <int>, Date <date>, Effort <dbl>, Beaufort <dbl>,
+#> #   Start_time <dttm>, End_time <dttm>, SegID <chr>, geomeff <POINT [°]>
 
 Sigthings_with_SegID <- Sigthings_without_attractor$sightings_table
 ```
@@ -662,8 +680,9 @@ st_write(Effort_withSighting, dsn = "./Effort_prepared.gpkg", layer = "Effort_wi
 
 ``` r
 
-first_stat <- first_stat_effort(data_effort = Effort_withSighting, 
-                  species_blocking = c("DELDEL", "FULGLA"))
+descriptive_stats <- descriptive_stats_effort(
+  data_effort = Effort_withSighting, 
+  species_blocking = c("DELDEL", "FULGLA"))
 #> 
 #> ── Effort per obs is calculating ──
 #> 
@@ -672,10 +691,10 @@ first_stat <- first_stat_effort(data_effort = Effort_withSighting,
 #> ── Effort per obs is calculating for ind.FULGLA ──
 #> 
 
-first_stat$distance_effort
+descriptive_stats$distance_effort
 #> [1] 3988.769
 
-first_stat$distance_travel_table
+descriptive_stats$distance_travel_table
 #> # A tibble: 11 × 4
 #> # Groups:   Beaufort, n_obs [7]
 #>    Beaufort n_obs plateform            `Km Effort`
@@ -692,14 +711,21 @@ first_stat$distance_travel_table
 #> 10        6     2 bridge_inside             61.9  
 #> 11        6     2 upper_bridge_outside       0.700
 
-first_stat$stack_bar
+descriptive_stats$stack_bar
 ```
 
 <img src="man/figures/README-descriptive_statistics-1.png" width="100%" />
 
 ``` r
 
-head(first_stat$count_ind)
+descriptive_stats$map_beaufort
+```
+
+<img src="man/figures/README-descriptive_statistics-2.png" width="100%" />
+
+``` r
+
+head(descriptive_stats$count_ind)
 #>      Species n_ind
 #> 1 ind.SULBAS  1607
 #> 2 ind.LARGUL  1049
@@ -708,7 +734,7 @@ head(first_stat$count_ind)
 #> 5 ind.PUFPUF   333
 #> 6 ind.PLASTR   218
 
-head(first_stat$count_det)
+head(descriptive_stats$count_det)
 #>      Species n_detection
 #> 1 det.SULBAS         508
 #> 2 det.PLASTR         204
@@ -717,14 +743,14 @@ head(first_stat$count_det)
 #> 5 det.LARGUL         140
 #> 6 det.FULGLA          99
 
-first_stat$plot_general_blocking
+descriptive_stats$plot_general_blocking
 ```
 
-<img src="man/figures/README-descriptive_statistics-2.png" width="100%" />
+<img src="man/figures/README-descriptive_statistics-3.png" width="100%" />
 
 ``` r
 
-first_stat$gpkg_general_blocking
+descriptive_stats$gpkg_general_blocking
 #> Simple feature collection with 2091 features and 1 field
 #> Geometry type: POINT
 #> Dimension:     XY
@@ -743,7 +769,7 @@ first_stat$gpkg_general_blocking
 #> 9          NA POINT (-5.2 44)
 #> 10         NA POINT (-5.1 44)
 
-first_stat$blocking_per_species
+descriptive_stats$blocking_per_species
 #> $ind.DELDEL
 #> $ind.DELDEL$data
 #> Simple feature collection with 2091 features and 1 field
@@ -767,7 +793,7 @@ first_stat$blocking_per_species
 #> $ind.DELDEL$map
 ```
 
-<img src="man/figures/README-descriptive_statistics-3.png" width="100%" />
+<img src="man/figures/README-descriptive_statistics-4.png" width="100%" />
 
     #> 
     #> 
@@ -793,7 +819,7 @@ first_stat$blocking_per_species
     #> 
     #> $ind.FULGLA$map
 
-<img src="man/figures/README-descriptive_statistics-4.png" width="100%" />
+<img src="man/figures/README-descriptive_statistics-5.png" width="100%" />
 
 ## Calculate ESW
 
@@ -808,27 +834,31 @@ estiamted.
 ``` r
 
 export_esw <- 
-  calc_esw(data_sight = Sigthings_with_SegID, 
-           data_effort = Effort_withSighting, 
-           species = "FULGLA", 
-           variable = c("Beaufort", "plateform"), 
-           key = "hn")
+  estimate_esw(data_sight = Sigthings_with_SegID, 
+               data_effort = Effort_withSighting, 
+               species = "FULGLA", 
+               variable = c("Beaufort", "plateform"), 
+               var_factor = FALSE)
+#> Calling Distance package, for more information visit:
+#> <https://www.st-andrews.ac.uk/mathematics-statistics/research/impact/distance/>.
+#> 
 #> ── Data cleaning ──
 #> 
-#> There is 99 sightings in the dataset selected.
+#> There are 99 sightings in the dataset selected.
 #> 
 #> ── Model selection ──
 #> 
 #> Fitting half-normal key function
-#> AIC= -97.14
+#> AIC= -99.781
 #> Fitting half-normal key function
-#> AIC= -100.068
+#> AIC= -100.941
 #> Fitting half-normal key function
-#> AIC= -97.5
+#> AIC= -100.051
 #> ── Best model prediction ──
 #> 
 #> Fitting half-normal key function
-#> AIC= -100.068
+#> AIC= -100.941
+#> ESW values estimated, please check units.
 #> 
 #> ── Update Effort Table ──
 #> 
@@ -842,15 +872,15 @@ export_esw$plot_esw
 ``` r
 
 export_esw$data_esw
-#>              plateform      mean           sd       Q_25      Q_97
-#> 1        bridge_inside 0.6005441 0.0002924491 0.59998561 0.6006216
-#> 2 upper_bridge_outside 0.3860193 0.1930281263 0.03543474 0.5994747
+#>              plateform      mean         sd       Q_25      Q_97
+#> 1        bridge_inside 0.1576222 0.10555443 0.02992728 0.4298707
+#> 2 upper_bridge_outside 0.4459053 0.04351167 0.34914654 0.5149732
 
 export_esw$model_selection
 #>                      model        AIC det_fun
-#> 1            1 + plateform -100.06781      hn
-#> 2             1 + Beaufort  -97.49950      hn
-#> 3 1 + Beaufort + plateform  -97.13959      hn
+#> 1            1 + plateform -100.94053      hn
+#> 2             1 + Beaufort -100.05119      hn
+#> 3 1 + Beaufort + plateform  -99.78064      hn
 
 export_esw$effort_output
 #> Simple feature collection with 390 features and 16 fields
@@ -859,18 +889,18 @@ export_esw$effort_output
 #> Bounding box:  xmin: -5.657199 ymin: 43.66589 xmax: -1.253505 ymax: 48.31222
 #> Geodetic CRS:  WGS 84
 #> # A tibble: 390 × 17
-#>    Beaufort TransectID         plateform     n_obs LegID     Start_time         
-#>    <fct>    <chr>              <fct>         <dbl> <chr>     <dttm>             
-#>  1 0        TR_Pelgas_25052023 bridge_inside     2 25052023… 2023-05-25 04:57:07
-#>  2 1        TR_Pelgas_04052023 bridge_inside     2 04052023… 2023-05-04 11:42:53
-#>  3 1        TR_Pelgas_05052023 bridge_inside     2 05052023… 2023-05-05 13:56:44
-#>  4 1        TR_Pelgas_05052023 bridge_inside     2 05052023… 2023-05-05 13:56:44
-#>  5 1        TR_Pelgas_05052023 bridge_inside     2 05052023… 2023-05-05 13:56:44
-#>  6 1        TR_Pelgas_05052023 bridge_inside     2 05052023… 2023-05-05 13:56:44
-#>  7 1        TR_Pelgas_05052023 bridge_inside     2 05052023… 2023-05-05 16:09:17
-#>  8 1        TR_Pelgas_18052023 bridge_inside     2 18052023… 2023-05-18 11:33:05
-#>  9 1        TR_Pelgas_22052023 bridge_inside     2 22052023… 2023-05-22 15:03:10
-#> 10 1        TR_Pelgas_27052023 bridge_inside     2 27052023… 2023-05-27 13:24:10
+#>    Beaufort TransectID         plateform         n_obs LegID Start_time         
+#>       <dbl> <chr>              <chr>             <dbl> <chr> <dttm>             
+#>  1        0 TR_Pelgas_25052023 upper_bridge_out…     2 2505… 2023-05-25 04:57:07
+#>  2        1 TR_Pelgas_04052023 upper_bridge_out…     2 0405… 2023-05-04 11:42:53
+#>  3        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44
+#>  4        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44
+#>  5        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44
+#>  6        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44
+#>  7        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 16:09:17
+#>  8        1 TR_Pelgas_18052023 upper_bridge_out…     2 1805… 2023-05-18 11:33:05
+#>  9        1 TR_Pelgas_22052023 upper_bridge_out…     2 2205… 2023-05-22 15:03:10
+#> 10        1 TR_Pelgas_27052023 upper_bridge_out…     2 2705… 2023-05-27 13:24:10
 #> # ℹ 380 more rows
 #> # ℹ 11 more variables: DateTime <dttm>, End_time <dttm>, SegID <chr>,
 #> #   Effort <dbl>, geometry <POINT [°]>, det.FULGLA <dbl>, ind.FULGLA <dbl>,
@@ -886,7 +916,7 @@ can do it.
 
 ``` r
 
-soap_data <- create_soap(export_esw$effort_output)
+soap_data <- make_soap(export_esw$effort_output)
 ```
 
 <img src="man/figures/README-create_soap-1.png" width="100%" />
@@ -935,13 +965,13 @@ head(soap_data$knots)
 ``` r
 
 fit_and_predict(effort_table = export_esw$effort_output, 
-                predictor = "ind.FULGLA", 
+                response_y = "ind.FULGLA", 
                 family = "nb", 
                 knots = soap_data$knots, 
                 bound = soap_data$bound, 
                 species = "FULGLA", 
                 prediction_grid = NULL, 
-                variables = NULL, 
+                covariates_x = NULL, 
                 save = NULL)
 #> 
 #> ── Start fitting ───────────────────────────────────────────────────────────────
@@ -952,30 +982,30 @@ fit_and_predict(effort_table = export_esw$effort_output,
 #> ── Fitting gam ──
 #> 
 #> 
-#> Family: Negative Binomial(0.544) 
+#> Family: Negative Binomial(0.54) 
 #> Link function: log 
 #> 
 #> Formula:
-#> get(predictor) ~ 1 + s(lon, lat, bs = "so", xt = list(bnd = bound))
+#> get(response_y) ~ 1 + s(lon, lat, bs = "so", xt = list(bnd = bound))
 #> 
 #> Estimated degrees of freedom:
-#> 10.3  total = 11.33 
+#> 9.68  total = 10.68 
 #> 
-#> REML score: 201.9642
+#> REML score: 201.8988
 #> ── Make prediction ─────────────────────────────────────────────────────────────
-#> FULGLA has a mean density at 0.038 with min= 0 and max= 0.189.
+#> FULGLA has a mean density at 0.035 with min= 0 and max= 0.158.
 #> $model_data
 #> 
-#> Family: Negative Binomial(0.544) 
+#> Family: Negative Binomial(0.54) 
 #> Link function: log 
 #> 
 #> Formula:
-#> get(predictor) ~ 1 + s(lon, lat, bs = "so", xt = list(bnd = bound))
+#> get(response_y) ~ 1 + s(lon, lat, bs = "so", xt = list(bnd = bound))
 #> 
 #> Estimated degrees of freedom:
-#> 10.3  total = 11.33 
+#> 9.68  total = 10.68 
 #> 
-#> REML score: 201.9642     
+#> REML score: 201.8988     
 #> 
 #> $output_map
 ```
@@ -996,16 +1026,16 @@ fit_and_predict(effort_table = export_esw$effort_output,
     #> Geodetic CRS:  WGS 84
     #> First 10 features:
     #>       Density         SE Species                       geometry
-    #> 2  0.05502921 0.03223697  FULGLA POLYGON ((-5.265338 48.4591...
-    #> 3  0.05211610 0.03050266  FULGLA POLYGON ((-5.175506 48.4591...
-    #> 4  0.04908270 0.02815630  FULGLA POLYGON ((-5.085675 48.4591...
-    #> 5  0.04623810 0.02625730  FULGLA POLYGON ((-4.995843 48.4591...
-    #> 6  0.04372160 0.02488598  FULGLA POLYGON ((-4.906011 48.4591...
-    #> 7  0.04170104 0.02418554  FULGLA POLYGON ((-4.81618 48.45917...
-    #> 9  0.05558057 0.03139028  FULGLA POLYGON ((-5.265338 48.3995...
-    #> 10 0.05177760 0.02851004  FULGLA POLYGON ((-5.175506 48.3995...
-    #> 11 0.04820572 0.02607784  FULGLA POLYGON ((-5.085675 48.3995...
-    #> 12 0.04493679 0.02403199  FULGLA POLYGON ((-4.995843 48.3995...
+    #> 2  0.04883522 0.02804986  FULGLA POLYGON ((-5.265338 48.4591...
+    #> 3  0.04625478 0.02656228  FULGLA POLYGON ((-5.175506 48.4591...
+    #> 4  0.04357924 0.02456320  FULGLA POLYGON ((-5.085675 48.4591...
+    #> 5  0.04106622 0.02293252  FULGLA POLYGON ((-4.995843 48.4591...
+    #> 6  0.03883960 0.02174332  FULGLA POLYGON ((-4.906011 48.4591...
+    #> 7  0.03705187 0.02112480  FULGLA POLYGON ((-4.81618 48.45917...
+    #> 9  0.04933411 0.02735214  FULGLA POLYGON ((-5.265338 48.3995...
+    #> 10 0.04597774 0.02489122  FULGLA POLYGON ((-5.175506 48.3995...
+    #> 11 0.04282812 0.02280001  FULGLA POLYGON ((-5.085675 48.3995...
+    #> 12 0.03993427 0.02103133  FULGLA POLYGON ((-4.995843 48.3995...
     #> 
     #> $data_fit
     #> Simple feature collection with 390 features and 18 fields
@@ -1014,18 +1044,18 @@ fit_and_predict(effort_table = export_esw$effort_output,
     #> Bounding box:  xmin: -5.657199 ymin: 43.66589 xmax: -1.253505 ymax: 48.31222
     #> Geodetic CRS:  WGS 84
     #> # A tibble: 390 × 19
-    #>    Beaufort TransectID         plateform     n_obs LegID     Start_time         
-    #>    <fct>    <chr>              <fct>         <dbl> <chr>     <dttm>             
-    #>  1 0        TR_Pelgas_25052023 bridge_inside     2 25052023… 2023-05-25 04:57:07
-    #>  2 1        TR_Pelgas_04052023 bridge_inside     2 04052023… 2023-05-04 11:42:53
-    #>  3 1        TR_Pelgas_05052023 bridge_inside     2 05052023… 2023-05-05 13:56:44
-    #>  4 1        TR_Pelgas_05052023 bridge_inside     2 05052023… 2023-05-05 13:56:44
-    #>  5 1        TR_Pelgas_05052023 bridge_inside     2 05052023… 2023-05-05 13:56:44
-    #>  6 1        TR_Pelgas_05052023 bridge_inside     2 05052023… 2023-05-05 13:56:44
-    #>  7 1        TR_Pelgas_05052023 bridge_inside     2 05052023… 2023-05-05 16:09:17
-    #>  8 1        TR_Pelgas_18052023 bridge_inside     2 18052023… 2023-05-18 11:33:05
-    #>  9 1        TR_Pelgas_22052023 bridge_inside     2 22052023… 2023-05-22 15:03:10
-    #> 10 1        TR_Pelgas_27052023 bridge_inside     2 27052023… 2023-05-27 13:24:10
+    #>    Beaufort TransectID         plateform         n_obs LegID Start_time         
+    #>       <dbl> <chr>              <chr>             <dbl> <chr> <dttm>             
+    #>  1        0 TR_Pelgas_25052023 upper_bridge_out…     2 2505… 2023-05-25 04:57:07
+    #>  2        1 TR_Pelgas_04052023 upper_bridge_out…     2 0405… 2023-05-04 11:42:53
+    #>  3        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44
+    #>  4        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44
+    #>  5        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44
+    #>  6        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44
+    #>  7        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 16:09:17
+    #>  8        1 TR_Pelgas_18052023 upper_bridge_out…     2 1805… 2023-05-18 11:33:05
+    #>  9        1 TR_Pelgas_22052023 upper_bridge_out…     2 2205… 2023-05-22 15:03:10
+    #> 10        1 TR_Pelgas_27052023 upper_bridge_out…     2 2705… 2023-05-27 13:24:10
     #> # ℹ 380 more rows
     #> # ℹ 13 more variables: DateTime <dttm>, End_time <dttm>, SegID <chr>,
     #> #   Effort <dbl>, geometry <POINT [°]>, det.FULGLA <dbl>, ind.FULGLA <dbl>,

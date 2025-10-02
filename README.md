@@ -6,8 +6,12 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-Here it’s describing the Megascope workflow using the pelascope package.
-From Effort and sightings data Brut to DSM and visualization.
+This package includes all the functions needed to analyze distance
+sampling data. From raw data to distribution mapping and ESW
+calculation, the pelascope package brings together a set of useful
+functions for analyzing field data. A description is available on the
+[pelascope
+website](https://cheronymo.github.io/pelascope.github.io/index.html).
 
 ## Installation
 
@@ -184,7 +188,7 @@ data_effort_clean <- pelascope::prep_lin(
   effort_table  = data_effort_clean, 
   variable = quos(Beaufort, plateform, n_obs), 
   unique_column = "LegID")
-#> Redefinig 'LegID' columnn according to ~Beaufort, ~plateform and ~n_obs
+#> Redefinig 'LegID' columnn according to Beaufort, plateform and n_obs
   
 head(data_effort_clean)
 #>   Survey            plateform   routeType status           LegID speed Beaufort

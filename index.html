@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">pelascope</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.9</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -179,7 +179,7 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">data_effort_clean</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu"><a href="reference/check_brut_effort.html">check_brut_effort</a></span><span class="op">(</span>data_effort <span class="op">=</span> <span class="va">data_effort_brut</span>, </span>
+<span>  <span class="fu"><a href="reference/check_raw_effort.html">check_raw_effort</a></span><span class="op">(</span>data_effort <span class="op">=</span> <span class="va">data_effort_brut</span>, </span>
 <span>                    only_prospection <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>                    filter_speed <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -218,6 +218,7 @@
 <span>  effort_table  <span class="op">=</span> <span class="va">data_effort_clean</span>, </span>
 <span>  variable <span class="op">=</span> <span class="fu"><a href="https://rlang.r-lib.org/reference/defusing-advanced.html" class="external-link">quos</a></span><span class="op">(</span><span class="va">Beaufort</span>, <span class="va">plateform</span>, <span class="va">n_obs</span><span class="op">)</span>, </span>
 <span>  unique_column <span class="op">=</span> <span class="st">"LegID"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Redefinig 'LegID' columnn according to ~Beaufort, ~plateform and ~n_obs</span></span>
 <span>  </span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data_effort_clean</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   Survey            plateform   routeType status           LegID speed Beaufort</span></span>
@@ -305,7 +306,7 @@
 <div class="section level4">
 <h4 id="segmentation-of-the-effort">Segmentation of the effort<a class="anchor" aria-label="anchor" href="#segmentation-of-the-effort"></a>
 </h4>
-<p>Segmentation of the effort and distinct every row / SegID.</p>
+<p>Segmentation of the effort and distinct every row / SegID. Here to solve a temporary problem, ‘SegID’ are rendered unique.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Segmentation</span></span>
 <span><span class="va">data_effort_clean_Seg</span> <span class="op">&lt;-</span> <span class="va">data_effort_clean_lin</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -454,7 +455,7 @@
 <p>The function ‘check_brut_sightings’ produces a clean sighting dataset and give some information regarding the dataset. It changes colnames function what will be needed in the pelascope workflow and select column of interest. Perpendical distance (PerpDist) is calculated using ‘sinus’.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="va">data_sightings_clean</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/check_brut_sightings.html">check_brut_sightings</a></span><span class="op">(</span><span class="va">data_sight_brut</span><span class="op">)</span></span>
+<span><span class="va">data_sightings_clean</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/check_raw_sightings.html">check_raw_sightings</a></span><span class="op">(</span><span class="va">data_sight_brut</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ✖ 'direction' column contains 2009 NULL values</span></span>
 <span><span class="co">#&gt; ✖ 'behaviour' column contains 501 NULL values</span></span>
 <span><span class="co">#&gt; ✖ 'speciesLatin' column contains 1 NULL values</span></span>
@@ -473,13 +474,13 @@
 <span><span class="co">#&gt; 4         1     moving  left -4.576527 48.33225 2023-04-30 06:45:54       50</span></span>
 <span><span class="co">#&gt; 5         2     moving right -4.584218 48.32742 2023-04-30 06:47:10      300</span></span>
 <span><span class="co">#&gt; 6         2 stationary  left -4.580327 48.32995 2023-04-30 06:47:00      300</span></span>
-<span><span class="co">#&gt;   angle  PerpDist         TransectID</span></span>
-<span><span class="co">#&gt; 1   290 140.95389 TR_Pelgas_30042023</span></span>
-<span><span class="co">#&gt; 2   280  98.48078 TR_Pelgas_30042023</span></span>
-<span><span class="co">#&gt; 3    45 353.55339 TR_Pelgas_30042023</span></span>
-<span><span class="co">#&gt; 4   300  43.30127 TR_Pelgas_30042023</span></span>
-<span><span class="co">#&gt; 5    55 245.74561 TR_Pelgas_30042023</span></span>
-<span><span class="co">#&gt; 6   270 300.00000 TR_Pelgas_30042023</span></span></code></pre></div>
+<span><span class="co">#&gt;   angle  PerpDist direction         TransectID</span></span>
+<span><span class="co">#&gt; 1   290 140.95389       180 TR_Pelgas_30042023</span></span>
+<span><span class="co">#&gt; 2   280  98.48078       280 TR_Pelgas_30042023</span></span>
+<span><span class="co">#&gt; 3    45 353.55339        NA TR_Pelgas_30042023</span></span>
+<span><span class="co">#&gt; 4   300  43.30127       100 TR_Pelgas_30042023</span></span>
+<span><span class="co">#&gt; 5    55 245.74561       140 TR_Pelgas_30042023</span></span>
+<span><span class="co">#&gt; 6   270 300.00000        NA TR_Pelgas_30042023</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="check-sightings-with-ambidsm">Check sightings with AmbiDSM<a class="anchor" aria-label="anchor" href="#check-sightings-with-ambidsm"></a>
@@ -548,7 +549,7 @@
 <span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">Sigthings_with_SegID</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 6 × 24</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 25</span></span>
 <span><span class="co">#&gt;   survey session routeType  LegID Species speciesLatin GroupSize behaviour Side </span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;            &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;</span></span>
 <span><span class="co">#&gt; 1 PELGAS LEG1    prospecti… 3004… PHACAR  Phalacrocor…         1 moving    left </span></span>
@@ -557,10 +558,10 @@
 <span><span class="co">#&gt; 4 PELGAS LEG1    prospecti… 3004… PHACAR  Phalacrocor…         1 moving    left </span></span>
 <span><span class="co">#&gt; 5 PELGAS LEG1    prospecti… 3004… MOTOBO  Small motor…         2 stationa… left </span></span>
 <span><span class="co">#&gt; 6 PELGAS LEG1    prospecti… 3004… LARFUS  Larus fuscus         2 moving    right</span></span>
-<span><span class="co">#&gt; # ℹ 15 more variables: Longitude &lt;dbl&gt;, Latitude &lt;dbl&gt;, DateTime &lt;dttm&gt;,</span></span>
-<span><span class="co">#&gt; #   distance &lt;int&gt;, angle &lt;int&gt;, PerpDist &lt;dbl&gt;, TransectID &lt;chr&gt;, DupID &lt;int&gt;,</span></span>
-<span><span class="co">#&gt; #   Date &lt;date&gt;, Effort &lt;dbl&gt;, Beaufort &lt;dbl&gt;, Start_time &lt;dttm&gt;,</span></span>
-<span><span class="co">#&gt; #   End_time &lt;dttm&gt;, SegID &lt;chr&gt;, geomeff &lt;POINT [°]&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt; # ℹ 16 more variables: Longitude &lt;dbl&gt;, Latitude &lt;dbl&gt;, DateTime &lt;dttm&gt;,</span></span>
+<span><span class="co">#&gt; #   distance &lt;int&gt;, angle &lt;int&gt;, PerpDist &lt;dbl&gt;, direction &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   TransectID &lt;chr&gt;, DupID &lt;int&gt;, Date &lt;date&gt;, Effort &lt;dbl&gt;, Beaufort &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   Start_time &lt;dttm&gt;, End_time &lt;dttm&gt;, SegID &lt;chr&gt;, geomeff &lt;POINT [°]&gt;</span></span></code></pre></div>
 <p>Sightings removed because observation time not within start/end of effort transects, are sightings out of effort (other, trawling) or observed under the speed set at the beginning. But it can be check with the variable ‘return = “removed”’.</p>
 </div>
 <div class="section level2">
@@ -588,8 +589,24 @@
 <span><span class="co">#&gt;  9 GREGUL  attraction     9</span></span>
 <span><span class="co">#&gt; 10 HIRRUS  attraction     9</span></span>
 <span><span class="co">#&gt; # ℹ 25 more rows</span></span>
+<span><span class="va">Sigthings_without_attractor</span><span class="op">$</span><span class="va">table_direction</span></span>
+<span><span class="co">#&gt; # A tibble: 22 × 3</span></span>
+<span><span class="co">#&gt; # Groups:   Species, direction [22]</span></span>
+<span><span class="co">#&gt;    Species direction     n</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1 PUFPUF        360    11</span></span>
+<span><span class="co">#&gt;  2 SULBAS        360     8</span></span>
+<span><span class="co">#&gt;  3 FULGLA        360     5</span></span>
+<span><span class="co">#&gt;  4 LARARG        360     5</span></span>
+<span><span class="co">#&gt;  5 LARGUL        360     3</span></span>
+<span><span class="co">#&gt;  6 SAILBO        360     3</span></span>
+<span><span class="co">#&gt;  7 DELDEL        360     2</span></span>
+<span><span class="co">#&gt;  8 MOLMOL        360     2</span></span>
+<span><span class="co">#&gt;  9 RISTRI        360     2</span></span>
+<span><span class="co">#&gt; 10 STEHIR        360     2</span></span>
+<span><span class="co">#&gt; # ℹ 12 more rows</span></span>
 <span><span class="va">Sigthings_without_attractor</span><span class="op">$</span><span class="va">sightings_table</span></span>
-<span><span class="co">#&gt; # A tibble: 2,265 × 24</span></span>
+<span><span class="co">#&gt; # A tibble: 2,265 × 25</span></span>
 <span><span class="co">#&gt;    survey session routeType LegID Species speciesLatin GroupSize behaviour Side </span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;            &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;</span></span>
 <span><span class="co">#&gt;  1 PELGAS LEG1    prospect… 3004… PHACAR  Phalacrocor…         1 moving    left </span></span>
@@ -603,10 +620,10 @@
 <span><span class="co">#&gt;  9 PELGAS LEG1    prospect… 3004… BUOY    Fishing buo…         2 NULL      left </span></span>
 <span><span class="co">#&gt; 10 PELGAS LEG1    prospect… 3004… SAILBO  Sailing boat         1 moving    right</span></span>
 <span><span class="co">#&gt; # ℹ 2,255 more rows</span></span>
-<span><span class="co">#&gt; # ℹ 15 more variables: Longitude &lt;dbl&gt;, Latitude &lt;dbl&gt;, DateTime &lt;dttm&gt;,</span></span>
-<span><span class="co">#&gt; #   distance &lt;int&gt;, angle &lt;int&gt;, PerpDist &lt;dbl&gt;, TransectID &lt;chr&gt;, DupID &lt;int&gt;,</span></span>
-<span><span class="co">#&gt; #   Date &lt;date&gt;, Effort &lt;dbl&gt;, Beaufort &lt;dbl&gt;, Start_time &lt;dttm&gt;,</span></span>
-<span><span class="co">#&gt; #   End_time &lt;dttm&gt;, SegID &lt;chr&gt;, geomeff &lt;POINT [°]&gt;</span></span>
+<span><span class="co">#&gt; # ℹ 16 more variables: Longitude &lt;dbl&gt;, Latitude &lt;dbl&gt;, DateTime &lt;dttm&gt;,</span></span>
+<span><span class="co">#&gt; #   distance &lt;int&gt;, angle &lt;int&gt;, PerpDist &lt;dbl&gt;, direction &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   TransectID &lt;chr&gt;, DupID &lt;int&gt;, Date &lt;date&gt;, Effort &lt;dbl&gt;, Beaufort &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   Start_time &lt;dttm&gt;, End_time &lt;dttm&gt;, SegID &lt;chr&gt;, geomeff &lt;POINT [°]&gt;</span></span>
 <span></span>
 <span><span class="va">Sigthings_with_SegID</span> <span class="op">&lt;-</span> <span class="va">Sigthings_without_attractor</span><span class="op">$</span><span class="va">sightings_table</span></span></code></pre></div>
 <p>It’s possible to save the new layers in the GPKG :</p>
@@ -656,8 +673,9 @@
 </h2>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="va">first_stat</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/first_stat_effort.html">first_stat_effort</a></span><span class="op">(</span>data_effort <span class="op">=</span> <span class="va">Effort_withSighting</span>, </span>
-<span>                  species_blocking <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DELDEL"</span>, <span class="st">"FULGLA"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">descriptive_stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/descriptive_stats_effort.html">descriptive_stats_effort</a></span><span class="op">(</span></span>
+<span>  data_effort <span class="op">=</span> <span class="va">Effort_withSighting</span>, </span>
+<span>  species_blocking <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DELDEL"</span>, <span class="st">"FULGLA"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ── Effort per obs is calculating ──</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -666,10 +684,10 @@
 <span><span class="co">#&gt; ── Effort per obs is calculating for ind.FULGLA ──</span></span>
 <span><span class="co">#&gt; </span></span>
 <span></span>
-<span><span class="va">first_stat</span><span class="op">$</span><span class="va">distance_effort</span></span>
+<span><span class="va">descriptive_stats</span><span class="op">$</span><span class="va">distance_effort</span></span>
 <span><span class="co">#&gt; [1] 3988.769</span></span>
 <span></span>
-<span><span class="va">first_stat</span><span class="op">$</span><span class="va">distance_travel_table</span></span>
+<span><span class="va">descriptive_stats</span><span class="op">$</span><span class="va">distance_travel_table</span></span>
 <span><span class="co">#&gt; # A tibble: 11 × 4</span></span>
 <span><span class="co">#&gt; # Groups:   Beaufort, n_obs [7]</span></span>
 <span><span class="co">#&gt;    Beaufort n_obs plateform            `Km Effort`</span></span>
@@ -686,11 +704,15 @@
 <span><span class="co">#&gt; 10        6     2 bridge_inside             61.9  </span></span>
 <span><span class="co">#&gt; 11        6     2 upper_bridge_outside       0.700</span></span>
 <span></span>
-<span><span class="va">first_stat</span><span class="op">$</span><span class="va">stack_bar</span></span></code></pre></div>
+<span><span class="va">descriptive_stats</span><span class="op">$</span><span class="va">stack_bar</span></span></code></pre></div>
 <p><img src="reference/figures/README-descriptive_statistics-1.png" width="100%"></p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">first_stat</span><span class="op">$</span><span class="va">count_ind</span><span class="op">)</span></span>
+<span><span class="va">descriptive_stats</span><span class="op">$</span><span class="va">map_beaufort</span></span></code></pre></div>
+<p><img src="reference/figures/README-descriptive_statistics-2.png" width="100%"></p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">descriptive_stats</span><span class="op">$</span><span class="va">count_ind</span><span class="op">)</span></span>
 <span><span class="co">#&gt;      Species n_ind</span></span>
 <span><span class="co">#&gt; 1 ind.SULBAS  1607</span></span>
 <span><span class="co">#&gt; 2 ind.LARGUL  1049</span></span>
@@ -699,7 +721,7 @@
 <span><span class="co">#&gt; 5 ind.PUFPUF   333</span></span>
 <span><span class="co">#&gt; 6 ind.PLASTR   218</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">first_stat</span><span class="op">$</span><span class="va">count_det</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">descriptive_stats</span><span class="op">$</span><span class="va">count_det</span><span class="op">)</span></span>
 <span><span class="co">#&gt;      Species n_detection</span></span>
 <span><span class="co">#&gt; 1 det.SULBAS         508</span></span>
 <span><span class="co">#&gt; 2 det.PLASTR         204</span></span>
@@ -708,11 +730,11 @@
 <span><span class="co">#&gt; 5 det.LARGUL         140</span></span>
 <span><span class="co">#&gt; 6 det.FULGLA          99</span></span>
 <span></span>
-<span><span class="va">first_stat</span><span class="op">$</span><span class="va">plot_general_blocking</span></span></code></pre></div>
-<p><img src="reference/figures/README-descriptive_statistics-2.png" width="100%"></p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<span><span class="va">descriptive_stats</span><span class="op">$</span><span class="va">plot_general_blocking</span></span></code></pre></div>
+<p><img src="reference/figures/README-descriptive_statistics-3.png" width="100%"></p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="va">first_stat</span><span class="op">$</span><span class="va">gpkg_general_blocking</span></span>
+<span><span class="va">descriptive_stats</span><span class="op">$</span><span class="va">gpkg_general_blocking</span></span>
 <span><span class="co">#&gt; Simple feature collection with 2091 features and 1 field</span></span>
 <span><span class="co">#&gt; Geometry type: POINT</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
@@ -731,7 +753,7 @@
 <span><span class="co">#&gt; 9          NA POINT (-5.2 44)</span></span>
 <span><span class="co">#&gt; 10         NA POINT (-5.1 44)</span></span>
 <span></span>
-<span><span class="va">first_stat</span><span class="op">$</span><span class="va">blocking_per_species</span></span>
+<span><span class="va">descriptive_stats</span><span class="op">$</span><span class="va">blocking_per_species</span></span>
 <span><span class="co">#&gt; $ind.DELDEL</span></span>
 <span><span class="co">#&gt; $ind.DELDEL$data</span></span>
 <span><span class="co">#&gt; Simple feature collection with 2091 features and 1 field</span></span>
@@ -753,60 +775,64 @@
 <span><span class="co">#&gt; 10         NA POINT (-5.1 44)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $ind.DELDEL$map</span></span></code></pre></div>
-<p><img src="reference/figures/README-descriptive_statistics-3.png" width="100%"></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a><span class="co">#&gt; $ind.FULGLA</span></span>
-<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a><span class="co">#&gt; $ind.FULGLA$data</span></span>
-<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a><span class="co">#&gt; Simple feature collection with 2091 features and 1 field</span></span>
-<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a><span class="co">#&gt; Geometry type: POINT</span></span>
-<span id="cb24-7"><a href="#cb24-7" tabindex="-1"></a><span class="co">#&gt; Dimension:     XY</span></span>
-<span id="cb24-8"><a href="#cb24-8" tabindex="-1"></a><span class="co">#&gt; Bounding box:  xmin: -6 ymin: 44 xmax: -1 ymax: 48</span></span>
-<span id="cb24-9"><a href="#cb24-9" tabindex="-1"></a><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
-<span id="cb24-10"><a href="#cb24-10" tabindex="-1"></a><span class="co">#&gt; First 10 features:</span></span>
-<span id="cb24-11"><a href="#cb24-11" tabindex="-1"></a><span class="co">#&gt;    Mean_value        geometry</span></span>
-<span id="cb24-12"><a href="#cb24-12" tabindex="-1"></a><span class="co">#&gt; 1          NA   POINT (-6 44)</span></span>
-<span id="cb24-13"><a href="#cb24-13" tabindex="-1"></a><span class="co">#&gt; 2          NA POINT (-5.9 44)</span></span>
-<span id="cb24-14"><a href="#cb24-14" tabindex="-1"></a><span class="co">#&gt; 3          NA POINT (-5.8 44)</span></span>
-<span id="cb24-15"><a href="#cb24-15" tabindex="-1"></a><span class="co">#&gt; 4          NA POINT (-5.7 44)</span></span>
-<span id="cb24-16"><a href="#cb24-16" tabindex="-1"></a><span class="co">#&gt; 5          NA POINT (-5.6 44)</span></span>
-<span id="cb24-17"><a href="#cb24-17" tabindex="-1"></a><span class="co">#&gt; 6          NA POINT (-5.5 44)</span></span>
-<span id="cb24-18"><a href="#cb24-18" tabindex="-1"></a><span class="co">#&gt; 7          NA POINT (-5.4 44)</span></span>
-<span id="cb24-19"><a href="#cb24-19" tabindex="-1"></a><span class="co">#&gt; 8          NA POINT (-5.3 44)</span></span>
-<span id="cb24-20"><a href="#cb24-20" tabindex="-1"></a><span class="co">#&gt; 9          NA POINT (-5.2 44)</span></span>
-<span id="cb24-21"><a href="#cb24-21" tabindex="-1"></a><span class="co">#&gt; 10         NA POINT (-5.1 44)</span></span>
-<span id="cb24-22"><a href="#cb24-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb24-23"><a href="#cb24-23" tabindex="-1"></a><span class="co">#&gt; $ind.FULGLA$map</span></span></code></pre></div>
 <p><img src="reference/figures/README-descriptive_statistics-4.png" width="100%"></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a><span class="co">#&gt; $ind.FULGLA</span></span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a><span class="co">#&gt; $ind.FULGLA$data</span></span>
+<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a><span class="co">#&gt; Simple feature collection with 2091 features and 1 field</span></span>
+<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a><span class="co">#&gt; Geometry type: POINT</span></span>
+<span id="cb25-7"><a href="#cb25-7" tabindex="-1"></a><span class="co">#&gt; Dimension:     XY</span></span>
+<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a><span class="co">#&gt; Bounding box:  xmin: -6 ymin: 44 xmax: -1 ymax: 48</span></span>
+<span id="cb25-9"><a href="#cb25-9" tabindex="-1"></a><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
+<span id="cb25-10"><a href="#cb25-10" tabindex="-1"></a><span class="co">#&gt; First 10 features:</span></span>
+<span id="cb25-11"><a href="#cb25-11" tabindex="-1"></a><span class="co">#&gt;    Mean_value        geometry</span></span>
+<span id="cb25-12"><a href="#cb25-12" tabindex="-1"></a><span class="co">#&gt; 1          NA   POINT (-6 44)</span></span>
+<span id="cb25-13"><a href="#cb25-13" tabindex="-1"></a><span class="co">#&gt; 2          NA POINT (-5.9 44)</span></span>
+<span id="cb25-14"><a href="#cb25-14" tabindex="-1"></a><span class="co">#&gt; 3          NA POINT (-5.8 44)</span></span>
+<span id="cb25-15"><a href="#cb25-15" tabindex="-1"></a><span class="co">#&gt; 4          NA POINT (-5.7 44)</span></span>
+<span id="cb25-16"><a href="#cb25-16" tabindex="-1"></a><span class="co">#&gt; 5          NA POINT (-5.6 44)</span></span>
+<span id="cb25-17"><a href="#cb25-17" tabindex="-1"></a><span class="co">#&gt; 6          NA POINT (-5.5 44)</span></span>
+<span id="cb25-18"><a href="#cb25-18" tabindex="-1"></a><span class="co">#&gt; 7          NA POINT (-5.4 44)</span></span>
+<span id="cb25-19"><a href="#cb25-19" tabindex="-1"></a><span class="co">#&gt; 8          NA POINT (-5.3 44)</span></span>
+<span id="cb25-20"><a href="#cb25-20" tabindex="-1"></a><span class="co">#&gt; 9          NA POINT (-5.2 44)</span></span>
+<span id="cb25-21"><a href="#cb25-21" tabindex="-1"></a><span class="co">#&gt; 10         NA POINT (-5.1 44)</span></span>
+<span id="cb25-22"><a href="#cb25-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb25-23"><a href="#cb25-23" tabindex="-1"></a><span class="co">#&gt; $ind.FULGLA$map</span></span></code></pre></div>
+<p><img src="reference/figures/README-descriptive_statistics-5.png" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="calculate-esw">Calculate ESW<a class="anchor" aria-label="anchor" href="#calculate-esw"></a>
 </h2>
 <p>Now it’s time to calculate ESW with the function ‘calc_esw’. From the table sighting with the SegID column and the effort table juste created, it’s possible to estimate the Effective Strip Width. Species has to be selected, the variable to be considered and the detection function (key). The function produces the effort table with ESW value, A table with ESW values calculated, a graph and model selection with abundance estiamted.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">export_esw</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu"><a href="reference/calc_esw.html">calc_esw</a></span><span class="op">(</span>data_sight <span class="op">=</span> <span class="va">Sigthings_with_SegID</span>, </span>
-<span>           data_effort <span class="op">=</span> <span class="va">Effort_withSighting</span>, </span>
-<span>           species <span class="op">=</span> <span class="st">"FULGLA"</span>, </span>
-<span>           variable <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Beaufort"</span>, <span class="st">"plateform"</span><span class="op">)</span>, </span>
-<span>           key <span class="op">=</span> <span class="st">"hn"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="reference/estimate_esw.html">estimate_esw</a></span><span class="op">(</span>data_sight <span class="op">=</span> <span class="va">Sigthings_with_SegID</span>, </span>
+<span>               data_effort <span class="op">=</span> <span class="va">Effort_withSighting</span>, </span>
+<span>               species <span class="op">=</span> <span class="st">"FULGLA"</span>, </span>
+<span>               variable <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Beaufort"</span>, <span class="st">"plateform"</span><span class="op">)</span>, </span>
+<span>               var_factor <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Calling Distance package, for more information visit:</span></span>
+<span><span class="co">#&gt; &lt;https://www.st-andrews.ac.uk/mathematics-statistics/research/impact/distance/&gt;.</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ── Data cleaning ──</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; There is 99 sightings in the dataset selected.</span></span>
+<span><span class="co">#&gt; There are 99 sightings in the dataset selected.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ── Model selection ──</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Fitting half-normal key function</span></span>
-<span><span class="co">#&gt; AIC= -97.14</span></span>
+<span><span class="co">#&gt; AIC= -99.781</span></span>
 <span><span class="co">#&gt; Fitting half-normal key function</span></span>
-<span><span class="co">#&gt; AIC= -100.068</span></span>
+<span><span class="co">#&gt; AIC= -100.941</span></span>
 <span><span class="co">#&gt; Fitting half-normal key function</span></span>
-<span><span class="co">#&gt; AIC= -97.5</span></span>
+<span><span class="co">#&gt; AIC= -100.051</span></span>
 <span><span class="co">#&gt; ── Best model prediction ──</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Fitting half-normal key function</span></span>
-<span><span class="co">#&gt; AIC= -100.068</span></span>
+<span><span class="co">#&gt; AIC= -100.941</span></span>
+<span><span class="co">#&gt; ESW values estimated, please check units.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ── Update Effort Table ──</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -814,18 +840,18 @@
 <span></span>
 <span><span class="va">export_esw</span><span class="op">$</span><span class="va">plot_esw</span></span></code></pre></div>
 <p><img src="reference/figures/README-esw_Caculation-1.png" width="100%"></p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">export_esw</span><span class="op">$</span><span class="va">data_esw</span></span>
-<span><span class="co">#&gt;              plateform      mean           sd       Q_25      Q_97</span></span>
-<span><span class="co">#&gt; 1        bridge_inside 0.6005441 0.0002924491 0.59998561 0.6006216</span></span>
-<span><span class="co">#&gt; 2 upper_bridge_outside 0.3860193 0.1930281263 0.03543474 0.5994747</span></span>
+<span><span class="co">#&gt;              plateform      mean         sd       Q_25      Q_97</span></span>
+<span><span class="co">#&gt; 1        bridge_inside 0.1576222 0.10555443 0.02992728 0.4298707</span></span>
+<span><span class="co">#&gt; 2 upper_bridge_outside 0.4459053 0.04351167 0.34914654 0.5149732</span></span>
 <span></span>
 <span><span class="va">export_esw</span><span class="op">$</span><span class="va">model_selection</span></span>
 <span><span class="co">#&gt;                      model        AIC det_fun</span></span>
-<span><span class="co">#&gt; 1            1 + plateform -100.06781      hn</span></span>
-<span><span class="co">#&gt; 2             1 + Beaufort  -97.49950      hn</span></span>
-<span><span class="co">#&gt; 3 1 + Beaufort + plateform  -97.13959      hn</span></span>
+<span><span class="co">#&gt; 1            1 + plateform -100.94053      hn</span></span>
+<span><span class="co">#&gt; 2             1 + Beaufort -100.05119      hn</span></span>
+<span><span class="co">#&gt; 3 1 + Beaufort + plateform  -99.78064      hn</span></span>
 <span></span>
 <span><span class="va">export_esw</span><span class="op">$</span><span class="va">effort_output</span></span>
 <span><span class="co">#&gt; Simple feature collection with 390 features and 16 fields</span></span>
@@ -834,18 +860,18 @@
 <span><span class="co">#&gt; Bounding box:  xmin: -5.657199 ymin: 43.66589 xmax: -1.253505 ymax: 48.31222</span></span>
 <span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
 <span><span class="co">#&gt; # A tibble: 390 × 17</span></span>
-<span><span class="co">#&gt;    Beaufort TransectID         plateform     n_obs LegID     Start_time         </span></span>
-<span><span class="co">#&gt;    &lt;fct&gt;    &lt;chr&gt;              &lt;fct&gt;         &lt;dbl&gt; &lt;chr&gt;     &lt;dttm&gt;             </span></span>
-<span><span class="co">#&gt;  1 0        TR_Pelgas_25052023 bridge_inside     2 25052023… 2023-05-25 04:57:07</span></span>
-<span><span class="co">#&gt;  2 1        TR_Pelgas_04052023 bridge_inside     2 04052023… 2023-05-04 11:42:53</span></span>
-<span><span class="co">#&gt;  3 1        TR_Pelgas_05052023 bridge_inside     2 05052023… 2023-05-05 13:56:44</span></span>
-<span><span class="co">#&gt;  4 1        TR_Pelgas_05052023 bridge_inside     2 05052023… 2023-05-05 13:56:44</span></span>
-<span><span class="co">#&gt;  5 1        TR_Pelgas_05052023 bridge_inside     2 05052023… 2023-05-05 13:56:44</span></span>
-<span><span class="co">#&gt;  6 1        TR_Pelgas_05052023 bridge_inside     2 05052023… 2023-05-05 13:56:44</span></span>
-<span><span class="co">#&gt;  7 1        TR_Pelgas_05052023 bridge_inside     2 05052023… 2023-05-05 16:09:17</span></span>
-<span><span class="co">#&gt;  8 1        TR_Pelgas_18052023 bridge_inside     2 18052023… 2023-05-18 11:33:05</span></span>
-<span><span class="co">#&gt;  9 1        TR_Pelgas_22052023 bridge_inside     2 22052023… 2023-05-22 15:03:10</span></span>
-<span><span class="co">#&gt; 10 1        TR_Pelgas_27052023 bridge_inside     2 27052023… 2023-05-27 13:24:10</span></span>
+<span><span class="co">#&gt;    Beaufort TransectID         plateform         n_obs LegID Start_time         </span></span>
+<span><span class="co">#&gt;       &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt; &lt;dttm&gt;             </span></span>
+<span><span class="co">#&gt;  1        0 TR_Pelgas_25052023 upper_bridge_out…     2 2505… 2023-05-25 04:57:07</span></span>
+<span><span class="co">#&gt;  2        1 TR_Pelgas_04052023 upper_bridge_out…     2 0405… 2023-05-04 11:42:53</span></span>
+<span><span class="co">#&gt;  3        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44</span></span>
+<span><span class="co">#&gt;  4        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44</span></span>
+<span><span class="co">#&gt;  5        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44</span></span>
+<span><span class="co">#&gt;  6        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44</span></span>
+<span><span class="co">#&gt;  7        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 16:09:17</span></span>
+<span><span class="co">#&gt;  8        1 TR_Pelgas_18052023 upper_bridge_out…     2 1805… 2023-05-18 11:33:05</span></span>
+<span><span class="co">#&gt;  9        1 TR_Pelgas_22052023 upper_bridge_out…     2 2205… 2023-05-22 15:03:10</span></span>
+<span><span class="co">#&gt; 10        1 TR_Pelgas_27052023 upper_bridge_out…     2 2705… 2023-05-27 13:24:10</span></span>
 <span><span class="co">#&gt; # ℹ 380 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 11 more variables: DateTime &lt;dttm&gt;, End_time &lt;dttm&gt;, SegID &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   Effort &lt;dbl&gt;, geometry &lt;POINT [°]&gt;, det.FULGLA &lt;dbl&gt;, ind.FULGLA &lt;dbl&gt;,</span></span>
@@ -856,11 +882,11 @@
 <h2 id="soap-smooth">Soap smooth<a class="anchor" aria-label="anchor" href="#soap-smooth"></a>
 </h2>
 <p>Before looking at the distribution, GAM with ‘mgcv’ can be done using soap smooth to take into account for border. The function ‘create_soap’ can do it.</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">soap_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create_soap.html">create_soap</a></span><span class="op">(</span><span class="va">export_esw</span><span class="op">$</span><span class="va">effort_output</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-create_soap-1.png" width="100%"></p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">soap_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/make_soap.html">make_soap</a></span><span class="op">(</span><span class="va">export_esw</span><span class="op">$</span><span class="va">effort_output</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-create_soap-1.png" width="100%"></p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">soap_data</span><span class="op">$</span><span class="va">bound</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
@@ -901,16 +927,16 @@
 <div class="section level2">
 <h2 id="calculation">Calculation<a class="anchor" aria-label="anchor" href="#calculation"></a>
 </h2>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="reference/fit_and_predict.html">fit_and_predict</a></span><span class="op">(</span>effort_table <span class="op">=</span> <span class="va">export_esw</span><span class="op">$</span><span class="va">effort_output</span>, </span>
-<span>                predictor <span class="op">=</span> <span class="st">"ind.FULGLA"</span>, </span>
+<span>                response_y <span class="op">=</span> <span class="st">"ind.FULGLA"</span>, </span>
 <span>                family <span class="op">=</span> <span class="st">"nb"</span>, </span>
 <span>                knots <span class="op">=</span> <span class="va">soap_data</span><span class="op">$</span><span class="va">knots</span>, </span>
 <span>                bound <span class="op">=</span> <span class="va">soap_data</span><span class="op">$</span><span class="va">bound</span>, </span>
 <span>                species <span class="op">=</span> <span class="st">"FULGLA"</span>, </span>
 <span>                prediction_grid <span class="op">=</span> <span class="cn">NULL</span>, </span>
-<span>                variables <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>                covariates_x <span class="op">=</span> <span class="cn">NULL</span>, </span>
 <span>                save <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ── Start fitting ───────────────────────────────────────────────────────────────</span></span>
@@ -921,80 +947,80 @@
 <span><span class="co">#&gt; ── Fitting gam ──</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Family: Negative Binomial(0.544) </span></span>
+<span><span class="co">#&gt; Family: Negative Binomial(0.54) </span></span>
 <span><span class="co">#&gt; Link function: log </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Formula:</span></span>
-<span><span class="co">#&gt; get(predictor) ~ 1 + s(lon, lat, bs = "so", xt = list(bnd = bound))</span></span>
+<span><span class="co">#&gt; get(response_y) ~ 1 + s(lon, lat, bs = "so", xt = list(bnd = bound))</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Estimated degrees of freedom:</span></span>
-<span><span class="co">#&gt; 10.3  total = 11.33 </span></span>
+<span><span class="co">#&gt; 9.68  total = 10.68 </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; REML score: 201.9642</span></span>
+<span><span class="co">#&gt; REML score: 201.8988</span></span>
 <span><span class="co">#&gt; ── Make prediction ─────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">#&gt; FULGLA has a mean density at 0.038 with min= 0 and max= 0.189.</span></span>
+<span><span class="co">#&gt; FULGLA has a mean density at 0.035 with min= 0 and max= 0.158.</span></span>
 <span><span class="co">#&gt; $model_data</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Family: Negative Binomial(0.544) </span></span>
+<span><span class="co">#&gt; Family: Negative Binomial(0.54) </span></span>
 <span><span class="co">#&gt; Link function: log </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Formula:</span></span>
-<span><span class="co">#&gt; get(predictor) ~ 1 + s(lon, lat, bs = "so", xt = list(bnd = bound))</span></span>
+<span><span class="co">#&gt; get(response_y) ~ 1 + s(lon, lat, bs = "so", xt = list(bnd = bound))</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Estimated degrees of freedom:</span></span>
-<span><span class="co">#&gt; 10.3  total = 11.33 </span></span>
+<span><span class="co">#&gt; 9.68  total = 10.68 </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; REML score: 201.9642     </span></span>
+<span><span class="co">#&gt; REML score: 201.8988     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $output_map</span></span></code></pre></div>
 <p><img src="reference/figures/README-calculation-1.png" width="100%"></p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="co">#&gt; $prediction_map</span></span></code></pre></div>
-<p><img src="reference/figures/README-calculation-2.png" width="100%"></p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="co">#&gt; $data_predict</span></span>
-<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a><span class="co">#&gt; Simple feature collection with 2472 features and 3 fields</span></span>
-<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a><span class="co">#&gt; Geometry type: POLYGON</span></span>
-<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a><span class="co">#&gt; Dimension:     XY</span></span>
-<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a><span class="co">#&gt; Bounding box:  xmin: -5.894158 ymin: 43.53386 xmax: -1.043256 ymax: 48.45917</span></span>
-<span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
-<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a><span class="co">#&gt; First 10 features:</span></span>
-<span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a><span class="co">#&gt;       Density         SE Species                       geometry</span></span>
-<span id="cb31-10"><a href="#cb31-10" tabindex="-1"></a><span class="co">#&gt; 2  0.05502921 0.03223697  FULGLA POLYGON ((-5.265338 48.4591...</span></span>
-<span id="cb31-11"><a href="#cb31-11" tabindex="-1"></a><span class="co">#&gt; 3  0.05211610 0.03050266  FULGLA POLYGON ((-5.175506 48.4591...</span></span>
-<span id="cb31-12"><a href="#cb31-12" tabindex="-1"></a><span class="co">#&gt; 4  0.04908270 0.02815630  FULGLA POLYGON ((-5.085675 48.4591...</span></span>
-<span id="cb31-13"><a href="#cb31-13" tabindex="-1"></a><span class="co">#&gt; 5  0.04623810 0.02625730  FULGLA POLYGON ((-4.995843 48.4591...</span></span>
-<span id="cb31-14"><a href="#cb31-14" tabindex="-1"></a><span class="co">#&gt; 6  0.04372160 0.02488598  FULGLA POLYGON ((-4.906011 48.4591...</span></span>
-<span id="cb31-15"><a href="#cb31-15" tabindex="-1"></a><span class="co">#&gt; 7  0.04170104 0.02418554  FULGLA POLYGON ((-4.81618 48.45917...</span></span>
-<span id="cb31-16"><a href="#cb31-16" tabindex="-1"></a><span class="co">#&gt; 9  0.05558057 0.03139028  FULGLA POLYGON ((-5.265338 48.3995...</span></span>
-<span id="cb31-17"><a href="#cb31-17" tabindex="-1"></a><span class="co">#&gt; 10 0.05177760 0.02851004  FULGLA POLYGON ((-5.175506 48.3995...</span></span>
-<span id="cb31-18"><a href="#cb31-18" tabindex="-1"></a><span class="co">#&gt; 11 0.04820572 0.02607784  FULGLA POLYGON ((-5.085675 48.3995...</span></span>
-<span id="cb31-19"><a href="#cb31-19" tabindex="-1"></a><span class="co">#&gt; 12 0.04493679 0.02403199  FULGLA POLYGON ((-4.995843 48.3995...</span></span>
-<span id="cb31-20"><a href="#cb31-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb31-21"><a href="#cb31-21" tabindex="-1"></a><span class="co">#&gt; $data_fit</span></span>
-<span id="cb31-22"><a href="#cb31-22" tabindex="-1"></a><span class="co">#&gt; Simple feature collection with 390 features and 18 fields</span></span>
-<span id="cb31-23"><a href="#cb31-23" tabindex="-1"></a><span class="co">#&gt; Geometry type: POINT</span></span>
-<span id="cb31-24"><a href="#cb31-24" tabindex="-1"></a><span class="co">#&gt; Dimension:     XY</span></span>
-<span id="cb31-25"><a href="#cb31-25" tabindex="-1"></a><span class="co">#&gt; Bounding box:  xmin: -5.657199 ymin: 43.66589 xmax: -1.253505 ymax: 48.31222</span></span>
-<span id="cb31-26"><a href="#cb31-26" tabindex="-1"></a><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
-<span id="cb31-27"><a href="#cb31-27" tabindex="-1"></a><span class="co">#&gt; # A tibble: 390 × 19</span></span>
-<span id="cb31-28"><a href="#cb31-28" tabindex="-1"></a><span class="co">#&gt;    Beaufort TransectID         plateform     n_obs LegID     Start_time         </span></span>
-<span id="cb31-29"><a href="#cb31-29" tabindex="-1"></a><span class="co">#&gt;    &lt;fct&gt;    &lt;chr&gt;              &lt;fct&gt;         &lt;dbl&gt; &lt;chr&gt;     &lt;dttm&gt;             </span></span>
-<span id="cb31-30"><a href="#cb31-30" tabindex="-1"></a><span class="co">#&gt;  1 0        TR_Pelgas_25052023 bridge_inside     2 25052023… 2023-05-25 04:57:07</span></span>
-<span id="cb31-31"><a href="#cb31-31" tabindex="-1"></a><span class="co">#&gt;  2 1        TR_Pelgas_04052023 bridge_inside     2 04052023… 2023-05-04 11:42:53</span></span>
-<span id="cb31-32"><a href="#cb31-32" tabindex="-1"></a><span class="co">#&gt;  3 1        TR_Pelgas_05052023 bridge_inside     2 05052023… 2023-05-05 13:56:44</span></span>
-<span id="cb31-33"><a href="#cb31-33" tabindex="-1"></a><span class="co">#&gt;  4 1        TR_Pelgas_05052023 bridge_inside     2 05052023… 2023-05-05 13:56:44</span></span>
-<span id="cb31-34"><a href="#cb31-34" tabindex="-1"></a><span class="co">#&gt;  5 1        TR_Pelgas_05052023 bridge_inside     2 05052023… 2023-05-05 13:56:44</span></span>
-<span id="cb31-35"><a href="#cb31-35" tabindex="-1"></a><span class="co">#&gt;  6 1        TR_Pelgas_05052023 bridge_inside     2 05052023… 2023-05-05 13:56:44</span></span>
-<span id="cb31-36"><a href="#cb31-36" tabindex="-1"></a><span class="co">#&gt;  7 1        TR_Pelgas_05052023 bridge_inside     2 05052023… 2023-05-05 16:09:17</span></span>
-<span id="cb31-37"><a href="#cb31-37" tabindex="-1"></a><span class="co">#&gt;  8 1        TR_Pelgas_18052023 bridge_inside     2 18052023… 2023-05-18 11:33:05</span></span>
-<span id="cb31-38"><a href="#cb31-38" tabindex="-1"></a><span class="co">#&gt;  9 1        TR_Pelgas_22052023 bridge_inside     2 22052023… 2023-05-22 15:03:10</span></span>
-<span id="cb31-39"><a href="#cb31-39" tabindex="-1"></a><span class="co">#&gt; 10 1        TR_Pelgas_27052023 bridge_inside     2 27052023… 2023-05-27 13:24:10</span></span>
-<span id="cb31-40"><a href="#cb31-40" tabindex="-1"></a><span class="co">#&gt; # ℹ 380 more rows</span></span>
-<span id="cb31-41"><a href="#cb31-41" tabindex="-1"></a><span class="co">#&gt; # ℹ 13 more variables: DateTime &lt;dttm&gt;, End_time &lt;dttm&gt;, SegID &lt;chr&gt;,</span></span>
-<span id="cb31-42"><a href="#cb31-42" tabindex="-1"></a><span class="co">#&gt; #   Effort &lt;dbl&gt;, geometry &lt;POINT [°]&gt;, det.FULGLA &lt;dbl&gt;, ind.FULGLA &lt;dbl&gt;,</span></span>
-<span id="cb31-43"><a href="#cb31-43" tabindex="-1"></a><span class="co">#&gt; #   mean_esw_FULGLA &lt;dbl&gt;, sd_esw_FULGLA &lt;dbl&gt;, Q25_esw_FULGLA &lt;dbl&gt;,</span></span>
-<span id="cb31-44"><a href="#cb31-44" tabindex="-1"></a><span class="co">#&gt; #   Q75_esw_FULGLA &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;</span></span></code></pre></div>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="co">#&gt; $prediction_map</span></span></code></pre></div>
+<p><img src="reference/figures/README-calculation-2.png" width="100%"></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a><span class="co">#&gt; $data_predict</span></span>
+<span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a><span class="co">#&gt; Simple feature collection with 2472 features and 3 fields</span></span>
+<span id="cb32-4"><a href="#cb32-4" tabindex="-1"></a><span class="co">#&gt; Geometry type: POLYGON</span></span>
+<span id="cb32-5"><a href="#cb32-5" tabindex="-1"></a><span class="co">#&gt; Dimension:     XY</span></span>
+<span id="cb32-6"><a href="#cb32-6" tabindex="-1"></a><span class="co">#&gt; Bounding box:  xmin: -5.894158 ymin: 43.53386 xmax: -1.043256 ymax: 48.45917</span></span>
+<span id="cb32-7"><a href="#cb32-7" tabindex="-1"></a><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
+<span id="cb32-8"><a href="#cb32-8" tabindex="-1"></a><span class="co">#&gt; First 10 features:</span></span>
+<span id="cb32-9"><a href="#cb32-9" tabindex="-1"></a><span class="co">#&gt;       Density         SE Species                       geometry</span></span>
+<span id="cb32-10"><a href="#cb32-10" tabindex="-1"></a><span class="co">#&gt; 2  0.04883522 0.02804986  FULGLA POLYGON ((-5.265338 48.4591...</span></span>
+<span id="cb32-11"><a href="#cb32-11" tabindex="-1"></a><span class="co">#&gt; 3  0.04625478 0.02656228  FULGLA POLYGON ((-5.175506 48.4591...</span></span>
+<span id="cb32-12"><a href="#cb32-12" tabindex="-1"></a><span class="co">#&gt; 4  0.04357924 0.02456320  FULGLA POLYGON ((-5.085675 48.4591...</span></span>
+<span id="cb32-13"><a href="#cb32-13" tabindex="-1"></a><span class="co">#&gt; 5  0.04106622 0.02293252  FULGLA POLYGON ((-4.995843 48.4591...</span></span>
+<span id="cb32-14"><a href="#cb32-14" tabindex="-1"></a><span class="co">#&gt; 6  0.03883960 0.02174332  FULGLA POLYGON ((-4.906011 48.4591...</span></span>
+<span id="cb32-15"><a href="#cb32-15" tabindex="-1"></a><span class="co">#&gt; 7  0.03705187 0.02112480  FULGLA POLYGON ((-4.81618 48.45917...</span></span>
+<span id="cb32-16"><a href="#cb32-16" tabindex="-1"></a><span class="co">#&gt; 9  0.04933411 0.02735214  FULGLA POLYGON ((-5.265338 48.3995...</span></span>
+<span id="cb32-17"><a href="#cb32-17" tabindex="-1"></a><span class="co">#&gt; 10 0.04597774 0.02489122  FULGLA POLYGON ((-5.175506 48.3995...</span></span>
+<span id="cb32-18"><a href="#cb32-18" tabindex="-1"></a><span class="co">#&gt; 11 0.04282812 0.02280001  FULGLA POLYGON ((-5.085675 48.3995...</span></span>
+<span id="cb32-19"><a href="#cb32-19" tabindex="-1"></a><span class="co">#&gt; 12 0.03993427 0.02103133  FULGLA POLYGON ((-4.995843 48.3995...</span></span>
+<span id="cb32-20"><a href="#cb32-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb32-21"><a href="#cb32-21" tabindex="-1"></a><span class="co">#&gt; $data_fit</span></span>
+<span id="cb32-22"><a href="#cb32-22" tabindex="-1"></a><span class="co">#&gt; Simple feature collection with 390 features and 18 fields</span></span>
+<span id="cb32-23"><a href="#cb32-23" tabindex="-1"></a><span class="co">#&gt; Geometry type: POINT</span></span>
+<span id="cb32-24"><a href="#cb32-24" tabindex="-1"></a><span class="co">#&gt; Dimension:     XY</span></span>
+<span id="cb32-25"><a href="#cb32-25" tabindex="-1"></a><span class="co">#&gt; Bounding box:  xmin: -5.657199 ymin: 43.66589 xmax: -1.253505 ymax: 48.31222</span></span>
+<span id="cb32-26"><a href="#cb32-26" tabindex="-1"></a><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
+<span id="cb32-27"><a href="#cb32-27" tabindex="-1"></a><span class="co">#&gt; # A tibble: 390 × 19</span></span>
+<span id="cb32-28"><a href="#cb32-28" tabindex="-1"></a><span class="co">#&gt;    Beaufort TransectID         plateform         n_obs LegID Start_time         </span></span>
+<span id="cb32-29"><a href="#cb32-29" tabindex="-1"></a><span class="co">#&gt;       &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt; &lt;dttm&gt;             </span></span>
+<span id="cb32-30"><a href="#cb32-30" tabindex="-1"></a><span class="co">#&gt;  1        0 TR_Pelgas_25052023 upper_bridge_out…     2 2505… 2023-05-25 04:57:07</span></span>
+<span id="cb32-31"><a href="#cb32-31" tabindex="-1"></a><span class="co">#&gt;  2        1 TR_Pelgas_04052023 upper_bridge_out…     2 0405… 2023-05-04 11:42:53</span></span>
+<span id="cb32-32"><a href="#cb32-32" tabindex="-1"></a><span class="co">#&gt;  3        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44</span></span>
+<span id="cb32-33"><a href="#cb32-33" tabindex="-1"></a><span class="co">#&gt;  4        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44</span></span>
+<span id="cb32-34"><a href="#cb32-34" tabindex="-1"></a><span class="co">#&gt;  5        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44</span></span>
+<span id="cb32-35"><a href="#cb32-35" tabindex="-1"></a><span class="co">#&gt;  6        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44</span></span>
+<span id="cb32-36"><a href="#cb32-36" tabindex="-1"></a><span class="co">#&gt;  7        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 16:09:17</span></span>
+<span id="cb32-37"><a href="#cb32-37" tabindex="-1"></a><span class="co">#&gt;  8        1 TR_Pelgas_18052023 upper_bridge_out…     2 1805… 2023-05-18 11:33:05</span></span>
+<span id="cb32-38"><a href="#cb32-38" tabindex="-1"></a><span class="co">#&gt;  9        1 TR_Pelgas_22052023 upper_bridge_out…     2 2205… 2023-05-22 15:03:10</span></span>
+<span id="cb32-39"><a href="#cb32-39" tabindex="-1"></a><span class="co">#&gt; 10        1 TR_Pelgas_27052023 upper_bridge_out…     2 2705… 2023-05-27 13:24:10</span></span>
+<span id="cb32-40"><a href="#cb32-40" tabindex="-1"></a><span class="co">#&gt; # ℹ 380 more rows</span></span>
+<span id="cb32-41"><a href="#cb32-41" tabindex="-1"></a><span class="co">#&gt; # ℹ 13 more variables: DateTime &lt;dttm&gt;, End_time &lt;dttm&gt;, SegID &lt;chr&gt;,</span></span>
+<span id="cb32-42"><a href="#cb32-42" tabindex="-1"></a><span class="co">#&gt; #   Effort &lt;dbl&gt;, geometry &lt;POINT [°]&gt;, det.FULGLA &lt;dbl&gt;, ind.FULGLA &lt;dbl&gt;,</span></span>
+<span id="cb32-43"><a href="#cb32-43" tabindex="-1"></a><span class="co">#&gt; #   mean_esw_FULGLA &lt;dbl&gt;, sd_esw_FULGLA &lt;dbl&gt;, Q25_esw_FULGLA &lt;dbl&gt;,</span></span>
+<span id="cb32-44"><a href="#cb32-44" tabindex="-1"></a><span class="co">#&gt; #   Q75_esw_FULGLA &lt;dbl&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;</span></span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="license">

@@ -16,17 +16,22 @@
 <url><loc>/reference/calc_esw.html</loc></url>
 <url><loc>/reference/check_brut_effort.html</loc></url>
 <url><loc>/reference/check_brut_sightings.html</loc></url>
+<url><loc>/reference/check_raw_effort.html</loc></url>
+<url><loc>/reference/check_raw_sightings.html</loc></url>
 <url><loc>/reference/create_soap.html</loc></url>
 <url><loc>/reference/data_effort_brut.html</loc></url>
 <url><loc>/reference/data_effort_esw.html</loc></url>
 <url><loc>/reference/data_effort_Segmented.html</loc></url>
 <url><loc>/reference/data_effort_with_sightings.html</loc></url>
 <url><loc>/reference/data_sightings_brut.html</loc></url>
+<url><loc>/reference/descriptive_stats_effort.html</loc></url>
+<url><loc>/reference/estimate_esw.html</loc></url>
 <url><loc>/reference/fill_hole_effort.html</loc></url>
 <url><loc>/reference/first_stat_effort.html</loc></url>
 <url><loc>/reference/fit_and_predict.html</loc></url>
 <url><loc>/reference/index.html</loc></url>
 <url><loc>/reference/knots_bound.html</loc></url>
+<url><loc>/reference/make_soap.html</loc></url>
 <url><loc>/reference/map_europe.html</loc></url>
 <url><loc>/reference/plot_subjective.html</loc></url>
 <url><loc>/reference/prep_lin.html</loc></url>
@@ -34,5 +39,6 @@
 <url><loc>/reference/sightings_to_effort.html</loc></url>
 <url><loc>/reference/Sigthings_with_SegID.html</loc></url>
 <url><loc>/reference/test_for_fill_hole_effort.html</loc></url>
+<url><loc>/reference/test_prep_line.html</loc></url>
 </urlset>
 

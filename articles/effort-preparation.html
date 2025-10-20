@@ -1139,11 +1139,12 @@
 </h2>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rlang.r-lib.org" class="external-link">rlang</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: package 'rlang' was built under R version 4.4.3</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/prep_lin.html">prep_lin</a></span><span class="op">(</span>effort_table <span class="op">=</span> <span class="va">test_prep_line</span>,</span>
 <span>         variable <span class="op">=</span> <span class="fu"><a href="https://rlang.r-lib.org/reference/defusing-advanced.html" class="external-link">quos</a></span><span class="op">(</span><span class="va">Beaufort</span>, <span class="va">plateform</span>, <span class="va">n_obs</span><span class="op">)</span>, </span>
 <span>         unique_column <span class="op">=</span> <span class="st">"LegID"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Redefinig 'LegID' columnn according to Beaufort, plateform and n_obs</span></span>
+<span><span class="co">#&gt; Redefinig LegID columnn according to Beaufort, plateform and n_obs</span></span>
 <span><span class="co">#&gt;     Survey            plateform   routeType status              LegID speed</span></span>
 <span><span class="co">#&gt; 1   PELGAS upper_bridge_outside prospection  BEGIN    30042023_C_G1_1    10</span></span>
 <span><span class="co">#&gt; 2   PELGAS upper_bridge_outside prospection    ADD    30042023_C_G1_1    11</span></span>
@@ -2962,7 +2963,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer>

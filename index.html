@@ -64,7 +64,7 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version of pelascope like so:</p>
+<p>You can install pelascope like so:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_gitlab.html" class="external-link">install_gitlab</a></span><span class="op">(</span></span>
@@ -91,7 +91,7 @@
 <div class="section level2">
 <h2 id="effort">Effort<a class="anchor" aria-label="anchor" href="#effort"></a>
 </h2>
-<p>First step, taking care of the effort table. It’s needed to import the dataset (extract from the database) and they let it go !</p>
+<p>First step: take care of the effort table. The data set (extracted from the database) must be imported, and then they let it go!</p>
 <div class="section level3">
 <h3 id="import-effort-table">Import effort table<a class="anchor" aria-label="anchor" href="#import-effort-table"></a>
 </h3>
@@ -170,11 +170,11 @@
 <div class="section level3">
 <h3 id="check-and-transform-effort">Check and transform effort<a class="anchor" aria-label="anchor" href="#check-and-transform-effort"></a>
 </h3>
-<p>After importing dataset brut from the database, it’s needed to make some security check and transform the dataset to continue with the workflow. The function ‘check_brut_effort’ allows to change the name of columns, create the column DateTime and select column of interest. The function has 3 arguments :</p>
+<p>After importing the raw data set from the database, it is necessary to perform some security checks and transform the data set in order to continue the workflow. The ‘check_raw_effort’ function allows you to change the names of the columns, create the DateTime column, and select the column you are interested in. The function has 3 arguments :</p>
 <ul>
-<li><p>data_effort: data effort brut</p></li>
+<li><p>data_effort: raw data effort</p></li>
 <li><p>only_prospection: TRUE or FALSE, if it’s needed to keep not only prospection route type</p></li>
-<li><p>filter_speed: minimum speed to keep</p></li>
+<li><p>filter_speed: minimum speed to be keep</p></li>
 </ul>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
@@ -211,7 +211,7 @@
 <div class="section level3">
 <h3 id="prepare-the-effort-table-for-linearization">Prepare the effort table for linearization<a class="anchor" aria-label="anchor" href="#prepare-the-effort-table-for-linearization"></a>
 </h3>
-<p>Because of the Megascope surveys, LegID do not regroup a constant environment regarding Beaufort, Elevation or number of observer. To solve this problem, the function ‘prep_lin’ recreate effort point when it’s needed (with ‘NEW’ as status) and adapt the ‘LegID’ column in order to get constant environment during the Leg.</p>
+<p>In some cases, the LegID column does not represent a constant environment and may change over time. To resolve this issue, the ‘prep_lin’ function recreates effort points when necessary (with “NEW” as the status) and adjusts the ‘LegID’ column to obtain a constant environment during the Leg.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">data_effort_clean</span> <span class="op">&lt;-</span> <span class="fu">pelascope</span><span class="fu">::</span><span class="fu"><a href="reference/prep_lin.html">prep_lin</a></span><span class="op">(</span></span>
@@ -239,11 +239,11 @@
 <div class="section level3">
 <h3 id="use-ambidsm-to-linearize-and-segment">Use AmbiDSM to linearize and segment<a class="anchor" aria-label="anchor" href="#use-ambidsm-to-linearize-and-segment"></a>
 </h3>
-<p>Now the data set is clean and in the correct format, it’s possible to linearize and segment the effort. Next steps can be done using the AmniDSM package (<a href="https://gitlab.univ-lr.fr/pelaverse/AMBIdsm" class="external-link uri">https://gitlab.univ-lr.fr/pelaverse/AMBIdsm</a>).</p>
+<p>Now that the dataset is clean and in the correct format, it is possible to linearize and segment the effort. The following steps can be performed using the AmniDSM package (<a href="https://gitlab.univ-lr.fr/pelaverse/AMBIdsm" class="external-link uri">https://gitlab.univ-lr.fr/pelaverse/AMBIdsm</a>).</p>
 <div class="section level4">
 <h4 id="check-visual">Check visual<a class="anchor" aria-label="anchor" href="#check-visual"></a>
 </h4>
-<p>The check produce a map to first vizualize the effort.</p>
+<p>The check produces a map that initially shows the effort required.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">AMBIdsm</span><span class="op">)</span></span>
@@ -264,7 +264,7 @@
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/AMBIdsm/man/eff_check_columns.html" class="external-link">eff_check_columns</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
-<h4 id="linearisation-of-the-effort">Linearisation of the effort<a class="anchor" aria-label="anchor" href="#linearisation-of-the-effort"></a>
+<h4 id="linearization-of-the-effort">Linearization of the effort<a class="anchor" aria-label="anchor" href="#linearization-of-the-effort"></a>
 </h4>
 <p>The function has 3 arguments :</p>
 <ul>
@@ -306,7 +306,7 @@
 <div class="section level4">
 <h4 id="segmentation-of-the-effort">Segmentation of the effort<a class="anchor" aria-label="anchor" href="#segmentation-of-the-effort"></a>
 </h4>
-<p>Segmentation of the effort and distinct every row / SegID. Here to solve a temporary problem, ‘SegID’ are rendered unique.</p>
+<p>Segmentation of the effort. Here to solve a temporary problem, ‘SegID’ are rendered unique.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Segmentation</span></span>
 <span><span class="va">data_effort_clean_Seg</span> <span class="op">&lt;-</span> <span class="va">data_effort_clean_lin</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -382,7 +382,7 @@
 <div class="section level2">
 <h2 id="sightings">Sightings<a class="anchor" aria-label="anchor" href="#sightings"></a>
 </h2>
-<p>This section will produce a clean table from sightings data base.</p>
+<p>This section produces a clean table from sightings data base.</p>
 <div class="section level3">
 <h3 id="import-sightings">Import Sightings<a class="anchor" aria-label="anchor" href="#import-sightings"></a>
 </h3>
@@ -452,7 +452,7 @@
 <div class="section level3">
 <h3 id="clean-sightings">Clean sightings<a class="anchor" aria-label="anchor" href="#clean-sightings"></a>
 </h3>
-<p>The function ‘check_brut_sightings’ produces a clean sighting dataset and give some information regarding the dataset. It changes colnames function what will be needed in the pelascope workflow and select column of interest. Perpendical distance (PerpDist) is calculated using ‘sinus’.</p>
+<p>The function ‘check_raw_sightings’ produces a clean sighting dataset and give some information. Perpendical distance (PerpDist) is calculated using ‘sinus’ and only appropriate for ship survey.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">data_sightings_clean</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/check_raw_sightings.html">check_raw_sightings</a></span><span class="op">(</span><span class="va">data_sight_brut</span><span class="op">)</span></span>
@@ -485,7 +485,7 @@
 <div class="section level3">
 <h3 id="check-sightings-with-ambidsm">Check sightings with AmbiDSM<a class="anchor" aria-label="anchor" href="#check-sightings-with-ambidsm"></a>
 </h3>
-<p>AmbiDSM gives access to another check which allows to get some news information. It produces a DupID columns: potential duplicate that can be explore.</p>
+<p>AmbiDSM provides access to another verification that allows you to obtain up-to-date information. It produces DupID columns: potential duplicates that can be explored.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">AMBIdsm</span><span class="op">)</span></span>
 <span></span>
@@ -523,7 +523,7 @@
 <div class="section level2">
 <h2 id="associate-effort-information-to-sightings">Associate Effort information to sightings<a class="anchor" aria-label="anchor" href="#associate-effort-information-to-sightings"></a>
 </h2>
-<p>AmbiDSM have a function to check which segments of effort data correspond to TransectID, date and time of each observation. Then, it binds each observation to the closest segment and adds the variables describing observation conditions to sightings data. The function has several argument :</p>
+<p>AmbiDSM has a function that allows you to check which effort data segments correspond to the TransectID, date and time of each observation. It then links each observation to the nearest segment and adds variables describing the observation conditions to the observation data. The function has several argument :</p>
 <ul>
 <li><p>data_sightings</p></li>
 <li><p>data effort segmented</p></li>
@@ -634,7 +634,7 @@
 <div class="section level2">
 <h2 id="associate-number-of-sightings-to-effort">Associate number of sightings to effort<a class="anchor" aria-label="anchor" href="#associate-number-of-sightings-to-effort"></a>
 </h2>
-<p>Then to prepare the effort, it is needed to count the number of ibservation par species in each segment (SegID). The function ‘sightings_to_effort’ produces ‘det’ for the number of detection and ‘ind’ for the number of observation.</p>
+<p>Then to prepare the effort, it is needed to tally the number of observation per species in each segment (SegID). The function ‘sightings_to_effort’ produces ‘det’ for the number of detection and ‘ind’ for the number of observation.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">Effort_withSighting</span> <span class="op">&lt;-</span> </span>
@@ -802,9 +802,9 @@
 <p><img src="reference/figures/README-descriptive_statistics-5.png" width="100%"></p>
 </div>
 <div class="section level2">
-<h2 id="calculate-esw">Calculate ESW<a class="anchor" aria-label="anchor" href="#calculate-esw"></a>
+<h2 id="estimate-esw">Estimate ESW<a class="anchor" aria-label="anchor" href="#estimate-esw"></a>
 </h2>
-<p>Now it’s time to calculate ESW with the function ‘calc_esw’. From the table sighting with the SegID column and the effort table juste created, it’s possible to estimate the Effective Strip Width. Species has to be selected, the variable to be considered and the detection function (key). The function produces the effort table with ESW value, A table with ESW values calculated, a graph and model selection with abundance estiamted.</p>
+<p>Now it’s time to estimate ESW with the function ‘estimate_esw’. From the table sighting with the SegID column and the effort table just created, it’s possible to estimate the Effective Strip Width. Species has to be selected and the variable to be considered. The function produces the effort table with ESW value, a table with ESW values calculated, a graph and model selection with abundance estimated. Estimation of ESW is based on half-normal detection function.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">export_esw</span> <span class="op">&lt;-</span> </span>
@@ -881,7 +881,7 @@
 <div class="section level2">
 <h2 id="soap-smooth">Soap smooth<a class="anchor" aria-label="anchor" href="#soap-smooth"></a>
 </h2>
-<p>Before looking at the distribution, GAM with ‘mgcv’ can be done using soap smooth to take into account for border. The function ‘create_soap’ can do it.</p>
+<p>GAM with ‘mgcv’ can be done using soap smooth to take into account for border effect. The function ‘make_soap’ can do it.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">soap_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/make_soap.html">make_soap</a></span><span class="op">(</span><span class="va">export_esw</span><span class="op">$</span><span class="va">effort_output</span><span class="op">)</span></span></code></pre></div>

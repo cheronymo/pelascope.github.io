@@ -64,6 +64,14 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
+<div class="section level3">
+<h3 id="prerequisites">Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"></a>
+</h3>
+<p>Using pelascope requires the installation of packages available in ‘pelaverse’, namely <a href="https://gitlab.univ-lr.fr/pelaverse/pelacds" class="external-link">pelaCDS</a> and <a href="https://gitlab.univ-lr.fr/pelaverse/pelaMSFD" class="external-link">pelaMSFD</a>. It also requires <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a> to be installed on your system.</p>
+</div>
+<div class="section level3">
+<h3 id="pelascope-installation">{pelascope} installation<a class="anchor" aria-label="anchor" href="#pelascope-installation"></a>
+</h3>
 <p>You can install pelascope like so:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
@@ -86,7 +94,10 @@
 <span><span class="co">#&gt;     filter, lag</span></span>
 <span><span class="co">#&gt; Les objets suivants sont masqués depuis 'package:base':</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span></code></pre></div>
+<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rlang.r-lib.org" class="external-link">rlang</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: le package 'rlang' a été compilé avec la version R 4.4.3</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="effort">Effort<a class="anchor" aria-label="anchor" href="#effort"></a>
@@ -247,6 +258,11 @@
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">AMBIdsm</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attachement du package : 'AMBIdsm'</span></span>
+<span><span class="co">#&gt; L'objet suivant est masqué depuis 'package:rlang':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     env_bind</span></span>
 <span></span>
 <span><span class="co"># Check using a map</span></span>
 <span><span class="va">check</span> <span class="op">&lt;-</span> <span class="va">data_effort_clean</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -685,7 +701,7 @@
 <span><span class="co">#&gt; </span></span>
 <span></span>
 <span><span class="va">descriptive_stats</span><span class="op">$</span><span class="va">distance_effort</span></span>
-<span><span class="co">#&gt; [1] 3988.769</span></span>
+<span><span class="co">#&gt; 3988.769 [km]</span></span>
 <span></span>
 <span><span class="va">descriptive_stats</span><span class="op">$</span><span class="va">distance_travel_table</span></span>
 <span><span class="co">#&gt; # A tibble: 11 × 4</span></span>
@@ -931,7 +947,7 @@
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="reference/fit_and_predict.html">fit_and_predict</a></span><span class="op">(</span>effort_table <span class="op">=</span> <span class="va">export_esw</span><span class="op">$</span><span class="va">effort_output</span>, </span>
 <span>                response_y <span class="op">=</span> <span class="st">"ind.FULGLA"</span>, </span>
-<span>                family <span class="op">=</span> <span class="st">"nb"</span>, </span>
+<span>                family <span class="op">=</span> <span class="st">"negbin"</span>, </span>
 <span>                knots <span class="op">=</span> <span class="va">soap_data</span><span class="op">$</span><span class="va">knots</span>, </span>
 <span>                bound <span class="op">=</span> <span class="va">soap_data</span><span class="op">$</span><span class="va">bound</span>, </span>
 <span>                species <span class="op">=</span> <span class="st">"FULGLA"</span>, </span>

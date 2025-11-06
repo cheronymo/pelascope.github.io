@@ -292,7 +292,7 @@
 <code class="sourceCode R"><span></span>
 <span><span class="co"># Linearisation</span></span>
 <span><span class="va">data_effort_clean_lin</span> <span class="op">=</span> <span class="va">data_effort_clean</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/AMBIdsm/man/eff_linearize.html" class="external-link">eff_linearize</a></span><span class="op">(</span>variable_keep <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Beaufort"</span>,<span class="st">"TransectID"</span>, <span class="st">"plateform"</span>, <span class="st">"n_obs"</span><span class="op">)</span>, </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/AMBIdsm/man/eff_linearize.html" class="external-link">eff_linearize</a></span><span class="op">(</span>variable_keep <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Beaufort"</span>,<span class="st">"LegID"</span>, <span class="st">"plateform"</span>, <span class="st">"n_obs"</span><span class="op">)</span>, </span>
 <span>                length_min <span class="op">=</span> <span class="fl">0.1</span>, </span>
 <span>                crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -308,14 +308,14 @@
 <span><span class="co">#&gt; Bounding box:  xmin: -4.677252 ymin: 44.46407 xmax: -1.592198 ymax: 47.97051</span></span>
 <span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 11</span></span>
-<span><span class="co">#&gt;   Beaufort TransectID         plateform    n_obs    id LegID Start_time         </span></span>
-<span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dttm&gt;             </span></span>
-<span><span class="co">#&gt; 1        0 TR_Pelgas_25052023 upper_bridg…     2   192 2505… 2023-05-25 04:57:07</span></span>
-<span><span class="co">#&gt; 2        1 TR_Pelgas_04052023 upper_bridg…     2    31 0405… 2023-05-04 11:42:53</span></span>
-<span><span class="co">#&gt; 3        1 TR_Pelgas_05052023 upper_bridg…     2    45 0505… 2023-05-05 13:56:44</span></span>
-<span><span class="co">#&gt; 4        1 TR_Pelgas_05052023 upper_bridg…     2    48 0505… 2023-05-05 16:09:17</span></span>
-<span><span class="co">#&gt; 5        1 TR_Pelgas_18052023 upper_bridg…     2   145 1805… 2023-05-18 11:33:05</span></span>
-<span><span class="co">#&gt; 6        1 TR_Pelgas_22052023 upper_bridg…     2   174 2205… 2023-05-22 15:03:10</span></span>
+<span><span class="co">#&gt;   Beaufort LegID            plateform n_obs    id TransectID Start_time         </span></span>
+<span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;dttm&gt;             </span></span>
+<span><span class="co">#&gt; 1        0 25052023_C_G1_1… upper_br…     2   192 TR_Pelgas… 2023-05-25 04:57:07</span></span>
+<span><span class="co">#&gt; 2        1 04052023_C_G3_3… upper_br…     2    31 TR_Pelgas… 2023-05-04 11:42:53</span></span>
+<span><span class="co">#&gt; 3        1 05052023_C_G12_… upper_br…     2    45 TR_Pelgas… 2023-05-05 13:56:44</span></span>
+<span><span class="co">#&gt; 4        1 05052023_C_G14_… upper_br…     2    48 TR_Pelgas… 2023-05-05 16:09:17</span></span>
+<span><span class="co">#&gt; 5        1 18052023_C_G7_1… upper_br…     2   145 TR_Pelgas… 2023-05-18 11:33:05</span></span>
+<span><span class="co">#&gt; 6        1 22052023_C_G9_1… upper_br…     2   174 TR_Pelgas… 2023-05-22 15:03:10</span></span>
 <span><span class="co">#&gt; # ℹ 4 more variables: DateTime &lt;dttm&gt;, End_time &lt;dttm&gt;, Length &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   geometry &lt;LINESTRING [°]&gt;</span></span></code></pre></div>
 </div>
@@ -340,14 +340,14 @@
 <span><span class="co">#&gt; Bounding box:  xmin: -4.582032 ymin: 44.46551 xmax: -1.659766 ymax: 47.95554</span></span>
 <span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 11</span></span>
-<span><span class="co">#&gt;   Beaufort TransectID         plateform          n_obs LegID Start_time         </span></span>
-<span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt; &lt;dttm&gt;             </span></span>
-<span><span class="co">#&gt; 1        0 TR_Pelgas_25052023 upper_bridge_outs…     2 2505… 2023-05-25 04:57:07</span></span>
-<span><span class="co">#&gt; 2        1 TR_Pelgas_04052023 upper_bridge_outs…     2 0405… 2023-05-04 11:42:53</span></span>
-<span><span class="co">#&gt; 3        1 TR_Pelgas_05052023 upper_bridge_outs…     2 0505… 2023-05-05 13:56:44</span></span>
-<span><span class="co">#&gt; 4        1 TR_Pelgas_05052023 upper_bridge_outs…     2 0505… 2023-05-05 13:56:44</span></span>
-<span><span class="co">#&gt; 5        1 TR_Pelgas_05052023 upper_bridge_outs…     2 0505… 2023-05-05 13:56:44</span></span>
-<span><span class="co">#&gt; 6        1 TR_Pelgas_05052023 upper_bridge_outs…     2 0505… 2023-05-05 13:56:44</span></span>
+<span><span class="co">#&gt;   Beaufort LegID                 plateform  n_obs TransectID Start_time         </span></span>
+<span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;                 &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;      &lt;dttm&gt;             </span></span>
+<span><span class="co">#&gt; 1        0 25052023_C_G1_189_192 upper_bri…     2 TR_Pelgas… 2023-05-25 04:57:07</span></span>
+<span><span class="co">#&gt; 2        1 04052023_C_G3_33_31   upper_bri…     2 TR_Pelgas… 2023-05-04 11:42:53</span></span>
+<span><span class="co">#&gt; 3        1 05052023_C_G12_38_45  upper_bri…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
+<span><span class="co">#&gt; 4        1 05052023_C_G12_38_45  upper_bri…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
+<span><span class="co">#&gt; 5        1 05052023_C_G12_38_45  upper_bri…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
+<span><span class="co">#&gt; 6        1 05052023_C_G12_38_45  upper_bri…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
 <span><span class="co">#&gt; # ℹ 5 more variables: DateTime &lt;dttm&gt;, End_time &lt;dttm&gt;, SegID &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   Effort &lt;dbl&gt;, geometry &lt;POINT [°]&gt;</span></span></code></pre></div>
 </div>
@@ -664,14 +664,14 @@
 <span><span class="co">#&gt; Bounding box:  xmin: -4.582032 ymin: 44.46551 xmax: -1.659766 ymax: 47.95554</span></span>
 <span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 193</span></span>
-<span><span class="co">#&gt;   Beaufort TransectID         plateform          n_obs LegID Start_time         </span></span>
-<span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt; &lt;dttm&gt;             </span></span>
-<span><span class="co">#&gt; 1        0 TR_Pelgas_25052023 upper_bridge_outs…     2 2505… 2023-05-25 04:57:07</span></span>
-<span><span class="co">#&gt; 2        1 TR_Pelgas_04052023 upper_bridge_outs…     2 0405… 2023-05-04 11:42:53</span></span>
-<span><span class="co">#&gt; 3        1 TR_Pelgas_05052023 upper_bridge_outs…     2 0505… 2023-05-05 13:56:44</span></span>
-<span><span class="co">#&gt; 4        1 TR_Pelgas_05052023 upper_bridge_outs…     2 0505… 2023-05-05 13:56:44</span></span>
-<span><span class="co">#&gt; 5        1 TR_Pelgas_05052023 upper_bridge_outs…     2 0505… 2023-05-05 13:56:44</span></span>
-<span><span class="co">#&gt; 6        1 TR_Pelgas_05052023 upper_bridge_outs…     2 0505… 2023-05-05 13:56:44</span></span>
+<span><span class="co">#&gt;   Beaufort LegID                 plateform  n_obs TransectID Start_time         </span></span>
+<span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;                 &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;      &lt;dttm&gt;             </span></span>
+<span><span class="co">#&gt; 1        0 25052023_C_G1_189_192 upper_bri…     2 TR_Pelgas… 2023-05-25 04:57:07</span></span>
+<span><span class="co">#&gt; 2        1 04052023_C_G3_33_31   upper_bri…     2 TR_Pelgas… 2023-05-04 11:42:53</span></span>
+<span><span class="co">#&gt; 3        1 05052023_C_G12_38_45  upper_bri…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
+<span><span class="co">#&gt; 4        1 05052023_C_G12_38_45  upper_bri…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
+<span><span class="co">#&gt; 5        1 05052023_C_G12_38_45  upper_bri…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
+<span><span class="co">#&gt; 6        1 05052023_C_G12_38_45  upper_bri…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
 <span><span class="co">#&gt; # ℹ 187 more variables: DateTime &lt;dttm&gt;, End_time &lt;dttm&gt;, SegID &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   Effort &lt;dbl&gt;, geometry &lt;POINT [°]&gt;, det.PHACAR &lt;int&gt;, ind.PHACAR &lt;int&gt;,</span></span>
 <span><span class="co">#&gt; #   det.BUOY &lt;int&gt;, ind.BUOY &lt;int&gt;, det.MOTOBO &lt;int&gt;, ind.MOTOBO &lt;int&gt;,</span></span>
@@ -972,10 +972,10 @@
 <span><span class="co">#&gt; Estimated degrees of freedom:</span></span>
 <span><span class="co">#&gt; 9.68  total = 10.68 </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; REML score: 201.8988</span></span>
+<span><span class="co">#&gt; REML score: 201.9294</span></span>
 <span><span class="co">#&gt; ── Make prediction ─────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">#&gt; Beware of units for density surface.</span></span>
-<span><span class="co">#&gt; FULGLA has a mean density at 0.035 with min= 0 and max= 0.158.</span></span>
+<span><span class="co">#&gt; FULGLA has a mean density at 0.035 with min= 0 and max= 0.157.</span></span>
 <span><span class="co">#&gt; $model_data</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Family: Negative Binomial(0.54) </span></span>
@@ -987,7 +987,7 @@
 <span><span class="co">#&gt; Estimated degrees of freedom:</span></span>
 <span><span class="co">#&gt; 9.68  total = 10.68 </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; REML score: 201.8988     </span></span>
+<span><span class="co">#&gt; REML score: 201.9294     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $output_map</span></span></code></pre></div>
 <p><img src="reference/figures/README-calculation-1.png" width="100%"></p>
@@ -1003,16 +1003,16 @@
 <span id="cb32-7"><a href="#cb32-7" tabindex="-1"></a><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
 <span id="cb32-8"><a href="#cb32-8" tabindex="-1"></a><span class="co">#&gt; First 10 features:</span></span>
 <span id="cb32-9"><a href="#cb32-9" tabindex="-1"></a><span class="co">#&gt;       Density         SE Species                       geometry</span></span>
-<span id="cb32-10"><a href="#cb32-10" tabindex="-1"></a><span class="co">#&gt; 2  0.04883522 0.02804986  FULGLA POLYGON ((-5.265338 48.4591...</span></span>
-<span id="cb32-11"><a href="#cb32-11" tabindex="-1"></a><span class="co">#&gt; 3  0.04625478 0.02656228  FULGLA POLYGON ((-5.175506 48.4591...</span></span>
-<span id="cb32-12"><a href="#cb32-12" tabindex="-1"></a><span class="co">#&gt; 4  0.04357924 0.02456320  FULGLA POLYGON ((-5.085675 48.4591...</span></span>
-<span id="cb32-13"><a href="#cb32-13" tabindex="-1"></a><span class="co">#&gt; 5  0.04106622 0.02293252  FULGLA POLYGON ((-4.995843 48.4591...</span></span>
-<span id="cb32-14"><a href="#cb32-14" tabindex="-1"></a><span class="co">#&gt; 6  0.03883960 0.02174332  FULGLA POLYGON ((-4.906011 48.4591...</span></span>
-<span id="cb32-15"><a href="#cb32-15" tabindex="-1"></a><span class="co">#&gt; 7  0.03705187 0.02112480  FULGLA POLYGON ((-4.81618 48.45917...</span></span>
-<span id="cb32-16"><a href="#cb32-16" tabindex="-1"></a><span class="co">#&gt; 9  0.04933411 0.02735214  FULGLA POLYGON ((-5.265338 48.3995...</span></span>
-<span id="cb32-17"><a href="#cb32-17" tabindex="-1"></a><span class="co">#&gt; 10 0.04597774 0.02489122  FULGLA POLYGON ((-5.175506 48.3995...</span></span>
-<span id="cb32-18"><a href="#cb32-18" tabindex="-1"></a><span class="co">#&gt; 11 0.04282812 0.02280001  FULGLA POLYGON ((-5.085675 48.3995...</span></span>
-<span id="cb32-19"><a href="#cb32-19" tabindex="-1"></a><span class="co">#&gt; 12 0.03993427 0.02103133  FULGLA POLYGON ((-4.995843 48.3995...</span></span>
+<span id="cb32-10"><a href="#cb32-10" tabindex="-1"></a><span class="co">#&gt; 2  0.04883502 0.02805722  FULGLA POLYGON ((-5.265338 48.4591...</span></span>
+<span id="cb32-11"><a href="#cb32-11" tabindex="-1"></a><span class="co">#&gt; 3  0.04625366 0.02656893  FULGLA POLYGON ((-5.175506 48.4591...</span></span>
+<span id="cb32-12"><a href="#cb32-12" tabindex="-1"></a><span class="co">#&gt; 4  0.04357768 0.02456930  FULGLA POLYGON ((-5.085675 48.4591...</span></span>
+<span id="cb32-13"><a href="#cb32-13" tabindex="-1"></a><span class="co">#&gt; 5  0.04106421 0.02293803  FULGLA POLYGON ((-4.995843 48.4591...</span></span>
+<span id="cb32-14"><a href="#cb32-14" tabindex="-1"></a><span class="co">#&gt; 6  0.03883713 0.02174824  FULGLA POLYGON ((-4.906011 48.4591...</span></span>
+<span id="cb32-15"><a href="#cb32-15" tabindex="-1"></a><span class="co">#&gt; 7  0.03704890 0.02112918  FULGLA POLYGON ((-4.81618 48.45917...</span></span>
+<span id="cb32-16"><a href="#cb32-16" tabindex="-1"></a><span class="co">#&gt; 9  0.04933476 0.02735989  FULGLA POLYGON ((-5.265338 48.3995...</span></span>
+<span id="cb32-17"><a href="#cb32-17" tabindex="-1"></a><span class="co">#&gt; 10 0.04597767 0.02489815  FULGLA POLYGON ((-5.175506 48.3995...</span></span>
+<span id="cb32-18"><a href="#cb32-18" tabindex="-1"></a><span class="co">#&gt; 11 0.04282750 0.02280613  FULGLA POLYGON ((-5.085675 48.3995...</span></span>
+<span id="cb32-19"><a href="#cb32-19" tabindex="-1"></a><span class="co">#&gt; 12 0.03993309 0.02103670  FULGLA POLYGON ((-4.995843 48.3995...</span></span>
 <span id="cb32-20"><a href="#cb32-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb32-21"><a href="#cb32-21" tabindex="-1"></a><span class="co">#&gt; $data_fit</span></span>
 <span id="cb32-22"><a href="#cb32-22" tabindex="-1"></a><span class="co">#&gt; Simple feature collection with 390 features and 18 fields</span></span>

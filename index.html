@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">pelascope</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -751,44 +751,44 @@
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">descriptive_stats</span><span class="op">$</span><span class="va">gpkg_general_blocking</span></span>
-<span><span class="co">#&gt; Simple feature collection with 2091 features and 1 field</span></span>
-<span><span class="co">#&gt; Geometry type: POINT</span></span>
+<span><span class="co">#&gt; Simple feature collection with 3800 features and 1 field</span></span>
+<span><span class="co">#&gt; Geometry type: POLYGON</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: -6 ymin: 44 xmax: -1 ymax: 48</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: -5.749218 ymin: 43.57561 xmax: -1.16781 ymax: 48.37816</span></span>
 <span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
 <span><span class="co">#&gt; First 10 features:</span></span>
-<span><span class="co">#&gt;    Mean_value        geometry</span></span>
-<span><span class="co">#&gt; 1          NA   POINT (-6 44)</span></span>
-<span><span class="co">#&gt; 2          NA POINT (-5.9 44)</span></span>
-<span><span class="co">#&gt; 3          NA POINT (-5.8 44)</span></span>
-<span><span class="co">#&gt; 4          NA POINT (-5.7 44)</span></span>
-<span><span class="co">#&gt; 5          NA POINT (-5.6 44)</span></span>
-<span><span class="co">#&gt; 6          NA POINT (-5.5 44)</span></span>
-<span><span class="co">#&gt; 7          NA POINT (-5.4 44)</span></span>
-<span><span class="co">#&gt; 8          NA POINT (-5.3 44)</span></span>
-<span><span class="co">#&gt; 9          NA POINT (-5.2 44)</span></span>
-<span><span class="co">#&gt; 10         NA POINT (-5.1 44)</span></span>
+<span><span class="co">#&gt;    Mean_value                       geometry</span></span>
+<span><span class="co">#&gt; 1          NA POLYGON ((-5.569555 43.7056...</span></span>
+<span><span class="co">#&gt; 2          NA POLYGON ((-5.479723 43.7056...</span></span>
+<span><span class="co">#&gt; 3          NA POLYGON ((-5.389892 43.7056...</span></span>
+<span><span class="co">#&gt; 4          NA POLYGON ((-5.30006 43.70563...</span></span>
+<span><span class="co">#&gt; 5          NA POLYGON ((-5.210229 43.7056...</span></span>
+<span><span class="co">#&gt; 6          NA POLYGON ((-5.120397 43.7056...</span></span>
+<span><span class="co">#&gt; 7          NA POLYGON ((-5.030566 43.7056...</span></span>
+<span><span class="co">#&gt; 8          NA POLYGON ((-4.940734 43.7056...</span></span>
+<span><span class="co">#&gt; 9          NA POLYGON ((-4.850903 43.7056...</span></span>
+<span><span class="co">#&gt; 10         NA POLYGON ((-4.761071 43.7056...</span></span>
 <span></span>
 <span><span class="va">descriptive_stats</span><span class="op">$</span><span class="va">blocking_per_species</span></span>
 <span><span class="co">#&gt; $ind.DELDEL</span></span>
 <span><span class="co">#&gt; $ind.DELDEL$data</span></span>
-<span><span class="co">#&gt; Simple feature collection with 2091 features and 1 field</span></span>
-<span><span class="co">#&gt; Geometry type: POINT</span></span>
+<span><span class="co">#&gt; Simple feature collection with 3800 features and 1 field</span></span>
+<span><span class="co">#&gt; Geometry type: POLYGON</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: -6 ymin: 44 xmax: -1 ymax: 48</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: -5.749218 ymin: 43.57561 xmax: -1.16781 ymax: 48.37816</span></span>
 <span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
 <span><span class="co">#&gt; First 10 features:</span></span>
-<span><span class="co">#&gt;    Mean_value        geometry</span></span>
-<span><span class="co">#&gt; 1          NA   POINT (-6 44)</span></span>
-<span><span class="co">#&gt; 2          NA POINT (-5.9 44)</span></span>
-<span><span class="co">#&gt; 3          NA POINT (-5.8 44)</span></span>
-<span><span class="co">#&gt; 4          NA POINT (-5.7 44)</span></span>
-<span><span class="co">#&gt; 5          NA POINT (-5.6 44)</span></span>
-<span><span class="co">#&gt; 6          NA POINT (-5.5 44)</span></span>
-<span><span class="co">#&gt; 7          NA POINT (-5.4 44)</span></span>
-<span><span class="co">#&gt; 8          NA POINT (-5.3 44)</span></span>
-<span><span class="co">#&gt; 9          NA POINT (-5.2 44)</span></span>
-<span><span class="co">#&gt; 10         NA POINT (-5.1 44)</span></span>
+<span><span class="co">#&gt;    Mean_value                       geometry</span></span>
+<span><span class="co">#&gt; 1          NA POLYGON ((-5.569555 43.7056...</span></span>
+<span><span class="co">#&gt; 2          NA POLYGON ((-5.479723 43.7056...</span></span>
+<span><span class="co">#&gt; 3          NA POLYGON ((-5.389892 43.7056...</span></span>
+<span><span class="co">#&gt; 4          NA POLYGON ((-5.30006 43.70563...</span></span>
+<span><span class="co">#&gt; 5          NA POLYGON ((-5.210229 43.7056...</span></span>
+<span><span class="co">#&gt; 6          NA POLYGON ((-5.120397 43.7056...</span></span>
+<span><span class="co">#&gt; 7          NA POLYGON ((-5.030566 43.7056...</span></span>
+<span><span class="co">#&gt; 8          NA POLYGON ((-4.940734 43.7056...</span></span>
+<span><span class="co">#&gt; 9          NA POLYGON ((-4.850903 43.7056...</span></span>
+<span><span class="co">#&gt; 10         NA POLYGON ((-4.761071 43.7056...</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $ind.DELDEL$map</span></span></code></pre></div>
 <p><img src="reference/figures/README-descriptive_statistics-4.png" width="100%"></p>
@@ -796,23 +796,23 @@
 <span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a><span class="co">#&gt; $ind.FULGLA</span></span>
 <span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a><span class="co">#&gt; $ind.FULGLA$data</span></span>
-<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a><span class="co">#&gt; Simple feature collection with 2091 features and 1 field</span></span>
-<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a><span class="co">#&gt; Geometry type: POINT</span></span>
+<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a><span class="co">#&gt; Simple feature collection with 3800 features and 1 field</span></span>
+<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a><span class="co">#&gt; Geometry type: POLYGON</span></span>
 <span id="cb25-7"><a href="#cb25-7" tabindex="-1"></a><span class="co">#&gt; Dimension:     XY</span></span>
-<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a><span class="co">#&gt; Bounding box:  xmin: -6 ymin: 44 xmax: -1 ymax: 48</span></span>
+<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a><span class="co">#&gt; Bounding box:  xmin: -5.749218 ymin: 43.57561 xmax: -1.16781 ymax: 48.37816</span></span>
 <span id="cb25-9"><a href="#cb25-9" tabindex="-1"></a><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
 <span id="cb25-10"><a href="#cb25-10" tabindex="-1"></a><span class="co">#&gt; First 10 features:</span></span>
-<span id="cb25-11"><a href="#cb25-11" tabindex="-1"></a><span class="co">#&gt;    Mean_value        geometry</span></span>
-<span id="cb25-12"><a href="#cb25-12" tabindex="-1"></a><span class="co">#&gt; 1          NA   POINT (-6 44)</span></span>
-<span id="cb25-13"><a href="#cb25-13" tabindex="-1"></a><span class="co">#&gt; 2          NA POINT (-5.9 44)</span></span>
-<span id="cb25-14"><a href="#cb25-14" tabindex="-1"></a><span class="co">#&gt; 3          NA POINT (-5.8 44)</span></span>
-<span id="cb25-15"><a href="#cb25-15" tabindex="-1"></a><span class="co">#&gt; 4          NA POINT (-5.7 44)</span></span>
-<span id="cb25-16"><a href="#cb25-16" tabindex="-1"></a><span class="co">#&gt; 5          NA POINT (-5.6 44)</span></span>
-<span id="cb25-17"><a href="#cb25-17" tabindex="-1"></a><span class="co">#&gt; 6          NA POINT (-5.5 44)</span></span>
-<span id="cb25-18"><a href="#cb25-18" tabindex="-1"></a><span class="co">#&gt; 7          NA POINT (-5.4 44)</span></span>
-<span id="cb25-19"><a href="#cb25-19" tabindex="-1"></a><span class="co">#&gt; 8          NA POINT (-5.3 44)</span></span>
-<span id="cb25-20"><a href="#cb25-20" tabindex="-1"></a><span class="co">#&gt; 9          NA POINT (-5.2 44)</span></span>
-<span id="cb25-21"><a href="#cb25-21" tabindex="-1"></a><span class="co">#&gt; 10         NA POINT (-5.1 44)</span></span>
+<span id="cb25-11"><a href="#cb25-11" tabindex="-1"></a><span class="co">#&gt;    Mean_value                       geometry</span></span>
+<span id="cb25-12"><a href="#cb25-12" tabindex="-1"></a><span class="co">#&gt; 1          NA POLYGON ((-5.569555 43.7056...</span></span>
+<span id="cb25-13"><a href="#cb25-13" tabindex="-1"></a><span class="co">#&gt; 2          NA POLYGON ((-5.479723 43.7056...</span></span>
+<span id="cb25-14"><a href="#cb25-14" tabindex="-1"></a><span class="co">#&gt; 3          NA POLYGON ((-5.389892 43.7056...</span></span>
+<span id="cb25-15"><a href="#cb25-15" tabindex="-1"></a><span class="co">#&gt; 4          NA POLYGON ((-5.30006 43.70563...</span></span>
+<span id="cb25-16"><a href="#cb25-16" tabindex="-1"></a><span class="co">#&gt; 5          NA POLYGON ((-5.210229 43.7056...</span></span>
+<span id="cb25-17"><a href="#cb25-17" tabindex="-1"></a><span class="co">#&gt; 6          NA POLYGON ((-5.120397 43.7056...</span></span>
+<span id="cb25-18"><a href="#cb25-18" tabindex="-1"></a><span class="co">#&gt; 7          NA POLYGON ((-5.030566 43.7056...</span></span>
+<span id="cb25-19"><a href="#cb25-19" tabindex="-1"></a><span class="co">#&gt; 8          NA POLYGON ((-4.940734 43.7056...</span></span>
+<span id="cb25-20"><a href="#cb25-20" tabindex="-1"></a><span class="co">#&gt; 9          NA POLYGON ((-4.850903 43.7056...</span></span>
+<span id="cb25-21"><a href="#cb25-21" tabindex="-1"></a><span class="co">#&gt; 10         NA POLYGON ((-4.761071 43.7056...</span></span>
 <span id="cb25-22"><a href="#cb25-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb25-23"><a href="#cb25-23" tabindex="-1"></a><span class="co">#&gt; $ind.FULGLA$map</span></span></code></pre></div>
 <p><img src="reference/figures/README-descriptive_statistics-5.png" width="100%"></p>

@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">pelascope</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -97,7 +97,7 @@
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># copernicusmarine.login(username= &lt;"LOGIN"&gt; , password= &lt;"PASSWORD"&gt;) </span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>copernicusmarine.subset(</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  dataset_id<span class="op">=</span><span class="st">"cmems_mod_ibi_phy_my_0.083deg-3D_P1D-m"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  dataset_id<span class="op">=</span><span class="st">"cmems_mod_ibi_phy_anfc_0.027deg-3D_P1D-m"</span>,</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  variables<span class="op">=</span>[<span class="st">"bottomT"</span>, <span class="st">"mlotst"</span>, <span class="st">"so"</span>, <span class="st">"thetao"</span>, <span class="st">"uo"</span>, <span class="st">"vo"</span>, <span class="st">"zos"</span>],</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  minimum_longitude<span class="op">=-</span><span class="dv">6</span>,</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  maximum_longitude<span class="op">=</span><span class="dv">0</span>,</span>
@@ -110,29 +110,42 @@
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  output_directory<span class="op">=</span> r.temp_file</span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span><span class="op">%|</span>          <span class="op">|</span> <span class="dv">0</span><span class="op">/</span><span class="dv">42</span> [<span class="dv">00</span>:<span class="dv">00</span><span class="op">&lt;</span>?, ?it<span class="op">/</span>s]</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span><span class="op">%|</span><span class="dv">2</span>         <span class="op">|</span> <span class="dv">1</span><span class="op">/</span><span class="dv">42</span> [<span class="dv">00</span>:<span class="dv">0</span><span class="er">2</span><span class="op">&lt;</span><span class="dv">0</span><span class="er">2</span>:<span class="dv">00</span>,  <span class="fl">2.93</span><span class="er">s</span><span class="op">/</span>it]</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="dv">7</span><span class="op">%|</span><span class="dv">7</span>         <span class="op">|</span> <span class="dv">3</span><span class="op">/</span><span class="dv">42</span> [<span class="dv">00</span>:<span class="dv">0</span><span class="er">3</span><span class="op">&lt;</span><span class="dv">00</span>:<span class="dv">34</span>,  <span class="fl">1.14</span><span class="er">it</span><span class="op">/</span>s]</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a> <span class="dv">12</span><span class="op">%|</span><span class="co">#1        | 5/42 [00:03&lt;00:17,  2.15it/s]</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a> <span class="dv">21</span><span class="op">%|</span><span class="co">##1       | 9/42 [00:04&lt;00:09,  3.45it/s]</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a> <span class="dv">31</span><span class="op">%|</span><span class="co">###       | 13/42 [00:08&lt;00:18,  1.56it/s]</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a> <span class="dv">36</span><span class="op">%|</span><span class="co">###5      | 15/42 [00:08&lt;00:13,  2.02it/s]</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a> <span class="dv">40</span><span class="op">%|</span><span class="co">####      | 17/42 [00:10&lt;00:15,  1.60it/s]</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a> <span class="dv">50</span><span class="op">%|</span><span class="co">#####     | 21/42 [00:10&lt;00:08,  2.42it/s]</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a> <span class="dv">60</span><span class="op">%|</span><span class="co">#####9    | 25/42 [00:11&lt;00:04,  3.46it/s]</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a> <span class="dv">64</span><span class="op">%|</span><span class="co">######4   | 27/42 [00:12&lt;00:06,  2.48it/s]</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a> <span class="dv">74</span><span class="op">%|</span><span class="co">#######3  | 31/42 [00:13&lt;00:03,  3.29it/s]</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a> <span class="dv">83</span><span class="op">%|</span><span class="co">########3 | 35/42 [00:14&lt;00:02,  3.04it/s]</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a> <span class="dv">93</span><span class="op">%|</span><span class="co">#########2| 39/42 [00:15&lt;00:00,  4.11it/s]</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span><span class="op">%|</span><span class="co">##########| 42/42 [00:15&lt;00:00,  2.75it/s]</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ResponseSubset(file_path=WindowsPath('C:/Users/gchero/AppData/Local/Temp/Rtmp6xly2c/cmems_mod_ibi_phy_my_0.083deg-3D_P1D-m_multi-vars_5.92W-0.00W_43.00N-49.00N_0.51m_2022-04-01-2023-05-31.nc'), output_directory=WindowsPath('C:/Users/gchero/AppData/Local/Temp/Rtmp6xly2c'), filename='cmems_mod_ibi_phy_my_0.083deg-3D_P1D-m_multi-vars_5.92W-0.00W_43.00N-49.00N_0.51m_2022-04-01-2023-05-31.nc', file_size=29.924053435114505, data_transfer_size=820.294351145038, variables=['bottomT', 'mlotst', 'so', 'thetao', 'uo', 'vo', 'zos'], coordinates_extent=[GeographicalExtent(minimum=-5.9166669845581055, maximum=-7.599999776175537e-07, unit='degrees_east', coordinate_id='longitude'), GeographicalExtent(minimum=43.0, maximum=49.0, unit='degrees_north', coordinate_id='latitude'), TimeExtent(minimum='2022-04-01T00:00:00+00:00', maximum='2023-05-31T00:00:00+00:00', unit='iso8601', coordinate_id='time'), GeographicalExtent(minimum=0.5057600140571594, maximum=0.5057600140571594, unit='m', coordinate_id='depth')], status='000', message='The request was successful.', file_status='DOWNLOADED')</span></span></code></pre></div>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span><span class="op">%|</span>          <span class="op">|</span> <span class="dv">0</span><span class="op">/</span><span class="dv">70</span> [<span class="dv">00</span>:<span class="dv">00</span><span class="op">&lt;</span>?, ?it<span class="op">/</span>s]</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="op">%|</span><span class="dv">1</span>         <span class="op">|</span> <span class="dv">1</span><span class="op">/</span><span class="dv">70</span> [<span class="dv">00</span>:<span class="dv">0</span><span class="er">1</span><span class="op">&lt;</span><span class="dv">0</span><span class="er">1</span>:<span class="dv">36</span>,  <span class="fl">1.40</span><span class="er">s</span><span class="op">/</span>it]</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="dv">4</span><span class="op">%|</span><span class="dv">4</span>         <span class="op">|</span> <span class="dv">3</span><span class="op">/</span><span class="dv">70</span> [<span class="dv">00</span>:<span class="dv">0</span><span class="er">1</span><span class="op">&lt;</span><span class="dv">00</span>:<span class="dv">27</span>,  <span class="fl">2.44</span><span class="er">it</span><span class="op">/</span>s]</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="dv">7</span><span class="op">%|</span><span class="dv">7</span>         <span class="op">|</span> <span class="dv">5</span><span class="op">/</span><span class="dv">70</span> [<span class="dv">00</span>:<span class="dv">0</span><span class="er">1</span><span class="op">&lt;</span><span class="dv">00</span>:<span class="dv">20</span>,  <span class="fl">3.14</span><span class="er">it</span><span class="op">/</span>s]</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a> <span class="dv">16</span><span class="op">%|</span><span class="co">#5        | 11/70 [00:03&lt;00:12,  4.56it/s]</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a> <span class="dv">19</span><span class="op">%|</span><span class="co">#8        | 13/70 [00:05&lt;00:24,  2.30it/s]</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a> <span class="dv">21</span><span class="op">%|</span><span class="co">##1       | 15/70 [00:05&lt;00:18,  2.99it/s]</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a> <span class="dv">24</span><span class="op">%|</span><span class="co">##4       | 17/70 [00:05&lt;00:17,  3.10it/s]</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a> <span class="dv">30</span><span class="op">%|</span><span class="co">###       | 21/70 [00:08&lt;00:23,  2.05it/s]</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a> <span class="dv">33</span><span class="op">%|</span><span class="co">###2      | 23/70 [00:10&lt;00:26,  1.76it/s]</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a> <span class="dv">36</span><span class="op">%|</span><span class="co">###5      | 25/70 [00:10&lt;00:19,  2.27it/s]</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a> <span class="dv">39</span><span class="op">%|</span><span class="co">###8      | 27/70 [00:11&lt;00:17,  2.48it/s]</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a> <span class="dv">41</span><span class="op">%|</span><span class="co">####1     | 29/70 [00:11&lt;00:14,  2.83it/s]</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a> <span class="dv">44</span><span class="op">%|</span><span class="co">####4     | 31/70 [00:11&lt;00:10,  3.72it/s]</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a> <span class="dv">47</span><span class="op">%|</span><span class="co">####7     | 33/70 [00:15&lt;00:25,  1.46it/s]</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a> <span class="dv">50</span><span class="op">%|</span><span class="co">#####     | 35/70 [00:16&lt;00:22,  1.54it/s]</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a> <span class="dv">53</span><span class="op">%|</span><span class="co">#####2    | 37/70 [00:16&lt;00:17,  1.90it/s]</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a> <span class="dv">59</span><span class="op">%|</span><span class="co">#####8    | 41/70 [00:17&lt;00:11,  2.55it/s]</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a> <span class="dv">61</span><span class="op">%|</span><span class="co">######1   | 43/70 [00:18&lt;00:12,  2.14it/s]</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a> <span class="dv">67</span><span class="op">%|</span><span class="co">######7   | 47/70 [00:19&lt;00:07,  2.95it/s]</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a> <span class="dv">70</span><span class="op">%|</span><span class="co">#######   | 49/70 [00:20&lt;00:08,  2.57it/s]</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a> <span class="dv">73</span><span class="op">%|</span><span class="co">#######2  | 51/70 [00:20&lt;00:06,  3.12it/s]</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a> <span class="dv">76</span><span class="op">%|</span><span class="co">#######5  | 53/70 [00:21&lt;00:04,  3.90it/s]</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a> <span class="dv">79</span><span class="op">%|</span><span class="co">#######8  | 55/70 [00:21&lt;00:03,  4.86it/s]</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a> <span class="dv">84</span><span class="op">%|</span><span class="co">########4 | 59/70 [00:23&lt;00:03,  3.11it/s]</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a> <span class="dv">93</span><span class="op">%|</span><span class="co">#########2| 65/70 [00:25&lt;00:01,  2.85it/s]</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a> <span class="dv">96</span><span class="op">%|</span><span class="co">#########5| 67/70 [00:28&lt;00:01,  1.82it/s]</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span><span class="op">%|</span><span class="co">##########| 70/70 [00:28&lt;00:00,  2.47it/s]</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ResponseSubset(file_path=WindowsPath('C:/Users/gchero/AppData/Local/Temp/RtmpKQL5gk/cmems_mod_ibi_phy_anfc_0.027deg-3D_P1D-m_multi-vars_6.00W-0.03W_43.03N-49.00N_0.49m_2022-11-23-2023-05-31.nc'), output_directory=WindowsPath('C:/Users/gchero/AppData/Local/Temp/RtmpKQL5gk'), filename='cmems_mod_ibi_phy_anfc_0.027deg-3D_P1D-m_multi-vars_6.00W-0.03W_43.03N-49.00N_0.49m_2022-11-23-2023-05-31.nc', file_size=118.43376335877863, data_transfer_size=759.4171603053434, variables=['bottomT', 'mlotst', 'so', 'thetao', 'uo', 'vo', 'zos'], coordinates_extent=[GeographicalExtent(minimum=-5.999106370000001, maximum=-0.026700920000000905, unit='degrees_east', coordinate_id='longitude'), GeographicalExtent(minimum=43.02698567, maximum=48.99939112, unit='degrees_north', coordinate_id='latitude'), TimeExtent(minimum='2022-11-23T00:00:00+00:00', maximum='2023-05-31T00:00:00+00:00', unit='iso8601', coordinate_id='time'), GeographicalExtent(minimum=0.4940253794193268, maximum=0.4940253794193268, unit='m', coordinate_id='depth')], status='000', message='The request was successful.', file_status='DOWNLOADED')</span></span></code></pre></div>
 </div>
 <p>The function import a ‘.nc’ files with all the climatologies downloaded in the area for the complete period.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">file_nc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">temp_file</span>, full.names <span class="op">=</span> <span class="cn">TRUE</span>, pattern<span class="op">=</span><span class="st">".nc"</span><span class="op">)</span></span>
 <span><span class="va">file_nc</span></span>
-<span><span class="co">#&gt; [1] "C:\\Users\\gchero\\AppData\\Local\\Temp\\Rtmp6xly2c/cmems_mod_ibi_phy_my_0.083deg-3D_P1D-m_multi-vars_5.92W-0.00W_43.00N-49.00N_0.51m_2022-04-01-2023-05-31.nc"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "C:\\Users\\gchero\\AppData\\Local\\Temp\\RtmpKQL5gk/cmems_mod_ibi_phy_anfc_0.027deg-3D_P1D-m_multi-vars_6.00W-0.03W_43.03N-49.00N_0.49m_2022-11-23-2023-05-31.nc"</span></span></code></pre></div>
 </div>
 </section><section class="section level2"><h2 id="manipulate-climatologies">2 - Manipulate climatologies<a class="anchor" aria-label="anchor" href="#manipulate-climatologies"></a>
 </h2>
@@ -282,14 +295,14 @@
 <span></span>
 <span><span class="va">rast_final</span></span>
 <span><span class="co">#&gt; class       : SpatRaster </span></span>
-<span><span class="co">#&gt; size        : 73, 72, 12  (nrow, ncol, nlyr)</span></span>
-<span><span class="co">#&gt; resolution  : 0.08333333, 0.08333333  (x, y)</span></span>
-<span><span class="co">#&gt; extent      : -5.958334, 0.0416659, 42.95833, 49.04167  (xmin, xmax, ymin, ymax)</span></span>
+<span><span class="co">#&gt; size        : 216, 216, 12  (nrow, ncol, nlyr)</span></span>
+<span><span class="co">#&gt; resolution  : 0.02777863, 0.02777863  (x, y)</span></span>
+<span><span class="co">#&gt; extent      : -6.012996, -0.01281161, 43.0131, 49.01328  (xmin, xmax, ymin, ymax)</span></span>
 <span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) </span></span>
 <span><span class="co">#&gt; source(s)   : memory</span></span>
-<span><span class="co">#&gt; names       : BST_mean,      BST_sd,  MLD_mean,      MLD_sd, Salin~_mean,  Salinity_sd, ... </span></span>
-<span><span class="co">#&gt; min values  : 10.92171, 0.006772811,  4.551583,  0.03094085,  0.09632164, 0.0008939617, ... </span></span>
-<span><span class="co">#&gt; max values  : 19.57945, 1.050573744, 72.248358, 32.60082145, 35.82961366, 3.4587316578, ... </span></span>
+<span><span class="co">#&gt; names       : BST_mean,     BST_sd,  MLD_mean,      MLD_sd, Salin~_mean, Salinity_sd, ... </span></span>
+<span><span class="co">#&gt; min values  : 10.98626, 0.00958222,  4.541906,  0.04205937,  0.08774099, 0.000395079, ... </span></span>
+<span><span class="co">#&gt; max values  : 18.51610, 1.30521572, 85.219326, 33.82404881, 35.62377494, 3.878500275, ... </span></span>
 <span><span class="co">#&gt; time (days) : 2023-05-01</span></span></code></pre></div>
 </div>
 </section><section class="section level2"><h2 id="check-output">3 - Check output<a class="anchor" aria-label="anchor" href="#check-output"></a>
@@ -298,8 +311,8 @@
 <div class="sourceCode cell-code" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">file_tif</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">temp_file</span>, pattern <span class="op">=</span> <span class="st">'.tif'</span>, full.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">file_tif</span></span>
-<span><span class="co">#&gt; [1] "C:\\Users\\gchero\\AppData\\Local\\Temp\\Rtmp6xly2c/2023_April.tif"</span></span>
-<span><span class="co">#&gt; [2] "C:\\Users\\gchero\\AppData\\Local\\Temp\\Rtmp6xly2c/2023_May.tif"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "C:\\Users\\gchero\\AppData\\Local\\Temp\\RtmpKQL5gk/2023_April.tif"</span></span>
+<span><span class="co">#&gt; [2] "C:\\Users\\gchero\\AppData\\Local\\Temp\\RtmpKQL5gk/2023_May.tif"</span></span></code></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="downlit sourceCode r">
@@ -460,9 +473,9 @@
 <div class="sourceCode cell-code" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">temp_file</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span>, force <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">temp_file</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "cmems_mod_ibi_phy_my_0.083deg-3D_P1D-m_multi-vars_5.92W-0.00W_43.00N-49.00N_0.51m_2022-04-01-2023-05-31.nc"</span></span>
-<span><span class="co">#&gt; [2] "file245846cc34c8"                                                                                          </span></span>
-<span><span class="co">#&gt; [3] "Rf245836c97098"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "cmems_mod_ibi_phy_anfc_0.027deg-3D_P1D-m_multi-vars_6.00W-0.03W_43.03N-49.00N_0.49m_2022-11-23-2023-05-31.nc"</span></span>
+<span><span class="co">#&gt; [2] "fileabc70bd36fa"                                                                                             </span></span>
+<span><span class="co">#&gt; [3] "Rfabc6ca36438"</span></span></code></pre></div>
 </div>
 </section><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

@@ -11,8 +11,8 @@
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Tools for Megascope Analysis Within the PelaVerse">
-<meta name="description" content="Set of function to facilitate Megascope analysis, from boat campaign to DSM. The user is accompanied from preparation of raw survey data, linearization, segmentation to modelisation process and finally visualization.">
-<meta property="og:description" content="Set of function to facilitate Megascope analysis, from boat campaign to DSM. The user is accompanied from preparation of raw survey data, linearization, segmentation to modelisation process and finally visualization.">
+<meta name="description" content="Set of functions facilitating Megascope analysis, from the boat campaign to the DSM. The user is guided through the preparation of raw data from the SAMMO-Boat, linearisation, segmentation, modelling and finally visualisation.">
+<meta property="og:description" content="Set of functions facilitating Megascope analysis, from the boat campaign to the DSM. The user is guided through the preparation of raw data from the SAMMO-Boat, linearisation, segmentation, modelling and finally visualisation.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -60,7 +60,7 @@
 </h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p>This <span class="emoji" data-emoji="package">📦</span> includes all the functions needed to analyze distance sampling data. From raw data to distribution mapping and ESW calculation, the pelascope package brings together a set of useful functions for analyzing field data. A description is available on the <a href="https://cheronymo.github.io/pelascope.github.io/index.html" class="external-link">pelascope website</a>.</p>
+<p>This <span class="emoji" data-emoji="package">📦</span> includes all the functions needed to analyze distance sampling data. From <a href="https://github.com/hytechimaging/sammo-boat" class="external-link">SAMMO-Boat</a> raw data to distribution mapping and ESW calculation, the pelascope package brings together a set of useful functions for analyzing field data. A description is available on the <a href="https://cheronymo.github.io/pelascope.github.io/index.html" class="external-link">pelascope website</a>.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -82,21 +82,7 @@
 <span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">pelascope</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: remplacement de l'importation précédente 'Distance::create.bins' par</span></span>
-<span><span class="co">#&gt; 'mrds::create.bins' lors du chargement de 'pelaCDS'</span></span>
-<span><span class="co">#&gt; Warning: remplacement de l'importation précédente 'magrittr::set_names' par</span></span>
-<span><span class="co">#&gt; 'purrr::set_names' lors du chargement de 'pelascope'</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attachement du package : 'dplyr'</span></span>
-<span><span class="co">#&gt; Les objets suivants sont masqués depuis 'package:stats':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     filter, lag</span></span>
-<span><span class="co">#&gt; Les objets suivants sont masqués depuis 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rlang.r-lib.org" class="external-link">rlang</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: le package 'rlang' a été compilé avec la version R 4.4.3</span></span></code></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -232,16 +218,20 @@
 <span><span class="co">#&gt; Redefinig LegID columnn according to Beaufort, plateform and n_obs</span></span>
 <span>  </span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data_effort_clean</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 6 × 12</span></span>
-<span><span class="co">#&gt;   Survey plateform      routeType status LegID speed Beaufort Latitude Longitude</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;          &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 PELGAS upper_bridge_… prospect… BEGIN  3004…    10        2     48.3     -4.54</span></span>
-<span><span class="co">#&gt; 2 PELGAS upper_bridge_… prospect… ADD    3004…    11        2     48.3     -4.62</span></span>
-<span><span class="co">#&gt; 3 PELGAS upper_bridge_… prospect… END    3004…    11        2     48.2     -4.71</span></span>
-<span><span class="co">#&gt; 4 PELGAS upper_bridge_… prospect… BEGIN  3004…    10        3     48.0     -4.71</span></span>
-<span><span class="co">#&gt; 5 PELGAS upper_bridge_… prospect… ADD    3004…    11        3     47.9     -4.68</span></span>
-<span><span class="co">#&gt; 6 PELGAS upper_bridge_… prospect… ADD    3004…    11        3     47.8     -4.62</span></span>
-<span><span class="co">#&gt; # ℹ 3 more variables: n_obs &lt;dbl&gt;, DateTime &lt;dttm&gt;, TransectID &lt;chr&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt;   Survey            plateform   routeType status           LegID speed Beaufort</span></span>
+<span><span class="co">#&gt; 1 PELGAS upper_bridge_outside prospection  BEGIN 30042023_C_G1_1    10        2</span></span>
+<span><span class="co">#&gt; 2 PELGAS upper_bridge_outside prospection    ADD 30042023_C_G1_1    11        2</span></span>
+<span><span class="co">#&gt; 3 PELGAS upper_bridge_outside prospection    END 30042023_C_G1_1    11        2</span></span>
+<span><span class="co">#&gt; 4 PELGAS upper_bridge_outside prospection  BEGIN 30042023_C_G3_2    10        3</span></span>
+<span><span class="co">#&gt; 5 PELGAS upper_bridge_outside prospection    ADD 30042023_C_G3_2    11        3</span></span>
+<span><span class="co">#&gt; 6 PELGAS upper_bridge_outside prospection    ADD 30042023_C_G3_2    11        3</span></span>
+<span><span class="co">#&gt;   Latitude Longitude n_obs            DateTime         TransectID</span></span>
+<span><span class="co">#&gt; 1 48.34592 -4.541957     2 2023-04-30 06:37:02 TR_Pelgas_30042023</span></span>
+<span><span class="co">#&gt; 2 48.29903 -4.620433     2 2023-04-30 07:00:19 TR_Pelgas_30042023</span></span>
+<span><span class="co">#&gt; 3 48.22907 -4.709607     2 2023-04-30 07:30:55 TR_Pelgas_30042023</span></span>
+<span><span class="co">#&gt; 4 47.96480 -4.711300     2 2023-04-30 09:10:20 TR_Pelgas_30042023</span></span>
+<span><span class="co">#&gt; 5 47.89950 -4.680827     2 2023-04-30 09:34:07 TR_Pelgas_30042023</span></span>
+<span><span class="co">#&gt; 6 47.83268 -4.624492     2 2023-04-30 09:59:15 TR_Pelgas_30042023</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="use-ambidsm-to-linearize-and-segment">Use AmbiDSM to linearize and segment<a class="anchor" aria-label="anchor" href="#use-ambidsm-to-linearize-and-segment"></a>
@@ -254,15 +244,11 @@
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">AMBIdsm</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attachement du package : 'AMBIdsm'</span></span>
-<span><span class="co">#&gt; L'objet suivant est masqué depuis 'package:rlang':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     env_bind</span></span>
 <span></span>
 <span><span class="co"># Check using a map</span></span>
 <span><span class="va">check</span> <span class="op">&lt;-</span> <span class="va">data_effort_clean</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/AMBIdsm/man/eff_check_leg.html" class="external-link">eff_check_leg</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span></span>
+<span><span class="co">#&gt; → 10 Legs have only one point</span></span>
 <span><span class="va">check</span><span class="op">$</span><span class="va">mapfig</span></span></code></pre></div>
 <p><img src="reference/figures/README-AmbiDSM_check-1.png" width="100%"></p>
 </div>
@@ -293,24 +279,24 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ── Linearizing Effort ──</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ℹ 227 breaks have been made within legs for linearization</span></span>
-<span><span class="co">#&gt; ℹ 219 Legs have only one point : they are suppressed</span></span>
+<span><span class="co">#&gt; ℹ 155 breaks have been made within legs for linearization</span></span>
+<span><span class="co">#&gt; ℹ 202 Legs have only one point : they are suppressed</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data_effort_clean_lin</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Simple feature collection with 6 features and 10 fields</span></span>
 <span><span class="co">#&gt; Geometry type: LINESTRING</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: -4.677252 ymin: 44.46407 xmax: -1.592198 ymax: 47.97051</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: -4.489055 ymin: 44.06679 xmax: -1.592198 ymax: 47.51919</span></span>
 <span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 11</span></span>
 <span><span class="co">#&gt;   Beaufort LegID            plateform n_obs    id TransectID Start_time         </span></span>
 <span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;dttm&gt;             </span></span>
-<span><span class="co">#&gt; 1        0 25052023_C_G1_1… upper_br…     2   192 TR_Pelgas… 2023-05-25 04:57:07</span></span>
-<span><span class="co">#&gt; 2        1 04052023_C_G3_3… upper_br…     2    31 TR_Pelgas… 2023-05-04 11:42:53</span></span>
-<span><span class="co">#&gt; 3        1 05052023_C_G12_… upper_br…     2    45 TR_Pelgas… 2023-05-05 13:56:44</span></span>
-<span><span class="co">#&gt; 4        1 05052023_C_G14_… upper_br…     2    48 TR_Pelgas… 2023-05-05 16:09:17</span></span>
-<span><span class="co">#&gt; 5        1 18052023_C_G7_1… upper_br…     2   145 TR_Pelgas… 2023-05-18 11:33:05</span></span>
-<span><span class="co">#&gt; 6        1 22052023_C_G9_1… upper_br…     2   174 TR_Pelgas… 2023-05-22 15:03:10</span></span>
+<span><span class="co">#&gt; 1        1 04052023_C_G3_1… upper_br…     2    28 TR_Pelgas… 2023-05-04 11:42:53</span></span>
+<span><span class="co">#&gt; 2        1 05052023_C_G12_… upper_br…     2    32 TR_Pelgas… 2023-05-05 13:56:44</span></span>
+<span><span class="co">#&gt; 3        1 05052023_C_G14_… upper_br…     2    32 TR_Pelgas… 2023-05-05 16:09:17</span></span>
+<span><span class="co">#&gt; 4        1 18052023_C_G7_7… upper_br…     2   102 TR_Pelgas… 2023-05-18 11:33:05</span></span>
+<span><span class="co">#&gt; 5        1 27052023_C_G7_1… upper_br…     2   147 TR_Pelgas… 2023-05-27 13:24:10</span></span>
+<span><span class="co">#&gt; 6        2 01052023_C_G3_4… upper_br…     2     0 TR_Pelgas… 2023-05-01 06:56:56</span></span>
 <span><span class="co">#&gt; # ℹ 4 more variables: DateTime &lt;dttm&gt;, End_time &lt;dttm&gt;, Length &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   geometry &lt;LINESTRING [°]&gt;</span></span></code></pre></div>
 </div>
@@ -326,23 +312,23 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ── Segmenting Effort ──</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Linking to GEOS 3.12.2, GDAL 3.9.3, PROJ 9.4.1; sf_use_s2() is TRUE</span></span>
+<span><span class="co">#&gt; Linking to GEOS 3.13.0, GDAL 3.10.1, PROJ 9.5.1; sf_use_s2() is TRUE</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data_effort_clean_Seg</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Simple feature collection with 6 features and 10 fields</span></span>
 <span><span class="co">#&gt; Attribute-geometry relationships: constant (10)</span></span>
 <span><span class="co">#&gt; Geometry type: POINT</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: -4.582032 ymin: 44.46551 xmax: -1.659766 ymax: 47.95554</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: -2.134607 ymin: 44.46551 xmax: -1.656394 ymax: 44.86573</span></span>
 <span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 11</span></span>
-<span><span class="co">#&gt;   Beaufort LegID                 plateform  n_obs TransectID Start_time         </span></span>
-<span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;                 &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;      &lt;dttm&gt;             </span></span>
-<span><span class="co">#&gt; 1        0 25052023_C_G1_189_192 upper_bri…     2 TR_Pelgas… 2023-05-25 04:57:07</span></span>
-<span><span class="co">#&gt; 2        1 04052023_C_G3_33_31   upper_bri…     2 TR_Pelgas… 2023-05-04 11:42:53</span></span>
-<span><span class="co">#&gt; 3        1 05052023_C_G12_38_45  upper_bri…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
-<span><span class="co">#&gt; 4        1 05052023_C_G12_38_45  upper_bri…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
-<span><span class="co">#&gt; 5        1 05052023_C_G12_38_45  upper_bri…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
-<span><span class="co">#&gt; 6        1 05052023_C_G12_38_45  upper_bri…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
+<span><span class="co">#&gt;   Beaufort LegID                plateform   n_obs TransectID Start_time         </span></span>
+<span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;                &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;      &lt;dttm&gt;             </span></span>
+<span><span class="co">#&gt; 1        1 04052023_C_G3_19_28  upper_brid…     2 TR_Pelgas… 2023-05-04 11:42:53</span></span>
+<span><span class="co">#&gt; 2        1 05052023_C_G12_22_32 upper_brid…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
+<span><span class="co">#&gt; 3        1 05052023_C_G12_22_32 upper_brid…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
+<span><span class="co">#&gt; 4        1 05052023_C_G12_22_32 upper_brid…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
+<span><span class="co">#&gt; 5        1 05052023_C_G12_22_32 upper_brid…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
+<span><span class="co">#&gt; 6        1 05052023_C_G14_21_32 upper_brid…     2 TR_Pelgas… 2023-05-05 16:09:17</span></span>
 <span><span class="co">#&gt; # ℹ 5 more variables: DateTime &lt;dttm&gt;, End_time &lt;dttm&gt;, SegID &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   Effort &lt;dbl&gt;, geometry &lt;POINT [°]&gt;</span></span></code></pre></div>
 </div>
@@ -554,7 +540,7 @@
 <span>                  tol <span class="op">=</span> <span class="fl">50</span>, </span>
 <span>                  return <span class="op">=</span> <span class="st">"sight"</span>,</span>
 <span>                  remove_dup <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ✖ 502 sightings removed because observation time not within start/end of effort transects</span></span>
+<span><span class="co">#&gt; ✖ 915 sightings removed because observation time not within start/end of effort transects</span></span>
 <span><span class="co">#&gt; ✖ 3 sightings duplicated (NOT REMOVED)</span></span>
 <span></span>
 <span></span>
@@ -582,42 +568,51 @@
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">Sigthings_without_attractor</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/remove_attractor.html">remove_attractor</a></span><span class="op">(</span><span class="va">Sigthings_with_SegID</span><span class="op">)</span></span>
-<span><span class="co">#&gt; → 662 attraction behaviour have been removed from the sighting table.</span></span>
+<span><span class="co">#&gt; → 598 attraction behaviour have been removed from the sighting table.</span></span>
 <span></span>
 <span><span class="va">Sigthings_without_attractor</span><span class="op">$</span><span class="va">table_behavior</span></span>
-<span><span class="co">#&gt; # A tibble: 35 × 3</span></span>
-<span><span class="co">#&gt; # Groups:   Species, behaviour [35]</span></span>
+<span><span class="co">#&gt; # A tibble: 33 × 3</span></span>
+<span><span class="co">#&gt; # Groups:   Species, behaviour [33]</span></span>
 <span><span class="co">#&gt;    Species behaviour      n</span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;      &lt;int&gt;</span></span>
-<span><span class="co">#&gt;  1 DELDEL  attraction   262</span></span>
-<span><span class="co">#&gt;  2 LARFUS  attraction   105</span></span>
-<span><span class="co">#&gt;  3 SULBAS  attraction    76</span></span>
-<span><span class="co">#&gt;  4 LARGUL  attraction    64</span></span>
-<span><span class="co">#&gt;  5 FULGLA  attraction    30</span></span>
-<span><span class="co">#&gt;  6 LARMIC  attraction    20</span></span>
+<span><span class="co">#&gt;  1 DELDEL  attraction   254</span></span>
+<span><span class="co">#&gt;  2 LARFUS  attraction    88</span></span>
+<span><span class="co">#&gt;  3 SULBAS  attraction    63</span></span>
+<span><span class="co">#&gt;  4 LARGUL  attraction    61</span></span>
+<span><span class="co">#&gt;  5 FULGLA  attraction    23</span></span>
+<span><span class="co">#&gt;  6 LARMIC  attraction    17</span></span>
 <span><span class="co">#&gt;  7 LARARG  attraction    15</span></span>
 <span><span class="co">#&gt;  8 STRDEC  attraction    14</span></span>
-<span><span class="co">#&gt;  9 HIRRUS  attraction    10</span></span>
-<span><span class="co">#&gt; 10 GREGUL  attraction     9</span></span>
-<span><span class="co">#&gt; # ℹ 25 more rows</span></span>
+<span><span class="co">#&gt;  9 GREGUL  attraction     8</span></span>
+<span><span class="co">#&gt; 10 HIRRUS  attraction     7</span></span>
+<span><span class="co">#&gt; # ℹ 23 more rows</span></span>
 <span><span class="va">Sigthings_without_attractor</span><span class="op">$</span><span class="va">table_direction</span></span>
-<span><span class="co">#&gt; # A tibble: 22 × 3</span></span>
-<span><span class="co">#&gt; # Groups:   Species, direction [22]</span></span>
+<span><span class="co">#&gt; # A tibble: 20 × 3</span></span>
+<span><span class="co">#&gt; # Groups:   Species, direction [20]</span></span>
 <span><span class="co">#&gt;    Species direction     n</span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;</span></span>
-<span><span class="co">#&gt;  1 SULBAS        360    12</span></span>
-<span><span class="co">#&gt;  2 PUFPUF        360    11</span></span>
+<span><span class="co">#&gt;  1 PUFPUF        360    10</span></span>
+<span><span class="co">#&gt;  2 SULBAS        360     7</span></span>
 <span><span class="co">#&gt;  3 FULGLA        360     5</span></span>
 <span><span class="co">#&gt;  4 LARARG        360     5</span></span>
-<span><span class="co">#&gt;  5 LARGUL        360     3</span></span>
-<span><span class="co">#&gt;  6 SAILBO        360     3</span></span>
-<span><span class="co">#&gt;  7 DELDEL        360     2</span></span>
-<span><span class="co">#&gt;  8 MOLMOL        360     2</span></span>
-<span><span class="co">#&gt;  9 RISTRI        360     2</span></span>
-<span><span class="co">#&gt; 10 STEHIR        360     2</span></span>
-<span><span class="co">#&gt; # ℹ 12 more rows</span></span>
+<span><span class="co">#&gt;  5 SAILBO        360     3</span></span>
+<span><span class="co">#&gt;  6 LARGUL        360     2</span></span>
+<span><span class="co">#&gt;  7 MOLMOL        360     2</span></span>
+<span><span class="co">#&gt;  8 APUAPU        360     1</span></span>
+<span><span class="co">#&gt;  9 CATSKU        360     1</span></span>
+<span><span class="co">#&gt; 10 FISHBO        360     1</span></span>
+<span><span class="co">#&gt; 11 HIRRUS        360     1</span></span>
+<span><span class="co">#&gt; 12 LARFUS        360     1</span></span>
+<span><span class="co">#&gt; 13 LARMAR        360     1</span></span>
+<span><span class="co">#&gt; 14 LIMICO        360     1</span></span>
+<span><span class="co">#&gt; 15 PASSBO        360     1</span></span>
+<span><span class="co">#&gt; 16 PLANE         360     1</span></span>
+<span><span class="co">#&gt; 17 RISTRI        360     1</span></span>
+<span><span class="co">#&gt; 18 STEHIR        360     1</span></span>
+<span><span class="co">#&gt; 19 STESPP        360     1</span></span>
+<span><span class="co">#&gt; 20 TANKER        360     1</span></span>
 <span><span class="va">Sigthings_without_attractor</span><span class="op">$</span><span class="va">sightings_table</span></span>
-<span><span class="co">#&gt; # A tibble: 2,382 × 25</span></span>
+<span><span class="co">#&gt; # A tibble: 2,033 × 25</span></span>
 <span><span class="co">#&gt;    survey session routeType LegID Species speciesLatin GroupSize behaviour Side </span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;            &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;</span></span>
 <span><span class="co">#&gt;  1 PELGAS LEG1    prospect… 3004… PHACAR  Phalacrocor…         1 moving    left </span></span>
@@ -630,7 +625,7 @@
 <span><span class="co">#&gt;  8 PELGAS LEG1    prospect… 3004… SULBAS  Morus bassa…         1 moving    left </span></span>
 <span><span class="co">#&gt;  9 PELGAS LEG1    prospect… 3004… BUOY    Fishing buo…         2 NULL      left </span></span>
 <span><span class="co">#&gt; 10 PELGAS LEG1    prospect… 3004… SAILBO  Sailing boat         1 moving    right</span></span>
-<span><span class="co">#&gt; # ℹ 2,372 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 2,023 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 16 more variables: Longitude &lt;dbl&gt;, Latitude &lt;dbl&gt;, DateTime &lt;dttm&gt;,</span></span>
 <span><span class="co">#&gt; #   distance &lt;int&gt;, angle &lt;int&gt;, PerpDist &lt;dbl&gt;, direction &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   TransectID &lt;chr&gt;, DupID &lt;int&gt;, Date &lt;date&gt;, Effort &lt;dbl&gt;, Beaufort &lt;dbl&gt;,</span></span>
@@ -653,21 +648,21 @@
 <span>                      sightings_with_SegID <span class="op">=</span> <span class="va">Sigthings_with_SegID</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">Effort_withSighting</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Simple feature collection with 6 features and 192 fields</span></span>
+<span><span class="co">#&gt; Simple feature collection with 6 features and 182 fields</span></span>
 <span><span class="co">#&gt; Geometry type: POINT</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: -4.582032 ymin: 44.46551 xmax: -1.659766 ymax: 47.95554</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: -2.134607 ymin: 44.46551 xmax: -1.656394 ymax: 44.86573</span></span>
 <span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
-<span><span class="co">#&gt; # A tibble: 6 × 193</span></span>
-<span><span class="co">#&gt;   Beaufort LegID                 plateform  n_obs TransectID Start_time         </span></span>
-<span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;                 &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;      &lt;dttm&gt;             </span></span>
-<span><span class="co">#&gt; 1        0 25052023_C_G1_189_192 upper_bri…     2 TR_Pelgas… 2023-05-25 04:57:07</span></span>
-<span><span class="co">#&gt; 2        1 04052023_C_G3_33_31   upper_bri…     2 TR_Pelgas… 2023-05-04 11:42:53</span></span>
-<span><span class="co">#&gt; 3        1 05052023_C_G12_38_45  upper_bri…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
-<span><span class="co">#&gt; 4        1 05052023_C_G12_38_45  upper_bri…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
-<span><span class="co">#&gt; 5        1 05052023_C_G12_38_45  upper_bri…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
-<span><span class="co">#&gt; 6        1 05052023_C_G12_38_45  upper_bri…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
-<span><span class="co">#&gt; # ℹ 187 more variables: DateTime &lt;dttm&gt;, End_time &lt;dttm&gt;, SegID &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 183</span></span>
+<span><span class="co">#&gt;   Beaufort LegID                plateform   n_obs TransectID Start_time         </span></span>
+<span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;                &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;      &lt;dttm&gt;             </span></span>
+<span><span class="co">#&gt; 1        1 04052023_C_G3_19_28  upper_brid…     2 TR_Pelgas… 2023-05-04 11:42:53</span></span>
+<span><span class="co">#&gt; 2        1 05052023_C_G12_22_32 upper_brid…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
+<span><span class="co">#&gt; 3        1 05052023_C_G12_22_32 upper_brid…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
+<span><span class="co">#&gt; 4        1 05052023_C_G12_22_32 upper_brid…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
+<span><span class="co">#&gt; 5        1 05052023_C_G12_22_32 upper_brid…     2 TR_Pelgas… 2023-05-05 13:56:44</span></span>
+<span><span class="co">#&gt; 6        1 05052023_C_G14_21_32 upper_brid…     2 TR_Pelgas… 2023-05-05 16:09:17</span></span>
+<span><span class="co">#&gt; # ℹ 177 more variables: DateTime &lt;dttm&gt;, End_time &lt;dttm&gt;, SegID &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   Effort &lt;dbl&gt;, geometry &lt;POINT [°]&gt;, det.PHACAR &lt;int&gt;, ind.PHACAR &lt;int&gt;,</span></span>
 <span><span class="co">#&gt; #   det.BUOY &lt;int&gt;, ind.BUOY &lt;int&gt;, det.MOTOBO &lt;int&gt;, ind.MOTOBO &lt;int&gt;,</span></span>
 <span><span class="co">#&gt; #   det.LARFUS &lt;int&gt;, ind.LARFUS &lt;int&gt;, det.SULBAS &lt;int&gt;, ind.SULBAS &lt;int&gt;,</span></span>
@@ -696,24 +691,21 @@
 <span><span class="co">#&gt; </span></span>
 <span></span>
 <span><span class="va">descriptive_stats</span><span class="op">$</span><span class="va">distance_effort</span></span>
-<span><span class="co">#&gt; 4766.104 [km]</span></span>
+<span><span class="co">#&gt; 3732.054 [km]</span></span>
 <span></span>
 <span><span class="va">descriptive_stats</span><span class="op">$</span><span class="va">distance_travel_table</span></span>
-<span><span class="co">#&gt; # A tibble: 11 × 4</span></span>
-<span><span class="co">#&gt; # Groups:   Beaufort, n_obs [7]</span></span>
-<span><span class="co">#&gt;    Beaufort n_obs plateform            `Km Effort`</span></span>
-<span><span class="co">#&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                      &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt;  1        0     2 upper_bridge_outside      14.6  </span></span>
-<span><span class="co">#&gt;  2        1     2 upper_bridge_outside      71.7  </span></span>
-<span><span class="co">#&gt;  3        2     2 bridge_inside              2.66 </span></span>
-<span><span class="co">#&gt;  4        2     2 upper_bridge_outside     744.   </span></span>
-<span><span class="co">#&gt;  5        3     2 upper_bridge_outside    1853.   </span></span>
-<span><span class="co">#&gt;  6        4     2 bridge_inside             68.8  </span></span>
-<span><span class="co">#&gt;  7        4     2 upper_bridge_outside    1275.   </span></span>
-<span><span class="co">#&gt;  8        5     2 bridge_inside            305.   </span></span>
-<span><span class="co">#&gt;  9        5     2 upper_bridge_outside     368.   </span></span>
-<span><span class="co">#&gt; 10        6     2 bridge_inside             61.9  </span></span>
-<span><span class="co">#&gt; 11        6     2 upper_bridge_outside       0.700</span></span>
+<span><span class="co">#&gt; # A tibble: 8 × 4</span></span>
+<span><span class="co">#&gt; # Groups:   Beaufort, n_obs [6]</span></span>
+<span><span class="co">#&gt;   Beaufort n_obs plateform            `Km Effort`</span></span>
+<span><span class="co">#&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                      &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1        1     2 upper_bridge_outside        62.4</span></span>
+<span><span class="co">#&gt; 2        2     2 upper_bridge_outside       523. </span></span>
+<span><span class="co">#&gt; 3        3     2 upper_bridge_outside      1488. </span></span>
+<span><span class="co">#&gt; 4        4     2 bridge_inside               27.2</span></span>
+<span><span class="co">#&gt; 5        4     2 upper_bridge_outside      1135. </span></span>
+<span><span class="co">#&gt; 6        5     2 bridge_inside              127. </span></span>
+<span><span class="co">#&gt; 7        5     2 upper_bridge_outside       307. </span></span>
+<span><span class="co">#&gt; 8        6     2 bridge_inside               61.9</span></span>
 <span></span>
 <span><span class="va">descriptive_stats</span><span class="op">$</span><span class="va">stack_bar</span></span></code></pre></div>
 <p><img src="reference/figures/README-descriptive_statistics-1.png" width="100%"></p>
@@ -725,65 +717,65 @@
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">descriptive_stats</span><span class="op">$</span><span class="va">count_ind</span><span class="op">)</span></span>
 <span><span class="co">#&gt;      Species n_ind</span></span>
-<span><span class="co">#&gt; 1 ind.SULBAS  1659</span></span>
-<span><span class="co">#&gt; 2 ind.LARGUL  1074</span></span>
-<span><span class="co">#&gt; 3 ind.LARFUS   414</span></span>
-<span><span class="co">#&gt; 4 ind.DELDEL   411</span></span>
-<span><span class="co">#&gt; 5 ind.PUFPUF   370</span></span>
-<span><span class="co">#&gt; 6 ind.PLASTR   221</span></span>
+<span><span class="co">#&gt; 1 ind.SULBAS  1522</span></span>
+<span><span class="co">#&gt; 2 ind.LARGUL   993</span></span>
+<span><span class="co">#&gt; 3 ind.LARFUS   339</span></span>
+<span><span class="co">#&gt; 4 ind.PUFPUF   331</span></span>
+<span><span class="co">#&gt; 5 ind.DELDEL   308</span></span>
+<span><span class="co">#&gt; 6 ind.PLASTR   203</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">descriptive_stats</span><span class="op">$</span><span class="va">count_det</span><span class="op">)</span></span>
 <span><span class="co">#&gt;      Species n_detection</span></span>
-<span><span class="co">#&gt; 1 det.SULBAS         542</span></span>
-<span><span class="co">#&gt; 2 det.PLASTR         207</span></span>
-<span><span class="co">#&gt; 3 det.LARFUS         201</span></span>
-<span><span class="co">#&gt; 4 det.PUFPUF         164</span></span>
-<span><span class="co">#&gt; 5 det.LARGUL         147</span></span>
-<span><span class="co">#&gt; 6   det.BUOY         105</span></span>
+<span><span class="co">#&gt; 1 det.SULBAS         460</span></span>
+<span><span class="co">#&gt; 2 det.PLASTR         189</span></span>
+<span><span class="co">#&gt; 3 det.LARFUS         165</span></span>
+<span><span class="co">#&gt; 4 det.PUFPUF         143</span></span>
+<span><span class="co">#&gt; 5 det.LARGUL         131</span></span>
+<span><span class="co">#&gt; 6 det.FULGLA          94</span></span>
 <span></span>
 <span><span class="va">descriptive_stats</span><span class="op">$</span><span class="va">plot_general_blocking</span></span></code></pre></div>
 <p><img src="reference/figures/README-descriptive_statistics-3.png" width="100%"></p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">descriptive_stats</span><span class="op">$</span><span class="va">gpkg_general_blocking</span></span>
-<span><span class="co">#&gt; Simple feature collection with 3800 features and 1 field</span></span>
-<span><span class="co">#&gt; Geometry type: POLYGON</span></span>
+<span><span class="co">#&gt; Simple feature collection with 2091 features and 1 field</span></span>
+<span><span class="co">#&gt; Geometry type: POINT</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: -5.749218 ymin: 43.57561 xmax: -1.16781 ymax: 48.37816</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: -6 ymin: 44 xmax: -1 ymax: 48</span></span>
 <span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
 <span><span class="co">#&gt; First 10 features:</span></span>
-<span><span class="co">#&gt;    Mean_value                       geometry</span></span>
-<span><span class="co">#&gt; 1          NA POLYGON ((-5.569555 43.7056...</span></span>
-<span><span class="co">#&gt; 2          NA POLYGON ((-5.479723 43.7056...</span></span>
-<span><span class="co">#&gt; 3          NA POLYGON ((-5.389892 43.7056...</span></span>
-<span><span class="co">#&gt; 4          NA POLYGON ((-5.30006 43.70563...</span></span>
-<span><span class="co">#&gt; 5          NA POLYGON ((-5.210229 43.7056...</span></span>
-<span><span class="co">#&gt; 6          NA POLYGON ((-5.120397 43.7056...</span></span>
-<span><span class="co">#&gt; 7          NA POLYGON ((-5.030566 43.7056...</span></span>
-<span><span class="co">#&gt; 8          NA POLYGON ((-4.940734 43.7056...</span></span>
-<span><span class="co">#&gt; 9          NA POLYGON ((-4.850903 43.7056...</span></span>
-<span><span class="co">#&gt; 10         NA POLYGON ((-4.761071 43.7056...</span></span>
+<span><span class="co">#&gt;    Mean_value        geometry</span></span>
+<span><span class="co">#&gt; 1          NA   POINT (-6 44)</span></span>
+<span><span class="co">#&gt; 2          NA POINT (-5.9 44)</span></span>
+<span><span class="co">#&gt; 3          NA POINT (-5.8 44)</span></span>
+<span><span class="co">#&gt; 4          NA POINT (-5.7 44)</span></span>
+<span><span class="co">#&gt; 5          NA POINT (-5.6 44)</span></span>
+<span><span class="co">#&gt; 6          NA POINT (-5.5 44)</span></span>
+<span><span class="co">#&gt; 7          NA POINT (-5.4 44)</span></span>
+<span><span class="co">#&gt; 8          NA POINT (-5.3 44)</span></span>
+<span><span class="co">#&gt; 9          NA POINT (-5.2 44)</span></span>
+<span><span class="co">#&gt; 10         NA POINT (-5.1 44)</span></span>
 <span></span>
 <span><span class="va">descriptive_stats</span><span class="op">$</span><span class="va">blocking_per_species</span></span>
 <span><span class="co">#&gt; $ind.DELDEL</span></span>
 <span><span class="co">#&gt; $ind.DELDEL$data</span></span>
-<span><span class="co">#&gt; Simple feature collection with 3800 features and 1 field</span></span>
-<span><span class="co">#&gt; Geometry type: POLYGON</span></span>
+<span><span class="co">#&gt; Simple feature collection with 2091 features and 1 field</span></span>
+<span><span class="co">#&gt; Geometry type: POINT</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: -5.749218 ymin: 43.57561 xmax: -1.16781 ymax: 48.37816</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: -6 ymin: 44 xmax: -1 ymax: 48</span></span>
 <span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
 <span><span class="co">#&gt; First 10 features:</span></span>
-<span><span class="co">#&gt;    Mean_value                       geometry</span></span>
-<span><span class="co">#&gt; 1          NA POLYGON ((-5.569555 43.7056...</span></span>
-<span><span class="co">#&gt; 2          NA POLYGON ((-5.479723 43.7056...</span></span>
-<span><span class="co">#&gt; 3          NA POLYGON ((-5.389892 43.7056...</span></span>
-<span><span class="co">#&gt; 4          NA POLYGON ((-5.30006 43.70563...</span></span>
-<span><span class="co">#&gt; 5          NA POLYGON ((-5.210229 43.7056...</span></span>
-<span><span class="co">#&gt; 6          NA POLYGON ((-5.120397 43.7056...</span></span>
-<span><span class="co">#&gt; 7          NA POLYGON ((-5.030566 43.7056...</span></span>
-<span><span class="co">#&gt; 8          NA POLYGON ((-4.940734 43.7056...</span></span>
-<span><span class="co">#&gt; 9          NA POLYGON ((-4.850903 43.7056...</span></span>
-<span><span class="co">#&gt; 10         NA POLYGON ((-4.761071 43.7056...</span></span>
+<span><span class="co">#&gt;    Mean_value        geometry</span></span>
+<span><span class="co">#&gt; 1          NA   POINT (-6 44)</span></span>
+<span><span class="co">#&gt; 2          NA POINT (-5.9 44)</span></span>
+<span><span class="co">#&gt; 3          NA POINT (-5.8 44)</span></span>
+<span><span class="co">#&gt; 4          NA POINT (-5.7 44)</span></span>
+<span><span class="co">#&gt; 5          NA POINT (-5.6 44)</span></span>
+<span><span class="co">#&gt; 6          NA POINT (-5.5 44)</span></span>
+<span><span class="co">#&gt; 7          NA POINT (-5.4 44)</span></span>
+<span><span class="co">#&gt; 8          NA POINT (-5.3 44)</span></span>
+<span><span class="co">#&gt; 9          NA POINT (-5.2 44)</span></span>
+<span><span class="co">#&gt; 10         NA POINT (-5.1 44)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $ind.DELDEL$map</span></span></code></pre></div>
 <p><img src="reference/figures/README-descriptive_statistics-4.png" width="100%"></p>
@@ -791,23 +783,23 @@
 <span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a><span class="co">#&gt; $ind.FULGLA</span></span>
 <span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a><span class="co">#&gt; $ind.FULGLA$data</span></span>
-<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a><span class="co">#&gt; Simple feature collection with 3800 features and 1 field</span></span>
-<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a><span class="co">#&gt; Geometry type: POLYGON</span></span>
+<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a><span class="co">#&gt; Simple feature collection with 2091 features and 1 field</span></span>
+<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a><span class="co">#&gt; Geometry type: POINT</span></span>
 <span id="cb25-7"><a href="#cb25-7" tabindex="-1"></a><span class="co">#&gt; Dimension:     XY</span></span>
-<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a><span class="co">#&gt; Bounding box:  xmin: -5.749218 ymin: 43.57561 xmax: -1.16781 ymax: 48.37816</span></span>
+<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a><span class="co">#&gt; Bounding box:  xmin: -6 ymin: 44 xmax: -1 ymax: 48</span></span>
 <span id="cb25-9"><a href="#cb25-9" tabindex="-1"></a><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
 <span id="cb25-10"><a href="#cb25-10" tabindex="-1"></a><span class="co">#&gt; First 10 features:</span></span>
-<span id="cb25-11"><a href="#cb25-11" tabindex="-1"></a><span class="co">#&gt;    Mean_value                       geometry</span></span>
-<span id="cb25-12"><a href="#cb25-12" tabindex="-1"></a><span class="co">#&gt; 1          NA POLYGON ((-5.569555 43.7056...</span></span>
-<span id="cb25-13"><a href="#cb25-13" tabindex="-1"></a><span class="co">#&gt; 2          NA POLYGON ((-5.479723 43.7056...</span></span>
-<span id="cb25-14"><a href="#cb25-14" tabindex="-1"></a><span class="co">#&gt; 3          NA POLYGON ((-5.389892 43.7056...</span></span>
-<span id="cb25-15"><a href="#cb25-15" tabindex="-1"></a><span class="co">#&gt; 4          NA POLYGON ((-5.30006 43.70563...</span></span>
-<span id="cb25-16"><a href="#cb25-16" tabindex="-1"></a><span class="co">#&gt; 5          NA POLYGON ((-5.210229 43.7056...</span></span>
-<span id="cb25-17"><a href="#cb25-17" tabindex="-1"></a><span class="co">#&gt; 6          NA POLYGON ((-5.120397 43.7056...</span></span>
-<span id="cb25-18"><a href="#cb25-18" tabindex="-1"></a><span class="co">#&gt; 7          NA POLYGON ((-5.030566 43.7056...</span></span>
-<span id="cb25-19"><a href="#cb25-19" tabindex="-1"></a><span class="co">#&gt; 8          NA POLYGON ((-4.940734 43.7056...</span></span>
-<span id="cb25-20"><a href="#cb25-20" tabindex="-1"></a><span class="co">#&gt; 9          NA POLYGON ((-4.850903 43.7056...</span></span>
-<span id="cb25-21"><a href="#cb25-21" tabindex="-1"></a><span class="co">#&gt; 10         NA POLYGON ((-4.761071 43.7056...</span></span>
+<span id="cb25-11"><a href="#cb25-11" tabindex="-1"></a><span class="co">#&gt;    Mean_value        geometry</span></span>
+<span id="cb25-12"><a href="#cb25-12" tabindex="-1"></a><span class="co">#&gt; 1          NA   POINT (-6 44)</span></span>
+<span id="cb25-13"><a href="#cb25-13" tabindex="-1"></a><span class="co">#&gt; 2          NA POINT (-5.9 44)</span></span>
+<span id="cb25-14"><a href="#cb25-14" tabindex="-1"></a><span class="co">#&gt; 3          NA POINT (-5.8 44)</span></span>
+<span id="cb25-15"><a href="#cb25-15" tabindex="-1"></a><span class="co">#&gt; 4          NA POINT (-5.7 44)</span></span>
+<span id="cb25-16"><a href="#cb25-16" tabindex="-1"></a><span class="co">#&gt; 5          NA POINT (-5.6 44)</span></span>
+<span id="cb25-17"><a href="#cb25-17" tabindex="-1"></a><span class="co">#&gt; 6          NA POINT (-5.5 44)</span></span>
+<span id="cb25-18"><a href="#cb25-18" tabindex="-1"></a><span class="co">#&gt; 7          NA POINT (-5.4 44)</span></span>
+<span id="cb25-19"><a href="#cb25-19" tabindex="-1"></a><span class="co">#&gt; 8          NA POINT (-5.3 44)</span></span>
+<span id="cb25-20"><a href="#cb25-20" tabindex="-1"></a><span class="co">#&gt; 9          NA POINT (-5.2 44)</span></span>
+<span id="cb25-21"><a href="#cb25-21" tabindex="-1"></a><span class="co">#&gt; 10         NA POINT (-5.1 44)</span></span>
 <span id="cb25-22"><a href="#cb25-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb25-23"><a href="#cb25-23" tabindex="-1"></a><span class="co">#&gt; $ind.FULGLA$map</span></span></code></pre></div>
 <p><img src="reference/figures/README-descriptive_statistics-5.png" width="100%"></p>
@@ -829,20 +821,20 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ── Data cleaning ──</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; There are 101 sightings in the dataset selected.</span></span>
+<span><span class="co">#&gt; There are 94 sightings in the dataset selected.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ── Model selection ──</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Fitting half-normal key function</span></span>
-<span><span class="co">#&gt; AIC= -101.073</span></span>
+<span><span class="co">#&gt; AIC= -91.342</span></span>
 <span><span class="co">#&gt; Fitting half-normal key function</span></span>
-<span><span class="co">#&gt; AIC= -102.723</span></span>
+<span><span class="co">#&gt; AIC= -92.268</span></span>
 <span><span class="co">#&gt; Fitting half-normal key function</span></span>
-<span><span class="co">#&gt; AIC= -101.393</span></span>
+<span><span class="co">#&gt; AIC= -91.515</span></span>
 <span><span class="co">#&gt; ── Best model prediction ──</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Fitting half-normal key function</span></span>
-<span><span class="co">#&gt; AIC= -102.723</span></span>
+<span><span class="co">#&gt; AIC= -92.268</span></span>
 <span><span class="co">#&gt; ESW values estimated, please check units.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ── Update Effort Table ──</span></span>
@@ -854,36 +846,36 @@
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">export_esw</span><span class="op">$</span><span class="va">data_esw</span></span>
-<span><span class="co">#&gt;              plateform      mean         sd       Q_25      Q_97</span></span>
-<span><span class="co">#&gt; 1        bridge_inside 0.1575995 0.10549993 0.03006255 0.4295094</span></span>
-<span><span class="co">#&gt; 2 upper_bridge_outside 0.4505000 0.04390505 0.35233835 0.5194436</span></span>
+<span><span class="co">#&gt;              plateform      mean         sd      Q_25     Q_97</span></span>
+<span><span class="co">#&gt; 1        bridge_inside       NaN         NA 0.0000000 0.000000</span></span>
+<span><span class="co">#&gt; 2 upper_bridge_outside 0.4597752 0.04660809 0.3582992 0.533839</span></span>
 <span></span>
 <span><span class="va">export_esw</span><span class="op">$</span><span class="va">model_selection</span></span>
 <span><span class="co">#&gt;                      model       AIC det_fun</span></span>
-<span><span class="co">#&gt; 1            1 + plateform -102.7229      hn</span></span>
-<span><span class="co">#&gt; 2             1 + Beaufort -101.3926      hn</span></span>
-<span><span class="co">#&gt; 3 1 + Beaufort + plateform -101.0734      hn</span></span>
+<span><span class="co">#&gt; 1            1 + plateform -92.26755      hn</span></span>
+<span><span class="co">#&gt; 2             1 + Beaufort -91.51532      hn</span></span>
+<span><span class="co">#&gt; 3 1 + Beaufort + plateform -91.34219      hn</span></span>
 <span></span>
 <span><span class="va">export_esw</span><span class="op">$</span><span class="va">effort_output</span></span>
-<span><span class="co">#&gt; Simple feature collection with 465 features and 16 fields</span></span>
+<span><span class="co">#&gt; Simple feature collection with 357 features and 16 fields</span></span>
 <span><span class="co">#&gt; Geometry type: POINT</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: -5.657199 ymin: 43.66589 xmax: -1.253505 ymax: 48.30416</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: -5.560823 ymin: 43.66589 xmax: -1.253505 ymax: 48.30484</span></span>
 <span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
-<span><span class="co">#&gt; # A tibble: 465 × 17</span></span>
+<span><span class="co">#&gt; # A tibble: 357 × 17</span></span>
 <span><span class="co">#&gt;    Beaufort TransectID         plateform         n_obs LegID Start_time         </span></span>
 <span><span class="co">#&gt;       &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt; &lt;dttm&gt;             </span></span>
-<span><span class="co">#&gt;  1        0 TR_Pelgas_25052023 upper_bridge_out…     2 2505… 2023-05-25 04:57:07</span></span>
-<span><span class="co">#&gt;  2        1 TR_Pelgas_04052023 upper_bridge_out…     2 0405… 2023-05-04 11:42:53</span></span>
+<span><span class="co">#&gt;  1        1 TR_Pelgas_04052023 upper_bridge_out…     2 0405… 2023-05-04 11:42:53</span></span>
+<span><span class="co">#&gt;  2        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44</span></span>
 <span><span class="co">#&gt;  3        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44</span></span>
 <span><span class="co">#&gt;  4        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44</span></span>
 <span><span class="co">#&gt;  5        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44</span></span>
-<span><span class="co">#&gt;  6        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44</span></span>
-<span><span class="co">#&gt;  7        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 16:09:17</span></span>
-<span><span class="co">#&gt;  8        1 TR_Pelgas_18052023 upper_bridge_out…     2 1805… 2023-05-18 11:33:05</span></span>
-<span><span class="co">#&gt;  9        1 TR_Pelgas_22052023 upper_bridge_out…     2 2205… 2023-05-22 15:03:10</span></span>
-<span><span class="co">#&gt; 10        1 TR_Pelgas_27052023 upper_bridge_out…     2 2705… 2023-05-27 13:24:10</span></span>
-<span><span class="co">#&gt; # ℹ 455 more rows</span></span>
+<span><span class="co">#&gt;  6        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 16:09:17</span></span>
+<span><span class="co">#&gt;  7        1 TR_Pelgas_18052023 upper_bridge_out…     2 1805… 2023-05-18 11:33:05</span></span>
+<span><span class="co">#&gt;  8        1 TR_Pelgas_27052023 upper_bridge_out…     2 2705… 2023-05-27 13:24:10</span></span>
+<span><span class="co">#&gt;  9        2 TR_Pelgas_01052023 upper_bridge_out…     2 0105… 2023-05-01 06:56:56</span></span>
+<span><span class="co">#&gt; 10        2 TR_Pelgas_01052023 upper_bridge_out…     2 0105… 2023-05-01 06:56:56</span></span>
+<span><span class="co">#&gt; # ℹ 347 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 11 more variables: DateTime &lt;dttm&gt;, End_time &lt;dttm&gt;, SegID &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   Effort &lt;dbl&gt;, geometry &lt;POINT [°]&gt;, det.FULGLA &lt;dbl&gt;, ind.FULGLA &lt;dbl&gt;,</span></span>
 <span><span class="co">#&gt; #   mean_esw_FULGLA &lt;dbl&gt;, sd_esw_FULGLA &lt;dbl&gt;, Q25_esw_FULGLA &lt;dbl&gt;,</span></span>
@@ -902,38 +894,37 @@
 <span><span class="va">soap_data</span><span class="op">$</span><span class="va">bound</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
 <span><span class="co">#&gt; [[1]]$lon</span></span>
-<span><span class="co">#&gt;  [1] -1.484863 -1.345996 -1.245508 -1.170801 -1.118787 -1.113344 -1.152881</span></span>
-<span><span class="co">#&gt;  [8] -1.200391 -1.220312 -1.245215 -1.189062 -1.149072 -1.081006 -1.049483</span></span>
-<span><span class="co">#&gt; [15] -1.065157 -1.169971 -1.195996 -1.209961 -1.114355 -1.081974 -1.137902</span></span>
-<span><span class="co">#&gt; [22] -1.347234 -1.392480 -1.786523 -1.921436 -2.059375 -2.092480 -2.090372</span></span>
-<span><span class="co">#&gt; [29] -3.003076 -3.064209 -3.158838 -3.221582 -3.264697 -3.328613 -3.395898</span></span>
-<span><span class="co">#&gt; [36] -3.443945 -3.507813 -3.900928 -4.070703 -4.226416 -4.312109 -4.375098</span></span>
-<span><span class="co">#&gt; [43] -4.427979 -4.678809 -4.629199 -4.512402 -4.377832 -4.329443 -4.434619</span></span>
-<span><span class="co">#&gt; [50] -4.512207 -4.544336 -4.577148 -4.530664 -4.497900 -4.403320 -4.295179</span></span>
-<span><span class="co">#&gt; [57] -4.429015 -4.524805 -4.584717 -4.719385 -4.748535 -4.762500 -4.761131</span></span>
-<span><span class="co">#&gt; [64] -4.792350 -5.297184 -5.894158 -5.553697 -4.192340 -3.137817 -3.097702</span></span>
-<span><span class="co">#&gt; [71] -1.499917 -1.484863 -1.178320 -1.213574 -1.280273 -1.368701 -1.388867</span></span>
-<span><span class="co">#&gt; [78] -1.388672 -1.285059 -1.178320</span></span>
+<span><span class="co">#&gt;  [1] -1.484863 -1.345996 -1.245508 -1.170801 -1.121862 -1.116507 -1.152881</span></span>
+<span><span class="co">#&gt;  [8] -1.200391 -1.220312 -1.245215 -1.189062 -1.149072 -1.081006 -1.043241</span></span>
+<span><span class="co">#&gt; [15] -1.065659 -1.169971 -1.195996 -1.209961 -1.114355 -1.089402 -1.174632</span></span>
+<span><span class="co">#&gt; [22] -1.330211 -1.392480 -1.786523 -1.921436 -2.059375 -2.092480 -2.090908</span></span>
+<span><span class="co">#&gt; [29] -3.178642 -3.221582 -3.264697 -3.328613 -3.395898 -3.443945 -3.507813</span></span>
+<span><span class="co">#&gt; [36] -3.900928 -4.070703 -4.226416 -4.312109 -4.375098 -4.427979 -4.678809</span></span>
+<span><span class="co">#&gt; [43] -4.629199 -4.512402 -4.377832 -4.329443 -4.434619 -4.512207 -4.544336</span></span>
+<span><span class="co">#&gt; [50] -4.577148 -4.530664 -4.497900 -4.403320 -4.298421 -4.430272 -4.524805</span></span>
+<span><span class="co">#&gt; [57] -4.584717 -4.719385 -4.748535 -4.762500 -4.761131 -4.792350 -5.297184</span></span>
+<span><span class="co">#&gt; [64] -5.793480 -4.152656 -3.137817 -1.792840 -1.512582 -1.484863 -1.178320</span></span>
+<span><span class="co">#&gt; [71] -1.213574 -1.280273 -1.368701 -1.388867 -1.388672 -1.285059 -1.178320</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[1]]$lat</span></span>
-<span><span class="co">#&gt;  [1] 43.56377 44.02021 44.55986 44.66182 44.67736 44.72542 44.76401 44.72646</span></span>
-<span><span class="co">#&gt;  [9] 44.68662 44.66670 45.16147 45.34263 45.53242 45.51540 45.63258 45.68594</span></span>
-<span><span class="co">#&gt; [17] 45.71445 45.77090 45.76851 45.75776 46.17004 46.33694 46.35010 46.51484</span></span>
-<span><span class="co">#&gt; [25] 46.68481 46.81030 46.86504 46.91828 47.60898 47.62134 47.69468 47.69414</span></span>
-<span><span class="co">#&gt; [33] 47.68511 47.71333 47.72041 47.71104 47.75312 47.83755 47.84785 47.80962</span></span>
-<span><span class="co">#&gt; [41] 47.82290 47.87744 47.96895 48.03950 48.08579 48.09673 48.12881 48.16997</span></span>
-<span><span class="co">#&gt; [49] 48.21797 48.22974 48.24697 48.29004 48.30972 48.29927 48.29307 48.30017</span></span>
-<span><span class="co">#&gt; [57] 48.36892 48.37231 48.35752 48.36313 48.41001 48.45024 48.45319 48.45917</span></span>
-<span><span class="co">#&gt; [65] 48.39700 47.18012 46.61329 44.88593 43.55620 43.51886 43.55089 43.56377</span></span>
-<span><span class="co">#&gt; [73] 45.90405 45.81660 45.89712 45.96768 46.03296 46.05039 46.00269 45.90405</span></span>
+<span><span class="co">#&gt;  [1] 43.56377 44.02021 44.55986 44.66182 44.67644 44.72851 44.76401 44.72646</span></span>
+<span><span class="co">#&gt;  [9] 44.68662 44.66670 45.16147 45.34263 45.53242 45.51203 45.63284 45.68594</span></span>
+<span><span class="co">#&gt; [17] 45.71445 45.77090 45.76851 45.76023 46.21271 46.33198 46.35010 46.51484</span></span>
+<span><span class="co">#&gt; [25] 46.68481 46.81030 46.86504 46.90476 47.69451 47.69414 47.68511 47.71333</span></span>
+<span><span class="co">#&gt; [33] 47.72041 47.71104 47.75312 47.83755 47.84785 47.80962 47.82290 47.87744</span></span>
+<span><span class="co">#&gt; [41] 47.96895 48.03950 48.08579 48.09673 48.12881 48.16997 48.21797 48.22974</span></span>
+<span><span class="co">#&gt; [49] 48.24697 48.29004 48.30972 48.29927 48.29307 48.29996 48.36896 48.37231</span></span>
+<span><span class="co">#&gt; [57] 48.35752 48.36313 48.41001 48.45024 48.45319 48.45917 48.39700 46.91195</span></span>
+<span><span class="co">#&gt; [65] 44.88737 43.55620 43.50822 43.54005 43.56377 45.90405 45.81660 45.89712</span></span>
+<span><span class="co">#&gt; [73] 45.96768 46.03296 46.05039 46.00269 45.90405</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">soap_data</span><span class="op">$</span><span class="va">knots</span><span class="op">)</span></span>
 <span><span class="co">#&gt;          lon      lat</span></span>
-<span><span class="co">#&gt; 37 -3.031395 43.74342</span></span>
-<span><span class="co">#&gt; 38 -2.811183 43.74342</span></span>
-<span><span class="co">#&gt; 39 -2.590970 43.74342</span></span>
-<span><span class="co">#&gt; 40 -2.370758 43.74342</span></span>
-<span><span class="co">#&gt; 41 -2.150545 43.74342</span></span>
-<span><span class="co">#&gt; 42 -1.930333 43.74342</span></span></code></pre></div>
+<span><span class="co">#&gt; 37 -2.986521 43.73327</span></span>
+<span><span class="co">#&gt; 38 -2.770601 43.73327</span></span>
+<span><span class="co">#&gt; 39 -2.554681 43.73327</span></span>
+<span><span class="co">#&gt; 40 -2.338761 43.73327</span></span>
+<span><span class="co">#&gt; 41 -2.122841 43.73327</span></span>
+<span><span class="co">#&gt; 42 -1.906921 43.73327</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="calculation">Calculation<a class="anchor" aria-label="anchor" href="#calculation"></a>
@@ -958,31 +949,31 @@
 <span><span class="co">#&gt; ── Fitting gam ──</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Family: Negative Binomial(0.368) </span></span>
+<span><span class="co">#&gt; Family: Negative Binomial(0.415) </span></span>
 <span><span class="co">#&gt; Link function: log </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Formula:</span></span>
 <span><span class="co">#&gt; get(response_y) ~ 1 + s(lon, lat, bs = "so", xt = list(bnd = bound))</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Estimated degrees of freedom:</span></span>
-<span><span class="co">#&gt; 8  total = 9 </span></span>
+<span><span class="co">#&gt; 10.3  total = 11.32 </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; REML score: 212.5169</span></span>
+<span><span class="co">#&gt; REML score: 185.612</span></span>
 <span><span class="co">#&gt; ── Make prediction ─────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">#&gt; Beware of units for density surface.</span></span>
-<span><span class="co">#&gt; FULGLA has a mean density at 0.03 with min= 0 and max= 0.118.</span></span>
+<span><span class="co">#&gt; FULGLA has a mean density at 0.034 with min= 0 and max= 0.162.</span></span>
 <span><span class="co">#&gt; $model_data</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Family: Negative Binomial(0.368) </span></span>
+<span><span class="co">#&gt; Family: Negative Binomial(0.415) </span></span>
 <span><span class="co">#&gt; Link function: log </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Formula:</span></span>
 <span><span class="co">#&gt; get(response_y) ~ 1 + s(lon, lat, bs = "so", xt = list(bnd = bound))</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Estimated degrees of freedom:</span></span>
-<span><span class="co">#&gt; 8  total = 9 </span></span>
+<span><span class="co">#&gt; 10.3  total = 11.32 </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; REML score: 212.5169     </span></span>
+<span><span class="co">#&gt; REML score: 185.612     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $output_map</span></span></code></pre></div>
 <p><img src="reference/figures/README-calculation-1.png" width="100%"></p>
@@ -991,44 +982,44 @@
 <p><img src="reference/figures/README-calculation-2.png" width="100%"></p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a><span class="co">#&gt; $data_predict</span></span>
-<span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a><span class="co">#&gt; Simple feature collection with 2470 features and 3 fields</span></span>
+<span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a><span class="co">#&gt; Simple feature collection with 2432 features and 3 fields</span></span>
 <span id="cb32-4"><a href="#cb32-4" tabindex="-1"></a><span class="co">#&gt; Geometry type: POLYGON</span></span>
 <span id="cb32-5"><a href="#cb32-5" tabindex="-1"></a><span class="co">#&gt; Dimension:     XY</span></span>
-<span id="cb32-6"><a href="#cb32-6" tabindex="-1"></a><span class="co">#&gt; Bounding box:  xmin: -5.894158 ymin: 43.53386 xmax: -1.043256 ymax: 48.45917</span></span>
+<span id="cb32-6"><a href="#cb32-6" tabindex="-1"></a><span class="co">#&gt; Bounding box:  xmin: -5.79348 ymin: 43.53386 xmax: -1.032409 ymax: 48.45917</span></span>
 <span id="cb32-7"><a href="#cb32-7" tabindex="-1"></a><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
 <span id="cb32-8"><a href="#cb32-8" tabindex="-1"></a><span class="co">#&gt; First 10 features:</span></span>
 <span id="cb32-9"><a href="#cb32-9" tabindex="-1"></a><span class="co">#&gt;       Density         SE Species                       geometry</span></span>
-<span id="cb32-10"><a href="#cb32-10" tabindex="-1"></a><span class="co">#&gt; 5  0.04380086 0.02556449  FULGLA POLYGON ((-4.995843 48.4591...</span></span>
-<span id="cb32-11"><a href="#cb32-11" tabindex="-1"></a><span class="co">#&gt; 6  0.04093618 0.02351074  FULGLA POLYGON ((-4.906011 48.4591...</span></span>
-<span id="cb32-12"><a href="#cb32-12" tabindex="-1"></a><span class="co">#&gt; 7  0.03881578 0.02247875  FULGLA POLYGON ((-4.81618 48.45917...</span></span>
-<span id="cb32-13"><a href="#cb32-13" tabindex="-1"></a><span class="co">#&gt; 8  0.05468713 0.03187347  FULGLA POLYGON ((-5.355169 48.3995...</span></span>
-<span id="cb32-14"><a href="#cb32-14" tabindex="-1"></a><span class="co">#&gt; 9  0.05193751 0.02958914  FULGLA POLYGON ((-5.265338 48.3995...</span></span>
-<span id="cb32-15"><a href="#cb32-15" tabindex="-1"></a><span class="co">#&gt; 10 0.04864941 0.02733605  FULGLA POLYGON ((-5.175506 48.3995...</span></span>
-<span id="cb32-16"><a href="#cb32-16" tabindex="-1"></a><span class="co">#&gt; 11 0.04531877 0.02499646  FULGLA POLYGON ((-5.085675 48.3995...</span></span>
-<span id="cb32-17"><a href="#cb32-17" tabindex="-1"></a><span class="co">#&gt; 12 0.04219077 0.02302510  FULGLA POLYGON ((-4.995843 48.3995...</span></span>
-<span id="cb32-18"><a href="#cb32-18" tabindex="-1"></a><span class="co">#&gt; 13 0.03922633 0.02134454  FULGLA POLYGON ((-4.906011 48.3995...</span></span>
-<span id="cb32-19"><a href="#cb32-19" tabindex="-1"></a><span class="co">#&gt; 14 0.03718148 0.02082439  FULGLA POLYGON ((-4.81618 48.39957...</span></span>
+<span id="cb32-10"><a href="#cb32-10" tabindex="-1"></a><span class="co">#&gt; 4  0.04435625 0.02852029  FULGLA POLYGON ((-5.074828 48.4591...</span></span>
+<span id="cb32-11"><a href="#cb32-11" tabindex="-1"></a><span class="co">#&gt; 5  0.04144270 0.02666299  FULGLA POLYGON ((-4.984997 48.4591...</span></span>
+<span id="cb32-12"><a href="#cb32-12" tabindex="-1"></a><span class="co">#&gt; 6  0.03812816 0.02413783  FULGLA POLYGON ((-4.895165 48.4591...</span></span>
+<span id="cb32-13"><a href="#cb32-13" tabindex="-1"></a><span class="co">#&gt; 7  0.03578681 0.02314304  FULGLA POLYGON ((-4.805334 48.4591...</span></span>
+<span id="cb32-14"><a href="#cb32-14" tabindex="-1"></a><span class="co">#&gt; 8  0.05473780 0.03507767  FULGLA POLYGON ((-5.344323 48.3995...</span></span>
+<span id="cb32-15"><a href="#cb32-15" tabindex="-1"></a><span class="co">#&gt; 9  0.05106343 0.03181844  FULGLA POLYGON ((-5.254491 48.3995...</span></span>
+<span id="cb32-16"><a href="#cb32-16" tabindex="-1"></a><span class="co">#&gt; 10 0.04716910 0.02892573  FULGLA POLYGON ((-5.16466 48.39957...</span></span>
+<span id="cb32-17"><a href="#cb32-17" tabindex="-1"></a><span class="co">#&gt; 11 0.04331020 0.02601696  FULGLA POLYGON ((-5.074828 48.3995...</span></span>
+<span id="cb32-18"><a href="#cb32-18" tabindex="-1"></a><span class="co">#&gt; 12 0.03969557 0.02368143  FULGLA POLYGON ((-4.984997 48.3995...</span></span>
+<span id="cb32-19"><a href="#cb32-19" tabindex="-1"></a><span class="co">#&gt; 13 0.03631750 0.02171854  FULGLA POLYGON ((-4.895165 48.3995...</span></span>
 <span id="cb32-20"><a href="#cb32-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb32-21"><a href="#cb32-21" tabindex="-1"></a><span class="co">#&gt; $data_fit</span></span>
-<span id="cb32-22"><a href="#cb32-22" tabindex="-1"></a><span class="co">#&gt; Simple feature collection with 465 features and 18 fields</span></span>
+<span id="cb32-22"><a href="#cb32-22" tabindex="-1"></a><span class="co">#&gt; Simple feature collection with 335 features and 18 fields</span></span>
 <span id="cb32-23"><a href="#cb32-23" tabindex="-1"></a><span class="co">#&gt; Geometry type: POINT</span></span>
 <span id="cb32-24"><a href="#cb32-24" tabindex="-1"></a><span class="co">#&gt; Dimension:     XY</span></span>
-<span id="cb32-25"><a href="#cb32-25" tabindex="-1"></a><span class="co">#&gt; Bounding box:  xmin: -5.657199 ymin: 43.66589 xmax: -1.253505 ymax: 48.30416</span></span>
+<span id="cb32-25"><a href="#cb32-25" tabindex="-1"></a><span class="co">#&gt; Bounding box:  xmin: -5.560823 ymin: 43.66589 xmax: -1.253505 ymax: 48.30484</span></span>
 <span id="cb32-26"><a href="#cb32-26" tabindex="-1"></a><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
-<span id="cb32-27"><a href="#cb32-27" tabindex="-1"></a><span class="co">#&gt; # A tibble: 465 × 19</span></span>
+<span id="cb32-27"><a href="#cb32-27" tabindex="-1"></a><span class="co">#&gt; # A tibble: 335 × 19</span></span>
 <span id="cb32-28"><a href="#cb32-28" tabindex="-1"></a><span class="co">#&gt;    Beaufort TransectID         plateform         n_obs LegID Start_time         </span></span>
 <span id="cb32-29"><a href="#cb32-29" tabindex="-1"></a><span class="co">#&gt;       &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt; &lt;dttm&gt;             </span></span>
-<span id="cb32-30"><a href="#cb32-30" tabindex="-1"></a><span class="co">#&gt;  1        0 TR_Pelgas_25052023 upper_bridge_out…     2 2505… 2023-05-25 04:57:07</span></span>
-<span id="cb32-31"><a href="#cb32-31" tabindex="-1"></a><span class="co">#&gt;  2        1 TR_Pelgas_04052023 upper_bridge_out…     2 0405… 2023-05-04 11:42:53</span></span>
+<span id="cb32-30"><a href="#cb32-30" tabindex="-1"></a><span class="co">#&gt;  1        1 TR_Pelgas_04052023 upper_bridge_out…     2 0405… 2023-05-04 11:42:53</span></span>
+<span id="cb32-31"><a href="#cb32-31" tabindex="-1"></a><span class="co">#&gt;  2        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44</span></span>
 <span id="cb32-32"><a href="#cb32-32" tabindex="-1"></a><span class="co">#&gt;  3        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44</span></span>
 <span id="cb32-33"><a href="#cb32-33" tabindex="-1"></a><span class="co">#&gt;  4        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44</span></span>
 <span id="cb32-34"><a href="#cb32-34" tabindex="-1"></a><span class="co">#&gt;  5        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44</span></span>
-<span id="cb32-35"><a href="#cb32-35" tabindex="-1"></a><span class="co">#&gt;  6        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 13:56:44</span></span>
-<span id="cb32-36"><a href="#cb32-36" tabindex="-1"></a><span class="co">#&gt;  7        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 16:09:17</span></span>
-<span id="cb32-37"><a href="#cb32-37" tabindex="-1"></a><span class="co">#&gt;  8        1 TR_Pelgas_18052023 upper_bridge_out…     2 1805… 2023-05-18 11:33:05</span></span>
-<span id="cb32-38"><a href="#cb32-38" tabindex="-1"></a><span class="co">#&gt;  9        1 TR_Pelgas_22052023 upper_bridge_out…     2 2205… 2023-05-22 15:03:10</span></span>
-<span id="cb32-39"><a href="#cb32-39" tabindex="-1"></a><span class="co">#&gt; 10        1 TR_Pelgas_27052023 upper_bridge_out…     2 2705… 2023-05-27 13:24:10</span></span>
-<span id="cb32-40"><a href="#cb32-40" tabindex="-1"></a><span class="co">#&gt; # ℹ 455 more rows</span></span>
+<span id="cb32-35"><a href="#cb32-35" tabindex="-1"></a><span class="co">#&gt;  6        1 TR_Pelgas_05052023 upper_bridge_out…     2 0505… 2023-05-05 16:09:17</span></span>
+<span id="cb32-36"><a href="#cb32-36" tabindex="-1"></a><span class="co">#&gt;  7        1 TR_Pelgas_18052023 upper_bridge_out…     2 1805… 2023-05-18 11:33:05</span></span>
+<span id="cb32-37"><a href="#cb32-37" tabindex="-1"></a><span class="co">#&gt;  8        1 TR_Pelgas_27052023 upper_bridge_out…     2 2705… 2023-05-27 13:24:10</span></span>
+<span id="cb32-38"><a href="#cb32-38" tabindex="-1"></a><span class="co">#&gt;  9        2 TR_Pelgas_01052023 upper_bridge_out…     2 0105… 2023-05-01 06:56:56</span></span>
+<span id="cb32-39"><a href="#cb32-39" tabindex="-1"></a><span class="co">#&gt; 10        2 TR_Pelgas_01052023 upper_bridge_out…     2 0105… 2023-05-01 06:56:56</span></span>
+<span id="cb32-40"><a href="#cb32-40" tabindex="-1"></a><span class="co">#&gt; # ℹ 325 more rows</span></span>
 <span id="cb32-41"><a href="#cb32-41" tabindex="-1"></a><span class="co">#&gt; # ℹ 13 more variables: DateTime &lt;dttm&gt;, End_time &lt;dttm&gt;, SegID &lt;chr&gt;,</span></span>
 <span id="cb32-42"><a href="#cb32-42" tabindex="-1"></a><span class="co">#&gt; #   Effort &lt;dbl&gt;, geometry &lt;POINT [°]&gt;, det.FULGLA &lt;dbl&gt;, ind.FULGLA &lt;dbl&gt;,</span></span>
 <span id="cb32-43"><a href="#cb32-43" tabindex="-1"></a><span class="co">#&gt; #   mean_esw_FULGLA &lt;dbl&gt;, sd_esw_FULGLA &lt;dbl&gt;, Q25_esw_FULGLA &lt;dbl&gt;,</span></span>
@@ -1075,7 +1066,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
